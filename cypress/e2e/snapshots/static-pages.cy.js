@@ -24,11 +24,6 @@ describe('Visual regression tests of static pages', () => {
     cy.wait(1000)
     cy.matchImageSnapshot()
   })
-  it('Should match previous screenshot "FAQ"', () => {
-    cy.visit('/questions-frequentes')
-    cy.wait(1000)
-    cy.matchImageSnapshot()
-  })
   it('Should match previous screenshot "Diffuser"', () => {
     cy.visit('/diffuser')
     cy.wait(1000)

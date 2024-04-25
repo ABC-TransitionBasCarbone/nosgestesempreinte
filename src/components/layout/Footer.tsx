@@ -8,7 +8,6 @@ import {
   footerClickContact,
   footerClickDiffusion,
   footerClickDocumentation,
-  footerClickFAQ,
   footerClickImpactco2,
   footerClickInternational,
   footerClickLogo,
@@ -74,15 +73,6 @@ export default function Footer({ className = '' }) {
               className="text-default no-underline hover:underline">
               <strong>
                 <Trans>Documentation</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
-              href="/questions-frequentes"
-              onClick={() => trackEvent(footerClickFAQ)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>FAQ</Trans>
               </strong>
             </InlineLink>
 

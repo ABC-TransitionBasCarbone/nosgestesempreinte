@@ -66,10 +66,6 @@ export default async function PlanDuSitePage() {
         title: t('Partenaires'),
         href: '/partenaires',
       },
-      faq: {
-        title: t('FAQ'),
-        href: '/faq',
-      },
       stats: {
         title: t('Statistiques'),
         href: '/stats',
