@@ -50,7 +50,7 @@ export default function HeaderDesktop() {
                   <NavLink
                     href={getLinkToSimulateurPage()}
                     onClick={() => trackEvent(headerClickTest)}
-                    activeMatches={['/tutoriel', '/simulateur', '/fin']}
+                    activeMatches={['/simulateur', '/fin']}
                     icon={BilanIcon}
                     title={t('Mon empreinte')}>
                     <Trans>Mon empreinte</Trans>

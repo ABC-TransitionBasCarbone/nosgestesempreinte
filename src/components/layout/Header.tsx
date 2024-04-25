@@ -8,7 +8,7 @@ export default function Header() {
   const pathname = usePathname()
 
   const shouldHideMostOfContent =
-    pathname.includes('/simulateur') || pathname.includes('/tutoriel')
+    pathname.includes('/simulateur')
 
   return (
     <>

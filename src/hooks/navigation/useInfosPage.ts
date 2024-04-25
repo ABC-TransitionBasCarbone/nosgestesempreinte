@@ -3,7 +3,6 @@ import {
   EMAIL_PAGE,
   POSTAL_CODE_PAGE,
   START_PAGE,
-  TUTORIEL_PAGE,
 } from '@/constants/infosPages'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
@@ -22,7 +21,6 @@ type Props = {
     | typeof EMAIL_PAGE
     | typeof POSTAL_CODE_PAGE
     | typeof START_PAGE
-    | typeof TUTORIEL_PAGE
 }
 export function useInfosPage() {
   const searchParams = useSearchParams()
@@ -34,7 +32,6 @@ export function useInfosPage() {
 
   const urlsInfosPages = useMemo(
     () => ({
-      [TUTORIEL_PAGE]: `/tutoriel?${queryParamsString}`,
       [EMAIL_PAGE]: `/infos/email?${queryParamsString}`,
       [POSTAL_CODE_PAGE]: `/infos/codepostal?${queryParamsString}`,
       [BIRTHDATE_PAGE]: `/infos/naissance?${queryParamsString}`,
@@ -58,11 +55,6 @@ export function useInfosPage() {
       // if there is no poll yet, we return an empty string (it should be handled by the caller component)
       if (!poll) {
         return ''
-      }
-
-      // if we are on the tutoriel, we return the email page
-      if (curPage === TUTORIEL_PAGE) {
-        return urlsInfosPages.email
       }
 
       // if we are on the email page and the poll has the postalCode question, we return the postalCode page link
@@ -109,14 +101,9 @@ export function useInfosPage() {
         return ''
       }
 
-      // if we are on the tutoriel, we return the homepage link
-      if (curPage === TUTORIEL_PAGE) {
-        return '/'
-      }
-
-      // if we are on the email page, we return the tutoriel page link
+      // if we are on the email page, we return the home page link
       if (curPage === EMAIL_PAGE) {
-        return urlsInfosPages.tutoriel
+        return '/'
       }
 
       // if we are on the postalCode page, we return the email page link

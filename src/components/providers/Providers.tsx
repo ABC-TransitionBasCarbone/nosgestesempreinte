@@ -14,7 +14,7 @@ type Props = {
   isOptim?: boolean
 }
 
-const NO_MODEL_PATHNAME_EXCEPTIONS = ['/tutoriel', '/organisations']
+const NO_MODEL_PATHNAME_EXCEPTIONS = ['/organisations']
 
 export default function Providers({
   children,

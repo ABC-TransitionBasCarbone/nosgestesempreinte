@@ -22,7 +22,6 @@ export const getPreviewUrl = (PRNumber: string | number) => {
 export const HIDE_CTA_PATHS = [
   '/fin',
   '/simulateur/bilan',
-  '/tutoriel',
   '/infos',
   '/organisations/infos',
   '/organisations/connexion',

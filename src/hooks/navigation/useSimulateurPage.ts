@@ -36,8 +36,6 @@ export function useSimulateurPage() {
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 
-  const tutorielSeen = tutorials.testIntro
-
   const { progression } = useCurrentSimulation()
 
   const goToSimulateurPage = useCallback(
@@ -61,16 +59,9 @@ export function useSimulateurPage() {
         return
       }
 
-      // If the user has seen the tutoriel we redirect him to the test
-      if (tutorielSeen) {
-        router.replace(getLinkToSimulateur())
-        return
-      }
-
-      // else we redirect him to the tutoriel page
-      router.replace('/tutoriel')
+      router.replace(getLinkToSimulateur())
     },
-    [tutorielSeen, router, initSimulation, progression, goToEndPage]
+    [router, initSimulation, progression, goToEndPage]
   )
 
   const getLinkToSimulateurPage = useCallback(
@@ -82,15 +73,9 @@ export function useSimulateurPage() {
         return getLinkToEndPage()
       }
 
-      // If the user has seen the tutoriel we return the test page link
-      if (tutorielSeen) {
-        return getLinkToSimulateur()
-      }
-
-      // else we return the tutoriel page link
-      return '/tutoriel'
+      return getLinkToSimulateur()
     },
-    [tutorielSeen, progression, getLinkToEndPage]
+    [progression, getLinkToEndPage]
   )
 
   const linkToSimulateurPageLabel = useMemo(() => {
@@ -98,14 +83,11 @@ export function useSimulateurPage() {
     if (progression === 1) {
       return t('Voir les résultats')
     }
-
-    // If the user has seen the tutoriel we return the test page label
     if (progression > 0) {
       return t('Reprendre mon test')
     }
-
-    // else we return the tutoriel page label
-    return t('Passer le test →')
+    
+    return t('Passer le test →');
   }, [progression, t])
 
   return {
