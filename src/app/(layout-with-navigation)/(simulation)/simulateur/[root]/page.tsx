@@ -2,7 +2,6 @@
 
 import { useSimulateurGuard } from '@/hooks/navigation/useSimulateurGuard'
 import { useTrackSimulateur } from '@/hooks/tracking/useTrackSimulateur'
-import Faq from './_components/Faq'
 import Simulateur from './_components/Simulateur'
 
 export default function SimulateurPage() {

@@ -8,7 +8,6 @@ import {
   footerClickContact,
   footerClickDiffusion,
   footerClickDocumentation,
-  footerClickFAQ,
   footerClickImpactco2,
   footerClickInternational,
   footerClickLogo,

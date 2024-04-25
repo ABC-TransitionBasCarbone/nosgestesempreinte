@@ -85,8 +85,6 @@ export const footerClickAmbassadeurs = [
   'Click Ambassadeurs',
 ]
 
-export const footerClickFAQ = ['trackEvent', 'Footer', 'Click FAQ']
-
 export const footerClickContact = ['trackEvent', 'Footer', 'Click Contact']
 
 export const footerClickDiffusion = ['trackEvent', 'Footer', 'Click Diffusion']

@@ -28,6 +28,3 @@ export const simulateurClickDisabledSommaireQuestion = [
   'Simulateur',
   'Click Sommaire question',
 ]
-
-// Figma comment #121
-export const simulateurClickFaq = ['trackEvent', 'Simulateur', 'Click FAQ']

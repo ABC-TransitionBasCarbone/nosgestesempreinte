@@ -15,7 +15,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'vie-privee',
     'diffuser',
     'ambassadeurs',
-    'faq',
     'stats',
     'blog',
     'documentation/guide',
