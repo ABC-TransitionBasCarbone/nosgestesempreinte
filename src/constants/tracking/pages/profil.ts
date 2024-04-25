@@ -35,9 +35,6 @@ export const profilClickRecommencer = [
   'Click Nouveau test',
 ]
 
-// Figma comment #74
-export const profilClickTutoriel = ['trackEvent', 'Profil', 'Click Tutoriel']
-
 // Figma comment #75
 export const profilClickData = ['trackEvent', 'Profil', 'Click Data']
 

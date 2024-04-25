@@ -14,7 +14,6 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useActions, useCurrentSimulation, useForm } from '@/publicodes-state'
-import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationStarted() {
   const { t } = useClientTranslation()
@@ -97,7 +96,6 @@ export default function SimulationStarted() {
           <Trans>Recommencer</Trans>
         </ButtonLink>
 
-        <TutorialLink />
       </div>
     </div>
   )

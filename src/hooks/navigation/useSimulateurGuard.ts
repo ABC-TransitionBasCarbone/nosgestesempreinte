@@ -36,12 +36,6 @@ export function useSimulateurGuard() {
       setIsGuardRedirecting(true)
       return
     }
-
-    // if the user has not seen the test intro, we redirect him to the tutorial page
-    if (!tutorials.testIntro) {
-      router.replace('/tutoriel')
-      setIsGuardRedirecting(true)
-    }
   }, [
     isGuardInit,
     tutorials,

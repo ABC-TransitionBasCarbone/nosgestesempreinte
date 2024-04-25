@@ -30,13 +30,6 @@ export function useEndGuard() {
       return
     }
 
-    // if the user didn't see the tutoriel we redirect him to the tutorial page
-    if (!tutorials.testIntro) {
-      router.replace('/tutoriel')
-      setIsGuardRedirecting(true)
-      return
-    }
-
     // we redirect the user to the test page
     router.replace(getLinkToSimulateur())
     setIsGuardRedirecting(true)

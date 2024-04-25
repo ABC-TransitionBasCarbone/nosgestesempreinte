@@ -4,7 +4,6 @@ import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import ProgressCircle from '@/design-system/utils/ProgressCircle'
 import { getLinkToSimulateur } from '@/helpers/navigation/simulateurPages'
-import TutorialLink from './_components/TutorialLink'
 
 export default function SimulationNotStarted() {
   return (
@@ -26,8 +25,6 @@ export default function SimulationNotStarted() {
           <ProgressCircle className="mr-2" white />
           <Trans>Faire le test</Trans>
         </ButtonLink>
-
-        <TutorialLink className="w-auto" />
       </div>
     </Card>
   )
