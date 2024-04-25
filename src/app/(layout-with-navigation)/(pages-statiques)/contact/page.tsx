@@ -33,14 +33,6 @@ export default function Contact() {
 
       <p>
         <Trans>
-          N'hésitez pas à consulter notre{' '}
-          <Link href="/questions-frequentes">FAQ</Link> avant de nous écrire,
-          vous y trouverez sans doute la réponse à votre question !
-        </Trans>
-      </p>
-
-      <p>
-        <Trans>
           Pour toute autre remarque ou question, vous pouvez nous envoyer un
           message via le formulaire de contact ci-dessous.
         </Trans>

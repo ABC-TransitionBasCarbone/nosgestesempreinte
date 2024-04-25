@@ -78,15 +78,6 @@ export default function Footer({ className = '' }) {
             </InlineLink>
 
             <InlineLink
-              href="/questions-frequentes"
-              onClick={() => trackEvent(footerClickFAQ)}
-              className="text-default no-underline hover:underline">
-              <strong>
-                <Trans>FAQ</Trans>
-              </strong>
-            </InlineLink>
-
-            <InlineLink
               href="/contact"
               onClick={() => trackEvent(footerClickContact)}
               className="text-default no-underline hover:underline">

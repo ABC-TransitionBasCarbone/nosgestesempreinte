@@ -55,15 +55,6 @@ export default function FoldableMenu() {
           <li>
             <NavLink
               onFocus={onFocus}
-              onClick={closeMenu}
-              href="/questions-frequentes">
-              FAQ
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              onFocus={onFocus}
               onClick={() => {
                 closeMenu()
                 trackEvent(footerClickDocumentation)
