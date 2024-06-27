@@ -40,7 +40,8 @@ export default function MosaicBooleanInput({
   ...props
 }: Props) {
   const { value, isMissing, isInactive } = useRule(question)
-
+  console.log(title);
+  console.log(icons);
   const status = isInactive
     ? 'inactive'
     : !isMissing && value
@@ -78,6 +79,12 @@ export default function MosaicBooleanInput({
       </span>
 
       <div className="flex-1">
+        {title ? (
+          <span
+            className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
+            <Emoji className="inline-flex">{title}</Emoji>{' '}
+          </span>
+        ) : null}
         {title && icons ? (
           <span
             className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>

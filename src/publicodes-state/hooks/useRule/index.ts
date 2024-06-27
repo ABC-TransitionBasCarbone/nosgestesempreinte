@@ -26,6 +26,7 @@ export default function useRule(dottedName: DottedName) {
     safeEvaluate,
     everyNotifications,
     everyMosaicChildren,
+    everyRules,
     addToEngineSituation,
   } = useContext(SimulationContext)
 
@@ -58,7 +59,9 @@ export default function useRule(dottedName: DottedName) {
 
   const questionsOfMosaic = useQuestionsOfMosaic({
     options: rule?.rawNode?.mosaique?.options,
+    optionsSi: rule?.rawNode?.mosaique?.optionsSi,
     everyMosaicChildren,
+    everyRules,
   })
 
   const parent = utils.ruleParent(dottedName)

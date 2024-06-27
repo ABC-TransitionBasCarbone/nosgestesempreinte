@@ -45,9 +45,7 @@ async function importPreviewFile({
 async function importFile({ fileName }: { fileName: string }) {
   console.log('importing file', fileName)
   try {
-    return await import(
-      `@incubateur-ademe/nosgestesclimat/public/${fileName}`
-    ).then((module) => module.default)
+    return await import("./test-chloe-data.json").then((module) => module.default)
   } catch (e) {
     console.error('importFile error', e)
     return {}

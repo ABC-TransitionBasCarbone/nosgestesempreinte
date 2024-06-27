@@ -120,7 +120,8 @@ type SuggestionsNode = Record<
 
 type MosaiqueNode = {
   type: 'selection' | 'nombre'
-  options: DottedName[]
+  options?: DottedName[]
+  optionsSi?: DottedName[]
   total?: number
   suggestions?: SuggestionsNode
 }

@@ -23,8 +23,10 @@ export default function MosaicQuestion({
   ...props
 }: Props) {
   const { type, parent, setValue } = useRule(question)
-
+  console.log("type", type);
+  console.log("parent", parent);
   const { title, icons, description } = useRule(parent)
+  console.log("title", title);
 
   const { questionsOfMosaic: questionsOfParentMosaic } = useRule(parentMosaic)
 

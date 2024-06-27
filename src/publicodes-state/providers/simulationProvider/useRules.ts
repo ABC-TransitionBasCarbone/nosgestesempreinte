@@ -62,8 +62,14 @@ export function useRules({ engine, root }: Props) {
           (option: string) => {
             return everyQuestions.find((rule) => rule.endsWith(option)) || ''
           }
-        )
-        return [...accumulator, ...mosaicChildren]
+        ) ?? [];
+        const mosaicSiChildren = mosaicRule.rawNode.mosaique['optionsSi']?.map(
+          (option: string) => {
+            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+          }
+        ) ?? [];
+
+        return [...accumulator, ...mosaicChildren, ...mosaicSiChildren];
       }, []),
     [everyMosaic, everyQuestions, engine]
   )

@@ -23,6 +23,7 @@ export default function useTempEngine() {
         dottedName: foldedStep,
         everyMosaicChildren,
       })
+      console.log("questionsOfMosaic", questionsOfMosaic);
       return questionsOfMosaic.length > 0 ? questionsOfMosaic : foldedStep
     })
     .flat()
