@@ -32,7 +32,6 @@ async function importPreviewFile({
   PRNumber: string
 }) {
   const previewURL = getPreviewUrl(PRNumber)
-  console.log('fetching preview file', fileName)
   return axios
     .get(`${previewURL}/${fileName}`)
     .then((res) => res.data)
@@ -43,7 +42,6 @@ async function importPreviewFile({
 }
 
 async function importFile({ fileName }: { fileName: string }) {
-  console.log('importing file', fileName)
   try {
     return await import("./test-chloe-data.json").then((module) => module.default)
   } catch (e) {

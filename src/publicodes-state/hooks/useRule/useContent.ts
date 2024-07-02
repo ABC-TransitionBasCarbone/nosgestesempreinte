@@ -14,7 +14,6 @@ export default function useContent({ dottedName, rule }: Props) {
     () => getNamespace(dottedName) ?? '',
     [dottedName]
   )
-  console.log("rule", rule);
   const title = useMemo<string | undefined>(() => rule?.title, [rule])
 
   const abbreviatedTitle = useMemo<string | undefined>(

@@ -40,8 +40,6 @@ export default function MosaicBooleanInput({
   ...props
 }: Props) {
   const { value, isMissing, isInactive } = useRule(question)
-  console.log(title);
-  console.log(icons);
   const status = isInactive
     ? 'inactive'
     : !isMissing && value

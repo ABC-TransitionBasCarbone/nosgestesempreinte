@@ -30,8 +30,7 @@ export default function useQuestionsOfMosaic({
 
       return optionsSi?.map(
         (mosaicName) => {
-          console.log("mosaicName", mosaicName);
-          const tmpMosaicName = mosaicName.replace(" . si", "");
+          const tmpMosaicName = mosaicName.replace(" . choix . nombre", "");
           // TODO: we should manage the case where options don't correspond to exisiting rules
           const mosaicParent = everyRules.find((child) => child.endsWith(`${tmpMosaicName} . nombre`)) ?? ''
           if (!mosaicParent) return '';
