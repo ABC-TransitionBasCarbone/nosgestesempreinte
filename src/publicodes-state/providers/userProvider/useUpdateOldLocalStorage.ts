@@ -4,7 +4,6 @@ import {
   MigrationType,
   Simulation,
 } from '@/publicodes-state/types'
-import { captureException } from '@sentry/react'
 import { useEffect } from 'react'
 
 type Props = {
@@ -32,7 +31,6 @@ function handleLocalStorageMigration(
     )
   } catch (error) {
     console.warn('Error trying to migrate LocalStorage:', error)
-    captureException(error)
   }
 }
 

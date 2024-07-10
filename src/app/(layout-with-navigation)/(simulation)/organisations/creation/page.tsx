@@ -7,7 +7,6 @@ import { usePreventNavigation } from '@/hooks/navigation/usePreventNavigation'
 import { useSendOrganisationCreationEmail } from '@/hooks/organisations/useSendOrganisationCreationEmail'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
-import { captureException } from '@sentry/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import useFetchOrganisation from '../_hooks/useFetchOrganisation'
@@ -109,7 +108,6 @@ export default function CreationPage() {
 
       router.push(`/organisations/${organisationUpdated?.slug}`)
     } catch (error: any) {
-      captureException(error)
     }
   }
 

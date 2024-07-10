@@ -4,7 +4,6 @@ import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationIn
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
@@ -92,16 +91,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
-
-        <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            <FilAriane />
-
-            {children}
-          </MainLayoutProviders>
-        </ErrorBoundary>
       </body>
     </html>
   )

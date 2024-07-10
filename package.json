@@ -35,8 +35,6 @@
     "@next/bundle-analyzer": "^14.1.0",
     "@next/mdx": "^14.0.2",
     "@publicodes/react-ui": "^1.2.0",
-    "@sentry/nextjs": "^7.80.0",
-    "@sentry/react": "^7.80.0",
     "@tanstack/react-query": "^5.28.4",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
