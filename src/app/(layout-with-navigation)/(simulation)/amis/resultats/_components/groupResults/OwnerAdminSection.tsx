@@ -51,6 +51,7 @@ export default function OwnerAdminSection({ group }: Props) {
         router.push(linkToClassement)
       }, 2000)
     } catch (error) {
+      console.log(error)
     }
   }
 

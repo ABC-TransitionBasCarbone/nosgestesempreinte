@@ -39,6 +39,7 @@ export default function ParticipantAdminSection({ group }: Props) {
         router.push(linkToClassement)
       }, 1750)
     } catch (error) {
+      console.log(error)
     }
   }
 

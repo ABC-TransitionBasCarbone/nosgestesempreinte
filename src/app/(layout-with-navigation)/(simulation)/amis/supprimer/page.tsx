@@ -37,6 +37,7 @@ export default function SupprimerGroupePage({
       // Refresh cache
       refetchGroup()
     } catch (error) {
+      console.log(error)
     }
   }
 

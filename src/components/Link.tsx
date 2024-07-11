@@ -31,7 +31,7 @@ export default function Link({
   target,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLAnchorElement> & Props>) {
-  const locale = useCurrentLocale(i18nConfig)
+  const locale = 'fr'
   const { t } = useClientTranslation()
 
   const { shouldPreventNavigation, handleUpdateShouldPreventNavigation } =

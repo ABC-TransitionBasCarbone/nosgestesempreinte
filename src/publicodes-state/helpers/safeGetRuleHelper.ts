@@ -9,6 +9,7 @@ export const safeGetRuleHelper = (
     rule = engineUsed.getRule(ruleName)
   } catch (error) {
     console.warn(error)
+    console.log(error)
   }
   return rule
 }

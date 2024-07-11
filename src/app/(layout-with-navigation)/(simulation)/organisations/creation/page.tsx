@@ -108,6 +108,7 @@ export default function CreationPage() {
 
       router.push(`/organisations/${organisationUpdated?.slug}`)
     } catch (error: any) {
+      console.log(error)
     }
   }
 

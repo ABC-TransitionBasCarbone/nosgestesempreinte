@@ -148,5 +148,6 @@ const postData = async (data: any, id: string, ratings: NorthStarRatings) => {
       body: JSON.stringify(body),
     })
   } catch (e) {
+    console.log(e)
   }
 }

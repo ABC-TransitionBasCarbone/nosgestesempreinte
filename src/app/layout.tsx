@@ -9,7 +9,6 @@ import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
@@ -91,6 +90,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           const b = document.documentElement;
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
+
+        <MainLayoutProviders
+          region={region}
+          migrationInstructions={migrationInstructions}>
+          <FilAriane />
+
+          {children}
+        </MainLayoutProviders>
       </body>
     </html>
   )

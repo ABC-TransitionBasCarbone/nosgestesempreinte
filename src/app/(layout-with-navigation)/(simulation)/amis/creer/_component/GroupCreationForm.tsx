@@ -102,6 +102,7 @@ export default function GroupCreationForm() {
 
       setShouldNavigate(group._id)
     } catch (e) {
+      console.log(e)
     }
   }
 

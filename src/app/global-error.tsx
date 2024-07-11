@@ -8,8 +8,6 @@ type Props = {
   error: Error & { digest?: string }
 }
 export default function GlobalError({ error }: Props) {
-  useEffect(() => {
-  }, [error])
 
   return (
     <html lang="fr">

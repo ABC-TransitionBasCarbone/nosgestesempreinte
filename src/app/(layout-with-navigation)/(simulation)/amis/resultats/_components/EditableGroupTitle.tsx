@@ -40,6 +40,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
       setIsSubmitting(false)
       setIsEditingTitle(false)
     } catch (e) {
+      console.log(e)
     }
   }
   const vousWord = t('Vous')
