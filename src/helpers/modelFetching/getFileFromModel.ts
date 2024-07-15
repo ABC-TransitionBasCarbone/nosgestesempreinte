@@ -19,19 +19,18 @@ export async function getFileFromModel({ fileName, PRNumber }: Props) {
   }
 
   // Otherwise, we want to use the production data
-  const file = await importFile({ fileName })
+  const file = await importFile()
 
   return file
 }
 
 async function importPreviewFile({
   fileName,
-  PRNumber,
 }: {
   fileName: string
   PRNumber: string
 }) {
-  const previewURL = getPreviewUrl(PRNumber)
+  const previewURL = getPreviewUrl()
   return axios
     .get(`${previewURL}/${fileName}`)
     .then((res) => res.data)
@@ -41,7 +40,7 @@ async function importPreviewFile({
     })
 }
 
-async function importFile({ fileName }: { fileName: string }) {
+async function importFile() {
   try {
     return await import("./test-chloe-data.json").then((module) => module.default)
   } catch (e) {

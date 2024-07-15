@@ -1,4 +1,3 @@
-import { captureException } from '@sentry/react'
 import { DottedName, Situation } from '../types'
 
 export const safeGetSituation = ({
@@ -19,7 +18,6 @@ export const safeGetSituation = ({
           `error trying to use "${ruleName}" from the user situation: the rule doesn't exist in the model`
         )
         console.warn(error)
-        captureException(error)
         return true
       }
       // We check if the value from a mutliple choices question `dottedName`
@@ -40,7 +38,6 @@ export const safeGetSituation = ({
           `error trying to use "${ruleName}" answer from the user situation: "${situation[ruleName]}" doesn't exist in the model`
         )
         console.warn(error)
-        captureException(error)
         return false
       }
       return false

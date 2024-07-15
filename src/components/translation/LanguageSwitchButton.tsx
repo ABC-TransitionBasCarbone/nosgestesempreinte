@@ -7,7 +7,6 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
 import i18nConfig from '@/i18nConfig'
 import { trackEvent } from '@/utils/matomo/trackEvent'
-import { useCurrentLocale } from 'next-i18n-router/client'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 
@@ -20,7 +19,7 @@ export default function LanguageSwitchButton() {
 
   const searchParams = useSearchParams().toString()
 
-  const currentLocale = useCurrentLocale(i18nConfig)
+  const currentLocale = 'fr'
 
   const handleChange = useCallback(
     (newLocale: string) => {
@@ -70,27 +69,6 @@ export default function LanguageSwitchButton() {
         className="flex items-center gap-2 px-4 py-3"
         data-cypress-id="language-switch-button-fr">
         <span>FR</span> <Emoji>🇫🇷</Emoji>
-      </Button>
-      <Button
-        lang="en"
-        color={currentLocale === 'en' ? 'primary' : 'secondary'}
-        onClick={() => handleChange('en')}
-        size="sm"
-        aria-label={t('Switch to english')}
-        className="flex items-center gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-en">
-        <span>EN</span> <Emoji>🇬🇧</Emoji>
-      </Button>
-
-      <Button
-        lang="es"
-        color={currentLocale === 'es' ? 'primary' : 'secondary'}
-        onClick={() => handleChange('es')}
-        size="sm"
-        aria-label={t('Cambiar a español')}
-        className="flex gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-es">
-        <span>ES</span> <Emoji>🇪🇸</Emoji>
       </Button>
     </div>
   )
