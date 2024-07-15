@@ -1,3 +1,4 @@
+//TODO: à supprimer
 const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 

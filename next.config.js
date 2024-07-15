@@ -16,11 +16,6 @@ const withYAML = require('next-yaml');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  productionBrowserSourceMaps: true,
-  i18n: {
-    locales: ['fr', 'en', 'es'],
-    defaultLocale: 'fr',
-  },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
