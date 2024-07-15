@@ -10,7 +10,6 @@ export function useTrackPageView() {
     let url = pathname
 
     // We remove the lang prefix from the pathname
-    console.log("localces", locales)
     locales.map((locale) => {
       if (pathname.startsWith(`/${locale}`)) {
         url = pathname.slice(3)

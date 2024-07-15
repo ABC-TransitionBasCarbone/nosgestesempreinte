@@ -16,27 +16,10 @@ const withYAML = require('next-yaml');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  logging: {
-    fetches: {
-      fullUrl: true
-    }
-  },
   productionBrowserSourceMaps: true,
   i18n: {
     locales: ['fr', 'en', 'es'],
     defaultLocale: 'fr',
-    localeDetector: (request) => {
-      const acceptedLanguages = request.headers
-        ?.get('accept-language')
-        ?.split(',')
-      if (!acceptedLanguages) {
-        return 'fr'
-      }
-      const preferedLanguage = acceptedLanguages.find((acceptedLanguage) =>
-        ['fr', 'en', 'es'].includes(acceptedLanguage.split('-'))
-      )
-      return preferedLanguage || 'fr'
-    },
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
@@ -46,7 +29,7 @@ const nextConfig = {
   async redirects() {
     return redirects;
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev }) => {
     if (config.cache && !dev) {
       config.cache = Object.freeze({
         type: 'memory',
@@ -60,11 +43,6 @@ const nextConfig = {
         '@mdx-js/loader',
       ],
     });
-
-    if (isServer) {
-      config.devtool = 'source-map'
-      
-    }
 
     return config;
   },
