@@ -2,12 +2,8 @@
 
 import Error500 from '@/components/layout/500'
 import NextError from 'next/error'
-import { useEffect } from 'react'
 
-type Props = {
-  error: Error & { digest?: string }
-}
-export default function GlobalError({ error }: Props) {
+export default function GlobalError() {
 
   return (
     <html lang="fr">

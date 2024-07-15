@@ -12,7 +12,7 @@ type Props = {
  * This function is used to get the rules. It is used in the useRules hook and can also be called directly from a server component.
  */
 export async function getRules(
-  { locale = 'fr', regionCode = 'FR', isOptim = true, PRNumber }: Props = {
+  { locale = 'fr', regionCode = 'FR', PRNumber }: Props = {
     locale: 'fr',
     regionCode: 'FR',
     isOptim: true,

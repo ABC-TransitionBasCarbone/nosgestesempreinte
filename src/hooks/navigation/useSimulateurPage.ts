@@ -32,7 +32,7 @@ export function useSimulateurPage() {
 
   const { t } = useClientTranslation()
 
-  const { tutorials, initSimulation } = useUser()
+  const { initSimulation } = useUser()
 
   const { goToEndPage, getLinkToEndPage } = useEndPage()
 

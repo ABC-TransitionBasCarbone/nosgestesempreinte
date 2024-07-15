@@ -13,7 +13,7 @@ export const GROUP_URL = SERVER_URL + '/group'
 
 export const SAVE_SIMULATION_URL = SERVER_URL + '/simulations/create'
 
-export const getPreviewUrl = (PRNumber: string | number) => {
+export const getPreviewUrl = () => {
   return `nosgestesempreinte.vercel.app`
 }
 
