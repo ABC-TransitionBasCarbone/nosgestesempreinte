@@ -13,7 +13,7 @@ export default function FinPage() {
   });
   return (
     <>
-      <div className="relative flex items-center justify-center overflow-hidden p-4 ">
+      <div className="relative flex items-center justify-center overflow-hidden p-4 h-[100vh]">
         <div className="relative mb-2 text-center md:mb-0">
           <h1 className="md:text-5xl">
             Merci pour vos réponses, vous allez être redirigé vers la plateforme OpinionWay

@@ -22,7 +22,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
   return (
     <>
       <div className="m-auto flex max-w-7xl justify-start">
-        <Main className="my-8 w-full max-w-5xl overflow-visible px-4 lg:mx-auto">
+        <Main className="w-full max-w-5xl overflow-visible px-4 lg:mx-auto">
           {children}
         </Main>
       </div>
