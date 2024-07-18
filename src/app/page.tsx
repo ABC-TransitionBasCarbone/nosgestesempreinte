@@ -8,6 +8,8 @@ import Contributions from './_components/Contributions'
 import Explanations from './_components/Explanations'
 import Heading from './_components/Heading'
 import Organisations from './_components/Organisations'
+import Buttons from "@/app/_components/heading/Buttons";
+import Trans from "@/components/translation/Trans";
 
 export async function generateMetadata() {
   const { t } = await getServerTranslation()
@@ -28,16 +30,15 @@ export default async function Homepage() {
   return (
     <>
       <Main>
-        <Heading />
-        <div className="mx-auto mb-12 flex w-full max-w-5xl flex-col flex-wrap items-center gap-12 px-4 md:mb-20 md:flex-row md:items-start md:px-8 lg:gap-28">
-          <Amis />
-          <Actions />
+        <div className="relative flex items-center justify-center overflow-hidden p-4 ">
+          <div className="relative mb-2 text-center md:mb-0">
+            <h1 className="md:text-5xl">
+              {'Bonjour, vous allez répondre à des questions sur votre empreinte carbone'}
+            </h1>
+            <Buttons/>
+          </div>
         </div>
-        <Organisations />
-        <Explanations />
-        <Contributions />
       </Main>
-      <Footer className="bg-white" />
     </>
-  )
+)
 }
