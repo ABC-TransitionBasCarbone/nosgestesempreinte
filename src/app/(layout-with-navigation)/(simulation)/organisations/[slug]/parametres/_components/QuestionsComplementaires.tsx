@@ -3,10 +3,9 @@
 import { useUpdateOrganisation } from '@/app/(layout-with-navigation)/(simulation)/organisations/_hooks/useUpdateOrganisation'
 import ModificationSaved from '@/components/messages/ModificationSaved'
 import Trans from '@/components/translation/Trans'
-import { organisationsParametersToggleAdditionnalQuestionsPostCode } from '@/constants/tracking/pages/organisationsParameters'
 import { useUser } from '@/publicodes-state'
 import { Organisation } from '@/types/organisations'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useEffect, useRef, useState } from 'react'
 import ToggleField from './questionsComplementaires/ToggleField'
 
@@ -38,16 +37,6 @@ export default function QuestionsComplementaires({
     questionKey: string
     value: boolean
   }) => {
-    if (questionKey === 'postalCode') {
-      trackEvent(
-        organisationsParametersToggleAdditionnalQuestionsPostCode(value)
-      )
-    }
-    if (questionKey === 'birthdate') {
-      trackEvent(
-        organisationsParametersToggleAdditionnalQuestionsPostCode(value)
-      )
-    }
 
     const defaultAdditionalQuestions =
       poll?.defaultAdditionalQuestions ?? ([] as string[])

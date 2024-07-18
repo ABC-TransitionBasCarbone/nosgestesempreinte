@@ -2,13 +2,11 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import { classementClickGroup } from '@/constants/tracking/pages/classements'
 import ChevronRight from '@/design-system/icons/ChevronRight'
 import Emoji from '@/design-system/utils/Emoji'
 import { getLinkToGroupDashboard } from '@/helpers/navigation/groupPages'
-import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 
 type Props = {
   group: Group
@@ -16,21 +14,11 @@ type Props = {
 }
 
 export default function GroupItem({ group }: Props) {
-  const { user } = useUser()
-  const isAdministator = user.userId === group.administrator.userId
-
   return (
     <Link
       className="mb-3 rounded-xl bg-gray-100 px-5 py-2 no-underline decoration-auto transition-colors hover:bg-primary-100"
       href={getLinkToGroupDashboard({ groupId: group._id })}
-      onClick={() =>
-        trackEvent(
-          classementClickGroup({
-            isAdministator,
-            numParticipants: group.participants.length,
-          })
-        )
-      }>
+      >
       <div className="flex items-center justify-between py-4">
         <div className="flex w-full items-center">
           <div className="flex-shrink-0 text-2xl">

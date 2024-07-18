@@ -2,7 +2,6 @@
 
 import GroupLoader from '@/components/groups/GroupLoader'
 import Trans from '@/components/translation/Trans'
-import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Title from '@/design-system/layout/Title'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
@@ -32,7 +31,6 @@ export default function Groups() {
         {groups && groups.length > 0 && (
           <ButtonLink
             href={linkToGroupCreation}
-            trackingEvent={classementCreateGroup}
             color="secondary"
             size="sm"
             data-cypress-id="button-create-other-group">

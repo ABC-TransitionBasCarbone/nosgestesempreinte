@@ -1,12 +1,11 @@
 'use client'
 
-import { questionClickSuggestion } from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 import { capitalizeString } from '@/utils/capitalizeString'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 
 type Props = {
   question: DottedName
@@ -26,9 +25,6 @@ export default function Suggestions({ question, setValue }: Props) {
           size="xs"
           className="text-xs font-normal md:text-sm"
           onClick={() => {
-            trackEvent(
-              questionClickSuggestion({ question, answer: suggestion.label })
-            )
             setValue(suggestion.value)
           }}>
           <Emoji className="flex items-center gap-1 leading-none">

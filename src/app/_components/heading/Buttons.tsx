@@ -2,17 +2,10 @@
 
 import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
-import {
-  homeClickCtaCommencer,
-  homeClickCtaReprendre,
-  homeClickCtaResultats,
-  homeClickNewTest,
-} from '@/constants/tracking/pages/home'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -41,16 +34,13 @@ export default function Buttons() {
         onMouseLeave={() => setIsHover(false)}
         onClick={() => {
           if (progression === 1) {
-            trackEvent(homeClickCtaResultats)
             return
           }
 
           if (progression > 0) {
-            trackEvent(homeClickCtaReprendre)
             return
           }
 
-          trackEvent(homeClickCtaCommencer)
         }}>
         <span
           className={twMerge(
@@ -69,7 +59,6 @@ export default function Buttons() {
             isClient ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={() => {
-            trackEvent(homeClickNewTest)
             goToSimulateurPage({ noNavigation: true, newSimulation: {} })
           }}
           href={getLinkToSimulateurPage({ newSimulation: true })}>

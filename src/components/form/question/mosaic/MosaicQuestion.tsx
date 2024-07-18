@@ -1,12 +1,8 @@
 'use client'
 
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import MosaicBooleanInput from './mosaicQuestion/MosaicBooleanInput'
 import MosaicNumberInput from './mosaicQuestion/MosaicNumberInput'
 
@@ -39,14 +35,6 @@ export default function MosaicQuestion({
               foldedStep: parentMosaic,
               questionsOfParentMosaic,
             })
-
-            trackEvent(
-              questionTypeAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
-              })
-            )
           }}
           parentMosaic={parentMosaic}
           index={index}
@@ -64,14 +52,6 @@ export default function MosaicQuestion({
               foldedStep: parentMosaic,
               questionsOfParentMosaic,
             })
-
-            trackEvent(
-              questionChooseAnswer({
-                question: parentMosaic,
-                answer: parent,
-                mosaicValue: value,
-              })
-            )
           }}
           index={index}
           {...props}

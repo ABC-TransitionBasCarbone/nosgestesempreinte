@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { endClickCreateGroup } from '@/constants/tracking/pages/end'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
@@ -42,8 +41,7 @@ export default function GroupModePromotionBanner({
         <ButtonLink
           color="secondary"
           href="/amis"
-          className="self-bottom"
-          trackingEvent={endClickCreateGroup}>
+          className="self-bottom">
           <Trans>Créer un groupe</Trans>
         </ButtonLink>
       </div>

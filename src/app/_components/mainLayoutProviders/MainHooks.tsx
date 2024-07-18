@@ -5,17 +5,11 @@
  */
 'use client'
 
-import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
-import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
-import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
 import { PropsWithChildren } from 'react'
 
 export default function MainHooks({ children }: PropsWithChildren) {
-  useTrackSplitTesting()
-  useTrackPageView()
-  useTrackLocale()
   useUserInfosParams()
   useInitSimulationParam()
 

@@ -1,10 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import {
-  organisationsAccueilClickCommencerBottom,
-  organisationsAccueilClickDemoBottom,
-} from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 
@@ -30,7 +26,6 @@ export default function CTAFooter() {
 
           <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row">
             <ButtonLink
-              trackingEvent={organisationsAccueilClickCommencerBottom}
               href="/organisations/connexion">
               <Trans>Créer un compte</Trans>
             </ButtonLink>
@@ -38,8 +33,7 @@ export default function CTAFooter() {
             <ButtonLink
               color="text"
               className="font-normal underline"
-              href="/contact?motif=demo"
-              trackingEvent={organisationsAccueilClickDemoBottom}>
+              href="/contact?motif=demo">
               <Trans>Demandez une démo</Trans>
             </ButtonLink>
           </div>

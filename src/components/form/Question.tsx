@@ -12,12 +12,7 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import {
-  questionChooseAnswer,
-  questionTypeAnswer,
-} from '@/constants/tracking/question'
 import { useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
 
@@ -82,7 +77,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
                 setTempValue(value)
               }
               setValue(value, { foldedStep: question })
-              trackEvent(questionTypeAnswer({ question, answer: value }))
             }}
             isMissing={isMissing}
             min={0}
@@ -98,7 +92,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             setValue={(value) => {
               {
                 setValue(value, { foldedStep: question })
-                trackEvent(questionChooseAnswer({ question, answer: value }))
               }
             }}
             isMissing={isMissing}
@@ -117,7 +110,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             setValue={(value) => {
               {
                 setValue(value, { foldedStep: question })
-                trackEvent(questionChooseAnswer({ question, answer: value }))
               }
             }}
             isMissing={isMissing}

@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import { classementCreateGroup } from '@/constants/tracking/pages/classements'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Container from '@/design-system/layout/Container'
 import { linkToGroupCreation } from '@/helpers/navigation/groupPages'
@@ -21,7 +20,6 @@ export default function CreateFirstGroupSection() {
       </p>
       <ButtonLink
         href={linkToGroupCreation}
-        trackingEvent={classementCreateGroup}
         data-cypress-id="button-create-first-group">
         <Trans>Commencer</Trans>
       </ButtonLink>

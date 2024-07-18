@@ -2,13 +2,9 @@
 
 import Baseline from '@/components/organisations/Baseline'
 import Trans from '@/components/translation/Trans'
-import {
-  organisationsAccueilClickCommencer,
-  organisationsAccueilClickDemo,
-} from '@/constants/tracking/pages/organisationsAccueil'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import InlineLink from '@/design-system/inputs/InlineLink'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import Image from 'next/image'
 
 export default function HeroSection() {
@@ -25,17 +21,13 @@ export default function HeroSection() {
 
         <div className="flex flex-col flex-wrap items-center gap-4 sm:flex-row sm:justify-start md:items-baseline md:gap-8 lg:justify-start">
           <ButtonLink
-            href="/organisations/connexion"
-            trackingEvent={organisationsAccueilClickCommencer}>
+            href="/organisations/connexion">
             <Trans>Commencez</Trans>
           </ButtonLink>
 
           <InlineLink
             className="py-4"
-            href="/organisations/demander-demo"
-            onClick={() => {
-              trackEvent(organisationsAccueilClickDemo)
-            }}>
+            href="/organisations/demander-demo">
             <Trans>Demandez une démo</Trans>
           </InlineLink>
         </div>

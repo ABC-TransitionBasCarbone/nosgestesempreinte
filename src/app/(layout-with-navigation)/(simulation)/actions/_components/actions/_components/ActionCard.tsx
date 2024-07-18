@@ -3,12 +3,6 @@
 import Link from '@/components/Link'
 import CheckCircleIcon from '@/components/icons/CheckCircleIcon'
 import CloseIcon from '@/components/icons/Close'
-import {
-  actionsClickAdditionalQuestion,
-  actionsClickNo,
-  actionsClickYes,
-  actionsOpenAction,
-} from '@/constants/tracking/pages/actions'
 import NotificationBubble from '@/design-system/alerts/NotificationBubble'
 import Emoji from '@/design-system/utils/Emoji'
 import {
@@ -24,7 +18,7 @@ import {
   useUser,
 } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
 import { useCallback } from 'react'
 import { filterRelevantMissingVariables } from '../../../_helpers/filterRelevantMissingVariables'
@@ -103,15 +97,10 @@ export default function ActionCard({
     }
 
     toggleActionChoice(dottedName)
-
-    if (!isSelected) {
-      trackEvent(actionsClickYes(dottedName))
-    }
   }, [
     dottedName,
     hasRemainingQuestions,
     isDisabled,
-    isSelected,
     setFocusedAction,
     toggleActionChoice,
   ])
@@ -136,7 +125,6 @@ export default function ActionCard({
         )}`}>
         <Link
           className="z-10 w-full no-underline"
-          onClick={() => trackEvent(actionsOpenAction(dottedName))}
           href={'/actions/' + encodeRuleName(dottedName)}>
           {icons && (
             <Emoji className="inline-flex justify-center">{icons}</Emoji>
@@ -171,7 +159,6 @@ export default function ActionCard({
             <button
               className="cursor-pointer text-sm text-primary-700"
               onClick={() => {
-                trackEvent(actionsClickAdditionalQuestion(dottedName))
                 setFocusedAction(dottedName)
               }}>
               {remainingQuestionsText}
@@ -200,9 +187,6 @@ export default function ActionCard({
               onClick={(e) => {
                 if (isDisabled) return
                 rejectAction(dottedName)
-                if (!isSelected) {
-                  trackEvent(actionsClickNo(dottedName))
-                }
                 e.stopPropagation()
                 e.preventDefault()
               }}>

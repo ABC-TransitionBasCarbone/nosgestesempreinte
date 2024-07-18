@@ -1,6 +1,5 @@
 'use client'
 
-import { actionsClickFilter } from '@/constants/tracking/pages/actions'
 import {
   getBackgroundColor,
   getBackgroundLightColor,
@@ -8,7 +7,7 @@ import {
 } from '@/helpers/getCategoryColorClass'
 import { useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useRouter, useSearchParams } from 'next/navigation'
 
 type Props = {
@@ -53,7 +52,6 @@ export default function Filter({ dottedName, countByCategory }: Props) {
       <button
         className={`p-2 text-xs font-bold ${getTextDarkColor(dottedName)}`}
         onClick={() => {
-          trackEvent(actionsClickFilter(dottedName))
           router.replace(buildURL(), {
             scroll: false,
           })

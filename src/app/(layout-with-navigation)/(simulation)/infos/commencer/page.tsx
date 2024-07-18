@@ -2,10 +2,6 @@
 
 import { PreventNavigationContext } from '@/app/_components/mainLayoutProviders/PreventNavigationProvider'
 import Trans from '@/components/translation/Trans'
-import {
-  infosCommencerClickCtaCommencer,
-  infosCommencerClickNewTest,
-} from '@/constants/tracking/pages/infos'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Title from '@/design-system/layout/Title'
@@ -13,7 +9,7 @@ import Emoji from '@/design-system/utils/Emoji'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useOrganisationQueryParams } from '@/hooks/organisations/useOrganisationQueryParams'
 import { useCurrentSimulation } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useContext, useEffect, useState } from 'react'
 import { InfosContext } from '../_components/InfosProvider'
 
@@ -124,16 +120,6 @@ export default function Commencer() {
       <div className="flex flex-col items-start gap-6">
         <Button
           onClick={async () => {
-            if (status === 'notStarted') {
-              trackEvent(infosCommencerClickCtaCommencer)
-            }
-            if (status === 'started') {
-              trackEvent(infosCommencerClickCtaCommencer)
-            }
-            if (status === 'finished') {
-              trackEvent(infosCommencerClickCtaCommencer)
-            }
-
             updateCurrentSimulation({
               defaultAdditionalQuestionsAnswers: {
                 postalCode,
@@ -152,8 +138,6 @@ export default function Commencer() {
           <Button
             color="secondary"
             onClick={() => {
-              trackEvent(infosCommencerClickNewTest)
-
               goToSimulateurPage({
                 newSimulation: {
                   defaultAdditionalQuestionsAnswers: {

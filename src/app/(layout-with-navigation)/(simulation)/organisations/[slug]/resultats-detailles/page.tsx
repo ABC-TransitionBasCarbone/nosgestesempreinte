@@ -3,10 +3,9 @@
 import ExportDataButton from '@/components/organisations/ExportDataButton'
 import OrgaStatistics from '@/components/organisations/OrgaStatistics'
 import Trans from '@/components/translation/Trans'
-import { organisationsDashboardExportData } from '@/constants/tracking/pages/organisationsDashboard'
 import { filterSimulationRecaps } from '@/helpers/organisations/filterSimulationRecaps'
 import { useFetchPollData } from '@/hooks/organisations/useFetchPollData'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useParams } from 'next/navigation'
 import { useContext } from 'react'
 import { FiltersContext } from './_components/FiltersProvider'
@@ -48,9 +47,6 @@ export default function ResultatsDetaillesPage() {
           <ExportDataButton
             simulationRecaps={pollData?.simulationRecaps ?? []}
             color="secondary"
-            onClick={() => {
-              trackEvent(organisationsDashboardExportData)
-            }}
           />
         )}
       </div>

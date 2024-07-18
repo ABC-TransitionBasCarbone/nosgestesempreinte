@@ -1,20 +1,17 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { actionsClickYes } from '@/constants/tracking/pages/actions'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import Card from '@/design-system/layout/Card'
 import Markdown from '@/design-system/utils/Markdown'
 import {
   FormProvider,
-  useCurrentSimulation,
   useEngine,
   useRule,
   useTempEngine,
   useUser,
 } from '@/publicodes-state'
 import { DottedName, NGCRuleNode } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { utils } from 'publicodes'
 import ActionForm from '../../_components/actions/_components/ActionForm'
 import { filterRelevantMissingVariables } from '../../_helpers/filterRelevantMissingVariables'
@@ -36,8 +33,6 @@ export default function ActionDetail({
   const { rules, getRuleObject, extendedFoldedSteps } = useTempEngine()
 
   const { toggleActionChoice } = useUser()
-
-  const { actionChoices } = useCurrentSimulation()
 
   const dottedName = decodeRuleName(formattedDottedName ?? '')
 
@@ -107,10 +102,6 @@ export default function ActionDetail({
               category={getCategory(dottedName)}
               onComplete={() => {
                 toggleActionChoice(dottedName)
-
-                if (!actionChoices[dottedName]) {
-                  trackEvent(actionsClickYes(dottedName))
-                }
               }}
             />
           </FormProvider>

@@ -1,10 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import {
-  amisDashboardOpenDeleteGroup,
-  amisDashboardValidateDeleteGroup,
-} from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -12,7 +8,7 @@ import { linkToClassement } from '@/helpers/navigation/classementPages'
 import { useDeleteGroup } from '@/hooks/groups/useDeleteGroup'
 import { useUser } from '@/publicodes-state'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
@@ -38,7 +34,6 @@ export default function OwnerAdminSection({ group }: Props) {
   }, [])
 
   async function handleDelete() {
-    trackEvent(amisDashboardOpenDeleteGroup)
     if (!group) return
 
     try {
@@ -102,7 +97,6 @@ export default function OwnerAdminSection({ group }: Props) {
         <Button
           color="link"
           onClick={() => {
-            trackEvent(amisDashboardValidateDeleteGroup)
             setIsConfirming(true)
           }}
           data-cypress-id="button-delete-group">

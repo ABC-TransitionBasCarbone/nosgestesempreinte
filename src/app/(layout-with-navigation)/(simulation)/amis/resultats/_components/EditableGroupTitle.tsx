@@ -2,10 +2,6 @@
 
 import PencilIcon from '@/components/icons/PencilIcon'
 
-import {
-  amisDashboardOpenEditName,
-  amisDashboardValidateEditName,
-} from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import InlineTextInput from '@/design-system/inputs/InlineTextInput'
 import Title from '@/design-system/layout/Title'
@@ -14,7 +10,7 @@ import { useIsGroupOwner } from '@/hooks/groups/useIsGroupOwner'
 import { useUpdateGroup } from '@/hooks/groups/useUpdateGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useState } from 'react'
 
 export default function EditableGroupTitle({ group }: { group: Group }) {
@@ -55,7 +51,6 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
             name="group-name-input"
             onClose={() => {
               setIsEditingTitle(false)
-              trackEvent(amisDashboardValidateEditName)
             }}
             onSubmit={handleSubmit}
             isLoading={isSubmitting}
@@ -76,7 +71,6 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                     className="h-12 w-12 !p-1"
                     onClick={() => {
                       setIsEditingTitle(true)
-                      trackEvent(amisDashboardOpenEditName)
                     }}
                     color="secondary"
                     data-cypress-id="group-name-edit-button">

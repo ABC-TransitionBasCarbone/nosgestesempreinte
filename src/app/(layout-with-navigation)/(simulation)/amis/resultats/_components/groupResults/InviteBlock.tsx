@@ -1,11 +1,10 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { amisDashboardCopyLink } from '@/constants/tracking/pages/amisDashboard'
 import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { Group } from '@/types/groups'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { useEffect, useRef, useState } from 'react'
 
 type SubmitButtonProps = {
@@ -25,7 +24,6 @@ const SubmitButton = ({
     <Button
       className="flex justify-center whitespace-nowrap"
       onClick={() => {
-        trackEvent(amisDashboardCopyLink)
         if (isShareDefined) {
           handleShare()
         } else {

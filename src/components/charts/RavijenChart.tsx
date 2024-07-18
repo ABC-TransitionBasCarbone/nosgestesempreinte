@@ -1,10 +1,9 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { trackingDownloadRavijenChart } from '@/constants/tracking/misc'
 import Button from '@/design-system/inputs/Button'
 import { useEngine } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { toPng } from 'html-to-image'
 import CategoryChart from './ravijenChart/CategoryChart'
 
@@ -54,7 +53,6 @@ export default function RavijenChart({
           size="sm"
           color="secondary"
           onClick={() => {
-            trackEvent(trackingDownloadRavijenChart)
 
             const ravijen = document.getElementById('ravijen') as HTMLElement
 

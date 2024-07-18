@@ -2,12 +2,11 @@
 
 import ChoicesValue from '@/components/misc/ChoicesValue'
 import NumberValue from '@/components/misc/NumberValue'
-import { simulateurClickSommaireQuestion } from '@/constants/tracking/pages/simulateur'
 import { foldEveryQuestionsUntil } from '@/helpers/foldEveryQuestionsUntil'
 import { getBackgroundColor } from '@/helpers/getCategoryColorClass'
 import { useDebug } from '@/hooks/useDebug'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 
 type Props = {
   question: string
@@ -53,8 +52,6 @@ export default function Question({ question, toggleQuestionList }: Props) {
           })
         }
         setCurrentQuestion(question)
-
-        trackEvent(simulateurClickSommaireQuestion)
 
         toggleQuestionList()
       }}>
