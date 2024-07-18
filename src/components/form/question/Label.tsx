@@ -42,7 +42,7 @@ export default function Label({
   className,
   titleClassName,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const { t } = useClientTranslation()
 
