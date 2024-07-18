@@ -1,6 +1,5 @@
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import DocumentationRouter from './_components/DocumentationRouter'
 import DocumentationServer from './_components/documentationRouter/DocumentationServer'
 
@@ -31,14 +30,11 @@ export default async function DocumentationPage({
 }: {
   params: { slug: string[] }
 }) {
-  const supportedRegions = await getSupportedRegions()
-
   return (
     <DocumentationRouter
-      supportedRegions={supportedRegions}
       slug={slug}
       serverComponent={
-        <DocumentationServer supportedRegions={supportedRegions} slugs={slug} />
+        <DocumentationServer slugs={slug} />
       }
     />
   )

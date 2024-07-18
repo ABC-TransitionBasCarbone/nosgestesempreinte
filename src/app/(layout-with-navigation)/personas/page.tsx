@@ -4,7 +4,6 @@ import Title from '@/design-system/layout/Title'
 import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import { getPersonas } from '@/helpers/modelFetching/getPersonas'
-import { getSupportedRegions } from '@/helpers/modelFetching/getSupportedRegions'
 import PersonaExplanations from './_components/PersonaExplanations'
 import PersonaList from './_components/PersonaList'
 
@@ -28,11 +27,10 @@ type Props = {
   }
 }
 export default async function Personas({ params: { locale } }: Props) {
-  const supportedRegions = await getSupportedRegions()
   const personas = await getPersonas({ locale })
 
   return (
-    <Providers supportedRegions={supportedRegions}>
+    <Providers>
       <Title title={<Trans>Personas</Trans>} data-cypress-id="personas-title" />
       <p>
         <Trans>

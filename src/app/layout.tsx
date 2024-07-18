@@ -1,5 +1,4 @@
 import FilAriane from '@/components/layout/FilAriane'
-import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
@@ -50,7 +49,6 @@ export const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const region = await getGeolocation()
   const migrationInstructions = await getMigrationInstructions()
 
   return (
@@ -92,10 +90,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         `}</Script>
 
         <MainLayoutProviders
-          region={region}
           migrationInstructions={migrationInstructions}>
           <FilAriane />
-
           {children}
         </MainLayoutProviders>
       </body>

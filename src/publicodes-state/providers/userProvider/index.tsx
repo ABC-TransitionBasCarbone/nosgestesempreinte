@@ -2,7 +2,7 @@
 
 import { PropsWithChildren } from 'react'
 
-import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
+import { MigrationType } from '@/publicodes-state/types'
 import UserContext from './context'
 import usePersistentSimulations from './usePersistentSimulations'
 import usePersistentTutorials from './usePersistentTutorials'
@@ -15,10 +15,6 @@ type Props = {
    */
   storageKey?: string
   /**
-   * The inital region of the user
-   */
-  initialRegion: RegionFromGeolocation
-  /**
    * The migration instructions for old localstorage
    */
   migrationInstructions: MigrationType
@@ -26,12 +22,11 @@ type Props = {
 export default function UserProvider({
   children,
   storageKey = 'ngc',
-  initialRegion,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   useUpdateOldLocalStorage({ storageKey, migrationInstructions })
 
-  const { user, setUser } = usePersistentUser({ storageKey, initialRegion })
+  const { user, setUser } = usePersistentUser({ storageKey })
 
   const { tutorials, setTutorials } = usePersistentTutorials({ storageKey })
 

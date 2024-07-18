@@ -1,16 +1,13 @@
 'use client'
 
-import LocalisationBanner from '@/components/translation/LocalisationBanner'
 import Loader from '@/design-system/layout/Loader'
 import { useRules } from '@/hooks/useRules'
 import { SimulationProvider } from '@/publicodes-state'
-import { SupportedRegions } from '@incubateur-ademe/nosgestesclimat'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren } from 'react'
 import Error500 from '../layout/500'
 
 type Props = {
-  supportedRegions: SupportedRegions
   isOptim?: boolean
 }
 
@@ -18,7 +15,6 @@ const NO_MODEL_PATHNAME_EXCEPTIONS = ['/organisations']
 
 export default function Providers({
   children,
-  supportedRegions,
   isOptim = true,
 }: PropsWithChildren<Props>) {
   const pathname = usePathname()
@@ -49,7 +45,6 @@ export default function Providers({
     <SimulationProvider
       rules={rules}
       shouldAlwaysDisplayChildren={shouldAlwaysDisplayChildren}>
-      <LocalisationBanner supportedRegions={supportedRegions} />
       {children}
     </SimulationProvider>
   )

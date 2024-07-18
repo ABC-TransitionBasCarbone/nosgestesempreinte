@@ -7,13 +7,11 @@ import { IsDocumentationClientContext } from '../../_contexts/DocumentationState
 import DocumentationClient from './documentationRouter/DocumentationClient'
 
 type Props = {
-  supportedRegions: any
   slug: string[]
   serverComponent: JSX.Element
 }
 
 export default function DocumentationRouter({
-  supportedRegions,
   slug,
   serverComponent,
 }: Props) {
@@ -34,8 +32,8 @@ export default function DocumentationRouter({
 
   if (isDocumentationClient)
     return (
-      <Providers supportedRegions={supportedRegions} isOptim={false}>
-        <DocumentationClient supportedRegions={supportedRegions} slugs={slug} />
+      <Providers isOptim={false}>
+        <DocumentationClient slugs={slug} />
       </Providers>
     )
 

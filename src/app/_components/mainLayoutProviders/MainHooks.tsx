@@ -7,7 +7,6 @@
 
 import { useTrackLocale } from '@/hooks/tracking/useTrackLocale'
 import { useTrackPageView } from '@/hooks/tracking/useTrackPageView'
-import { useTrackRegion } from '@/hooks/tracking/useTrackRegion'
 import { useTrackSplitTesting } from '@/hooks/tracking/useTrackSplitTesting'
 import { useInitSimulationParam } from '@/hooks/useInitSimulationParam'
 import { useUserInfosParams } from '@/hooks/useUserInfosParams'
@@ -17,7 +16,6 @@ export default function MainHooks({ children }: PropsWithChildren) {
   useTrackSplitTesting()
   useTrackPageView()
   useTrackLocale()
-  useTrackRegion()
   useUserInfosParams()
   useInitSimulationParam()
 
