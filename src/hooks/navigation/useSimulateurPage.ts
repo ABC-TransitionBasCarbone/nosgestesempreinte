@@ -87,7 +87,7 @@ export function useSimulateurPage() {
       return t('Reprendre mon test')
     }
     
-    return t('Passer le test →');
+    return t('Commencer le test →');
   }, [progression, t])
 
   return {

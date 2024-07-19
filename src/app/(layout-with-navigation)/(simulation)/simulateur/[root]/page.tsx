@@ -14,7 +14,7 @@ export default function SimulateurPage() {
   if (!isGuardInit || isGuardRedirecting) return null
 
   return (
-    <div className="mx-auto w-full max-w-4xl">
+    <div className="my-8 mx-auto w-full max-w-4xl">
       <Simulateur />
     </div>
   )
