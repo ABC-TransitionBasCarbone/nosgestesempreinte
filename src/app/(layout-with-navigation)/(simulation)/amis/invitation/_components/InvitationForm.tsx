@@ -89,7 +89,6 @@ export default function InvitationForm({ group }: { group: Group }) {
         setPrenom={setGuestName}
         errorPrenom={errorGuestName}
         setErrorPrenom={setErrorGuestName}
-        data-cypress-id="member-name"
       />
 
       <div className="my-4">
@@ -122,8 +121,7 @@ export default function InvitationForm({ group }: { group: Group }) {
       <Button
         type="submit"
         onClick={handleSubmit}
-        aria-disabled={!user.name}
-        data-cypress-id="button-join-group">
+        aria-disabled={!user.name}>
         {hasCompletedTest ? (
           <Trans>Rejoindre</Trans>
         ) : (

@@ -47,7 +47,7 @@ export default function GroupResults({ group }: Props) {
 
       <Separator />
 
-      <h2 data-cypress-id="votre-empreinte-title" className="mt-8">
+      <h2 className="mt-8">
         <Trans>Votre empreinte</Trans>
       </h2>
 

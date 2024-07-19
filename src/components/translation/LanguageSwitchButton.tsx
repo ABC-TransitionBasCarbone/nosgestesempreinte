@@ -64,8 +64,7 @@ export default function LanguageSwitchButton() {
         onClick={() => handleChange('fr')}
         size="sm"
         aria-label={t('Passer en français')}
-        className="flex items-center gap-2 px-4 py-3"
-        data-cypress-id="language-switch-button-fr">
+        className="flex items-center gap-2 px-4 py-3">
         <span>FR</span> <Emoji>🇫🇷</Emoji>
       </Button>
     </div>

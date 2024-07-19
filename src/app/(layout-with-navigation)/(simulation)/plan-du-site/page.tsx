@@ -92,7 +92,7 @@ export default async function PlanDuSitePage() {
   }
 
   return (
-    <div data-cypress-id="plan-links">
+    <div>
       <Title
         title={
           <Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
@@ -100,7 +100,7 @@ export default async function PlanDuSitePage() {
       />
 
       <section className="mb-2">
-        <h2 data-cypress-id="plan-outils-title">
+        <h2>
           <Trans>Nos outils</Trans>
         </h2>
         <LinkList entries={links['Nos outils']} />

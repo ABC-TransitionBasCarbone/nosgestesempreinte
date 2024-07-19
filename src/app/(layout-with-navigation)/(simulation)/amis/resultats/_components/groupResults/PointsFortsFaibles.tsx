@@ -13,7 +13,7 @@ export default function PointsFortsFaibles({
 }) {
   return (
     <div>
-      <h2 className="mt-0 text-lg" data-cypress-id="points-fort-faibles-title">
+      <h2 className="mt-0 text-lg">
         <Trans>Vos points forts</Trans>
       </h2>
       <p className="mb-4 text-gray-500">

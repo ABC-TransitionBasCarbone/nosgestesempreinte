@@ -29,7 +29,6 @@ export default function Buttons() {
           isClient ? 'opacity-100' : 'opacity-0'
         }`}
         href={getLinkToSimulateurPage()}
-        data-cypress-id="do-the-test-link"
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onClick={() => {

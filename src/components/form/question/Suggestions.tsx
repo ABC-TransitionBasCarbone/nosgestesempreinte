@@ -21,7 +21,6 @@ export default function Suggestions({ question, setValue }: Props) {
       {suggestions.map((suggestion) => (
         <Button
           key={suggestion.label}
-          data-cypress-id="suggestion"
           size="xs"
           className="text-xs font-normal md:text-sm"
           onClick={() => {

@@ -29,8 +29,7 @@ const SubmitButton = ({
         } else {
           handleCopy()
         }
-      }}
-      data-cypress-id="invite-button">
+      }}>
       {isShareDefined && <Trans>Partager</Trans>}
       {!isShareDefined &&
         (isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}

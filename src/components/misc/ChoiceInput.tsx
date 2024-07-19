@@ -8,7 +8,6 @@ type Props = {
   active: boolean
   onClick: any
   id?: string
-  'data-cypress-id'?: string
 }
 
 export default function ChoiceInput({
@@ -29,8 +28,7 @@ export default function ChoiceInput({
             active
               ? 'border-2 border-primary-700 bg-white'
               : 'bg-white text-default hover:bg-primary-50'
-          } transition-colors`}
-          data-cypress-id={`${props['data-cypress-id']}-label`}>
+          } transition-colors`}>
           <input
             type="radio"
             className="hidden"

@@ -32,8 +32,7 @@ export default function Groups() {
           <ButtonLink
             href={linkToGroupCreation}
             color="secondary"
-            size="sm"
-            data-cypress-id="button-create-other-group">
+            size="sm">
             <Trans>Créer un autre groupe</Trans>
           </ButtonLink>
         )}

@@ -24,18 +24,6 @@ Pour lancer le site, utilisant le dernier modèle de calcul publié, il suffit d
 yarn && yarn dev
 ```
 
-### Tests
-
-#### Tests end-to-end
-
-Nous utilisons [Cypress](https://www.cypress.io/) pour les tests e2e.
-
-Pour lancer les tests:
-
-1. lancez le serveur local : `yarn dev`
-2. générez les fichiers de spécification des personas sur lesquels sont basés les tests : `yarn run e2e:generate`
-3. lancez `yarn run e2e` pour ouvrir l'interface Cypress.
-
 ## Réutilisations de ce code
 
 Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://accelerateur-transition-ecologique-ademe.notion.site/Personnaliser-Nos-Gestes-Climat-87f3e91110f8460f8089a4f15c870d6b)

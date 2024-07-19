@@ -48,7 +48,6 @@ export default async function DocumentationServer({ slugs }: Props) {
         title={`${rule.icônes ?? ''} ${capitalizeString(
           getRuleTitle({ ...rule, dottedName: ruleName })
         )}`}
-        data-cypress-id="documentation-title"
       />
 
       {rule.question && <QuestionSection rule={rule} />}

@@ -85,8 +85,7 @@ export default function OwnerAdminSection({ group }: Props) {
             <Button
               onClick={handleDelete}
               size="sm"
-              color="primary"
-              data-cypress-id="button-confirm-delete-group">
+              color="primary">
               <Trans>Supprimer</Trans>
             </Button>
           </div>
@@ -98,8 +97,7 @@ export default function OwnerAdminSection({ group }: Props) {
           color="link"
           onClick={() => {
             setIsConfirming(true)
-          }}
-          data-cypress-id="button-delete-group">
+          }}>
           <Trans>Supprimer le groupe</Trans>
         </Button>
       )}

@@ -31,7 +31,6 @@ export default function PostalCode() {
   return (
     <form>
       <Title
-        data-cypress-id="postal-code-title"
         className="text-lg md:text-2xl"
         title={<Trans>Votre code postal</Trans>}
         subtitle={

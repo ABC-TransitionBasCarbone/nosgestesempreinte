@@ -6,7 +6,6 @@ type Props = {
   value: NodeValue
   isMissing: boolean
   setValue: (value: string) => void
-  'data-cypress-id': string
   label: string
   id?: string
 }
@@ -30,7 +29,6 @@ export default function BooleanInput({
         active={!isMissing && value ? true : false}
         onClick={() => setValue('oui')}
         {...props}
-        data-cypress-id={`${props['data-cypress-id']}-oui`}
         id={id}
       />
 
@@ -39,7 +37,6 @@ export default function BooleanInput({
         active={!isMissing && !value ? true : false}
         onClick={() => setValue('non')}
         {...props}
-        data-cypress-id={`${props['data-cypress-id']}-non`}
       />
     </fieldset>
   )

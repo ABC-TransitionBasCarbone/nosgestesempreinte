@@ -115,7 +115,6 @@ export default function GroupCreationForm() {
         setPrenom={setAdministratorName}
         errorPrenom={errorAdministratorName}
         setErrorPrenom={setErrorAdministratorName}
-        data-cypress-id="group-input-owner-name"
       />
 
       <div className="my-4">
@@ -138,7 +137,6 @@ export default function GroupCreationForm() {
 
       <Button
         type="submit"
-        data-cypress-id="button-create-group"
         onClick={handleSubmit}
         disabled={!administratorName || isPending || isSuccess}>
         {hasCompletedTest ? (

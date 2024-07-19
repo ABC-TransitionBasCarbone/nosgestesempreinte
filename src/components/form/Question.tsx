@@ -80,7 +80,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
             }}
             isMissing={isMissing}
             min={0}
-            data-cypress-id={question}
             id={DEFAULT_FOCUS_ELEMENT_ID}
             aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
           />
@@ -95,7 +94,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
               }
             }}
             isMissing={isMissing}
-            data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
             aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
@@ -113,7 +111,6 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
               }
             }}
             isMissing={isMissing}
-            data-cypress-id={question}
             label={label || ''}
             id={DEFAULT_FOCUS_ELEMENT_ID}
             aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}

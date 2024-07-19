@@ -10,8 +10,7 @@ export default function ButtonLaunch() {
 
   return (
     <Button
-      onClick={() => setIsDocumentationClient(true)}
-      data-cypress-id="documentation-launch-button">
+      onClick={() => setIsDocumentationClient(true)}>
       <Trans>Lancer le calcul</Trans>
     </Button>
   )

@@ -6,7 +6,6 @@ type Props = {
   isMissing: boolean
   choices: any[]
   setValue: (value: string) => void
-  'data-cypress-id': string
   label: string
   id?: string
 }
@@ -37,7 +36,6 @@ export default function ChoicesInput(props: Props) {
               active={!isMissing && value === choice}
               setValue={setValue}
               {...otherProps}
-              data-cypress-id={`${props['data-cypress-id']}-${choice}`}
               id={id}
             />
           ) : null

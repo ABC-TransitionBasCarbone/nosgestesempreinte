@@ -54,11 +54,9 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
             }}
             onSubmit={handleSubmit}
             isLoading={isSubmitting}
-            data-cypress-id="group-edit-input-name"
           />
         ) : (
           <Title
-            data-cypress-id="group-name"
             className="text-xl md:text-2xl"
             title={
               <span className="flex items-center justify-between">
@@ -72,8 +70,7 @@ export default function EditableGroupTitle({ group }: { group: Group }) {
                     onClick={() => {
                       setIsEditingTitle(true)
                     }}
-                    color="secondary"
-                    data-cypress-id="group-name-edit-button">
+                    color="secondary">
                     <PencilIcon className="w-4 stroke-primary-700" />
                   </Button>
                 ) : null}

@@ -19,8 +19,7 @@ export default function CreateFirstGroupSection() {
         !
       </p>
       <ButtonLink
-        href={linkToGroupCreation}
-        data-cypress-id="button-create-first-group">
+        href={linkToGroupCreation}>
         <Trans>Commencer</Trans>
       </ButtonLink>
     </Container>

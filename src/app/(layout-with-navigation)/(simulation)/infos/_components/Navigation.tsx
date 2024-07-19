@@ -28,7 +28,6 @@ export default function Navigation({
       </ButtonLink>
 
       <Button
-        data-cypress-id="next-button"
         onClick={(event) => {
           handleSubmit(event)
         }}

@@ -108,7 +108,6 @@ export default function Navigation({
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isNextDisabled}
         size="md"
-        data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')
