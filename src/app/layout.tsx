@@ -1,4 +1,3 @@
-import FilAriane from '@/components/layout/FilAriane'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
@@ -76,7 +75,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
         <MainLayoutProviders
           migrationInstructions={migrationInstructions}>
-          <FilAriane />
           {children}
         </MainLayoutProviders>
       </body>
