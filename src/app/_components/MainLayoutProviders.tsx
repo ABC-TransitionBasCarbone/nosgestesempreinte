@@ -20,7 +20,7 @@ export default function MainLayoutProviders({
     <IframeOptionsProvider>
       <QueryClientProviderWrapper>
         <UserProvider
-          storageKey="nosgestesclimat::v3"
+          storageKey="nosgestesempreinte::v1"
           migrationInstructions={migrationInstructions}>
           <PreventNavigationProvider>
             <SimulationSyncProvider>
