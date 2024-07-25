@@ -8,7 +8,6 @@
     "prettier",
     "plugin:jsx-a11y/strict",
     "plugin:react-hooks/recommended",
-    "plugin:cypress/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "root": true,
@@ -16,7 +15,7 @@
   "parserOptions": {
     "project": "./tsconfig.json",
     "tsconfigRootDir": ".",
-    "exclude": ["node_modules", "cypress/**/*"]
+    "exclude": ["node_modules"]
   },
   "globals": {
     "React": "writable",
@@ -46,5 +45,5 @@
       "parser": "@babel/eslint-parser"
     }
   ],
-  "ignorePatterns": ["node_modules", "cypress/**/*"]
+  "ignorePatterns": ["node_modules"]
 }

@@ -28,7 +28,6 @@ export default function useUser() {
   const {
     updateName,
     updateEmail,
-    updateRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
   } = useUserDetails({ user, setUser })
@@ -72,10 +71,6 @@ export default function useUser() {
      * A setter for updating the user's organisation information
      */
     updateUserOrganisation,
-    /**
-     * A setter for updating the user current region
-     */
-    updateRegion,
     /**
      * A setter for updating the user login expiration date
      */

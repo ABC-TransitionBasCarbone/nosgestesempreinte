@@ -1,7 +1,5 @@
 import { Group } from '@/types/groups'
 
-export const linkToGroupCreation = '/amis/creer'
-
 type Props = {
   group?: Group
   groupId?: string

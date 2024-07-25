@@ -2,7 +2,7 @@
 
 import { IframeOptionsProvider } from '@/app/_components/mainLayoutProviders/IframeOptionsContext'
 import { UserProvider } from '@/publicodes-state'
-import { MigrationType, RegionFromGeolocation } from '@/publicodes-state/types'
+import { MigrationType } from '@/publicodes-state/types'
 import { PropsWithChildren } from 'react'
 import MainHooks from './mainLayoutProviders/MainHooks'
 import { PreventNavigationProvider } from './mainLayoutProviders/PreventNavigationProvider'
@@ -10,20 +10,17 @@ import QueryClientProviderWrapper from './mainLayoutProviders/QueryClientProvide
 import SimulationSyncProvider from './mainLayoutProviders/SimulationSyncProvider'
 
 type Props = {
-  region: RegionFromGeolocation
   migrationInstructions: MigrationType
 }
 export default function MainLayoutProviders({
   children,
-  region,
   migrationInstructions,
 }: PropsWithChildren<Props>) {
   return (
     <IframeOptionsProvider>
       <QueryClientProviderWrapper>
         <UserProvider
-          initialRegion={region}
-          storageKey="nosgestesclimat::v3"
+          storageKey="nosgestesempreinte::v1"
           migrationInstructions={migrationInstructions}>
           <PreventNavigationProvider>
             <SimulationSyncProvider>

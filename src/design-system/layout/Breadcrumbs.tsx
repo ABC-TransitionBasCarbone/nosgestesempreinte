@@ -1,8 +1,7 @@
 'use client'
 
 import Link from '@/components/Link'
-import { breadcrumbClickLink } from '@/constants/tracking/layout'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { Fragment } from 'react'
 
 type Props = {
@@ -25,7 +24,6 @@ export default function Breadcrumbs({ items }: Props) {
                 if (isDisabled) {
                   e.preventDefault()
                 }
-                trackEvent(breadcrumbClickLink)
               }}
               className={`text-default ${
                 isActive ? '' : 'no-underline'

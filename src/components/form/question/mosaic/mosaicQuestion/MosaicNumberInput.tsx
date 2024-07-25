@@ -19,7 +19,6 @@ export default function NumberInput({
   description,
   setValue,
   index,
-  parentMosaic,
   ...props
 }: Props) {
   const { value, isMissing } = useRule(question)
@@ -60,7 +59,6 @@ export default function NumberInput({
           value={isMissing ? '' : Number(value)}
           placeholder={'0'}
           onChange={(event) => setValue(Number(event.target.value))}
-          data-cypress-id={`${question}---${parentMosaic}`}
           id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
           {...props}
         />

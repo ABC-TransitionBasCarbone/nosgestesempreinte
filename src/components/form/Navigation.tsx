@@ -4,18 +4,13 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import {
-  questionClickPass,
-  questionClickPrevious,
-  questionClickSuivant,
-} from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
-import { trackEvent } from '@/utils/matomo/trackEvent'
-import { MouseEvent, useCallback, useMemo } from 'react'
+
+import { MouseEvent, useCallback } from 'react'
 
 type Props = {
   question: DottedName
@@ -33,36 +28,16 @@ export default function Navigation({
   const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
     useForm()
 
-  const { isMissing, plancher, value } = useRule(question)
+  const { isMissing, plancher } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
 
-  // Start time of the question
-  //(we need to use question to update the start time when the question changes, but it is not exactly usefull as a dependency)
-  const startTime = useMemo(() => {
-    if (question) {
-      return Date.now()
-    }
-    return Date.now()
-  }, [question])
-
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
-
-      const endTime = Date.now()
-      const timeSpentOnQuestion = endTime - startTime
-
-      if (isMissing) {
-        trackEvent(questionClickPass({ question, timeSpentOnQuestion }))
-      } else {
-        trackEvent(
-          questionClickSuivant({ question, answer: value, timeSpentOnQuestion })
-        )
-      }
 
       if (isMissing) {
         updateCurrentSimulation({ foldedStepToAdd: question })
@@ -82,10 +57,8 @@ export default function Navigation({
       gotoNextQuestion,
       noNextQuestion,
       isMissing,
-      value,
       onComplete,
       updateCurrentSimulation,
-      startTime,
     ]
   )
 
@@ -120,7 +93,6 @@ export default function Navigation({
         <Button
           size="md"
           onClick={() => {
-            trackEvent(questionClickPrevious({ question }))
 
             if (!noPrevQuestion) {
               gotoPrevQuestion()
@@ -136,7 +108,6 @@ export default function Navigation({
         color={isMissing ? 'secondary' : 'primary'}
         disabled={isNextDisabled}
         size="md"
-        data-cypress-id="next-question-button"
         onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')

@@ -18,14 +18,6 @@ type UserContextType = {
 
 export default createContext<UserContextType>({
   user: {
-    region: {
-      code: '',
-      name: '',
-    },
-    initialRegion: {
-      code: '',
-      name: '',
-    },
     name: '',
     email: '',
     userId: uuid(),

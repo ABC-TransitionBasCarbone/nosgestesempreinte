@@ -1,5 +1,3 @@
-import FilAriane from '@/components/layout/FilAriane'
-import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
@@ -50,7 +48,6 @@ export const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const region = await getGeolocation()
   const migrationInstructions = await getMigrationInstructions()
 
   return (
@@ -68,21 +65,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         <link rel="manifest" href="../manifest.webmanifest" />
 
         <meta name="theme-color" content="#4949ba" />
-
-        <Script id="matomo">
-          {`
-          var _paq = window._paq = window._paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://preprod-nosgestesclimat.matomo.cloud/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src='https://cdn.matomo.cloud/preprod-nosgestesclimat.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        `}
-        </Script>
       </head>
 
       <body className={`${marianne.className} bg-white text-default`}>
@@ -92,10 +74,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         `}</Script>
 
         <MainLayoutProviders
-          region={region}
           migrationInstructions={migrationInstructions}>
-          <FilAriane />
-
           {children}
         </MainLayoutProviders>
       </body>

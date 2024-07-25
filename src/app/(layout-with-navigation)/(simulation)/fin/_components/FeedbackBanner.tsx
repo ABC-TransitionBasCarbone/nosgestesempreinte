@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { endClickNorthstar } from '@/constants/tracking/pages/end'
 import SmileyGrading from '@/design-system/inputs/SmileyGrading'
 import Card from '@/design-system/layout/Card'
 import Emoji from '@/design-system/utils/Emoji'
@@ -9,7 +8,7 @@ import { useSaveNorthstarRating } from '@/hooks/northstar/useSaveNorthstarRating
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useUser } from '@/publicodes-state'
 import { NorthStarType, NorthStarValue } from '@/types/northstar'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -31,7 +30,6 @@ export default function FeedbackBanner({ text, type, className }: Props) {
 
     updateNorthStarRatings({ type, value })
 
-    trackEvent(endClickNorthstar({ type, value }))
   }
 
   const cardClassName = twMerge(

@@ -1,9 +1,7 @@
 'use client'
 
-import { trackingIframe } from '@/constants/tracking/misc'
 import { useIsClient } from '@/hooks/useIsClient'
 import { getIsIframe } from '@/utils/getIsIframe'
-import { trackEvent } from '@/utils/matomo/trackEvent'
 import { PropsWithChildren, createContext, useEffect, useState } from 'react'
 
 export const IframeOptionsContext = createContext<{
@@ -44,14 +42,6 @@ export const IframeOptionsProvider = ({ children }: PropsWithChildren) => {
     if (isIframe && !isIframeParameterDefined) {
       urlParams.set('iframe', '')
       urlParams.set('integratorUrl', document.referrer)
-    }
-
-    if (isIframe) {
-      trackEvent(
-        trackingIframe(
-          urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
-        )
-      )
     }
 
     setIframeIntegratorOptions(

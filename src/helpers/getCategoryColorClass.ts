@@ -115,15 +115,3 @@ export function getFillColor(category?: string | null) {
       return 'fill-primary-700'
   }
 }
-
-export function getCategoryColorClasses(category?: string | null) {
-  return {
-    text: getTextColor(category),
-    textDark: getTextDarkColor(category),
-    background: getBackgroundColor(category),
-    hoverBackground: getHoverBackgroundColor(category),
-    backgroundLight: getBackgroundLightColor(category),
-    border: getBorderColor(category),
-    fill: getFillColor(category),
-  }
-}

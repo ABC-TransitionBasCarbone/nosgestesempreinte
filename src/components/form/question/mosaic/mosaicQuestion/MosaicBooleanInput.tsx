@@ -56,7 +56,6 @@ export default function MosaicBooleanInput({
         onClick={() => {
           setValue(value ? 'non' : 'oui')
         }}
-        data-cypress-id={`${question}-${value}`}
         id={`${DEFAULT_FOCUS_ELEMENT_ID}-${index}`}
         {...props}
       />
