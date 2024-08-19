@@ -12,6 +12,9 @@ const ERROR_MESSAGES = {
   MISSING_SPREADSHEET_ID: 'The SPREADSHEET_ID is not defined in the .env.',
   APPEND_ERROR: 'An error occurred while adding the row.',
   ROUTE_NOT_FOUND: 'API route not found',
+};
+
+const SUCCESS_MESSAGES = {
   SUCCESS: 'The row was successfully added.',
 };
 
@@ -59,7 +62,9 @@ export default async function handler(
 
     const service = google.sheets({ version: 'v4', auth });
 
-    const values = [mapDataToSheet(jsonData.simulations[0], keys)];
+    console.log(jsonData)
+
+    const values = [mapDataToSheet(jsonData.simulation, keys)];
     values[0].unshift(userId); // Insert userId at the beginning
 
     const resource = { values };
@@ -71,7 +76,7 @@ export default async function handler(
         range: 'A1',
         resource,
       });
-      return res.status(200).json({ message: ERROR_MESSAGES.SUCCESS });
+      return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });
     } catch (error) {
       console.error('Append Error:', error);
       return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });

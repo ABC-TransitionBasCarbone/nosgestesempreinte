@@ -3,10 +3,19 @@
 import {useEffect, useState} from 'react'
 
 export default function FinPage() {
-  const [setData] = useState(null)
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const value = localStorage.getItem('nosgestesempreinte::v1')
+    const localStorageValue = localStorage.getItem('nosgestesempreinte::v1')
+    let value = null
+    if (localStorageValue) {
+      const JSONValue = JSON.parse(localStorageValue)
+      //TODO: Pour l'instant on prend la première mais à voir pour la suite
+      JSONValue.simulation = JSONValue.simulations[0]
+      delete JSONValue.simulations
+      value = JSON.stringify(JSONValue)
+    }
+
     fetch('/api/add-row', {
       method: 'POST',
       headers: {
