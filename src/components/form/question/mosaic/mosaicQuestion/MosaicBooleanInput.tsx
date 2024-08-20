@@ -76,7 +76,7 @@ export default function MosaicBooleanInput({
       </span>
 
       <div className="flex-1">
-        {title ? (
+        {title && !icons ? (
           <span
             className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
             <Emoji className="inline-flex">{title}</Emoji>{' '}
