@@ -10,8 +10,8 @@ export default function FinPage() {
     let value = null
     if (localStorageValue) {
       const JSONValue = JSON.parse(localStorageValue)
-      //TODO: Pour l'instant on prend la première mais à voir pour la suite
-      JSONValue.simulation = JSONValue.simulations[0]
+      //TODO: Pour l'instant on prend la dernière mais à voir pour la suite
+      JSONValue.simulation = JSONValue.simulations.at(-1)
       delete JSONValue.simulations
       value = JSON.stringify(JSONValue)
     }
