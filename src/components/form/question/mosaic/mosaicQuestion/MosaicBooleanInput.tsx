@@ -76,29 +76,24 @@ export default function MosaicBooleanInput({
       </span>
 
       <div className="flex-1">
-        {title && !icons ? (
+        {title && (
           <span
             className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
             <Emoji className="inline-flex">{title}</Emoji>{' '}
+            {icons && <Emoji className="inline-flex items-center">{icons}</Emoji>}
           </span>
-        ) : null}
-        {title && icons ? (
-          <span
-            className={`inline align-middle text-sm font-medium md:text-xl ${labelClassNames[status]}`}>
-            <Emoji className="inline-flex">{title}</Emoji>{' '}
-            <Emoji className="inline-flex items-center">{icons}</Emoji>
-          </span>
-        ) : null}
-        {description ? (
+        )}
+        {description && (
           <p className="mb-0 text-xs italic md:text-sm">
             {description.split('\n')[0]}
           </p>
-        ) : null}
+        )}
       </div>
       {isInactive ? (
-        <div className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
-          <Trans>Bientôt disponible</Trans>
-        </div>
+          <div
+              className="absolute bottom-1 right-4 top-1 flex -rotate-12 items-center justify-center rounded-xl border-2 border-black bg-white p-2 text-xs font-semibold text-black">
+            <Trans>Bientôt disponible</Trans>
+          </div>
       ) : null}
     </label>
   )
