@@ -2,13 +2,15 @@
 
 import Main from '@/design-system/layout/Main'
 import Buttons from "@/app/_components/heading/Buttons";
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 
 
-export default async function Homepage() {
+export default function Homepage() {
+  const [opinionWayId, setOpinionWayId] = useState<string | null>(null);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const opinionWayId = urlParams.get('opinion-way-id');
+    setOpinionWayId(opinionWayId);
 
     const storedData = localStorage.getItem('nosgestesempreinte::v1');
     if (storedData) {
@@ -27,7 +29,7 @@ export default async function Homepage() {
             <h1 className="md:text-5xl">
               {'Bonjour, vous allez répondre à des questions sur votre empreinte carbone'}
             </h1>
-            <Buttons/>
+            {opinionWayId && <Buttons/>}
           </div>
         </div>
       </Main>
