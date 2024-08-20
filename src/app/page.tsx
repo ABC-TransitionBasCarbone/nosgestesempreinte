@@ -1,22 +1,24 @@
-import Main from '@/design-system/layout/Main'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
-import Buttons from "@/app/_components/heading/Buttons";
+'use client';
 
-export async function generateMetadata() {
-  return getMetadataObject({
-    title:
-      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
-    ,
-    description:
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
-    ,
-    alternates: {
-      canonical: '/',
-    },
-  })
-}
+import Main from '@/design-system/layout/Main'
+import Buttons from "@/app/_components/heading/Buttons";
+import { useEffect } from 'react';
+
 
 export default async function Homepage() {
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const opinionWayId = urlParams.get('opinion-way-id');
+
+    const storedData = localStorage.getItem('nosgestesempreinte::v1');
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+      const opinionWayIdExists = parsedData.simulations.some(simulation => simulation.opinionWayId === opinionWayId);
+      if (!opinionWayIdExists) {
+        localStorage.clear();
+      }
+    }
+  }, []);
   return (
     <>
       <Main>
