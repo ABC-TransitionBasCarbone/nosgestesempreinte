@@ -33,7 +33,7 @@ export default async function handler(
     }
 
     const jsonData = JSON.parse(data);
-    const userId = jsonData.user?.userId;
+    const userId = jsonData.simulation?.opinionWayId;
     const spreadsheetId = process.env.SPREADSHEET_ID;
 
     if (!userId || !uuidValidate(userId)) {
@@ -61,8 +61,6 @@ export default async function handler(
     });
 
     const service = google.sheets({ version: 'v4', auth });
-
-    console.log(jsonData)
 
     const values = [mapDataToSheet(jsonData.simulation, keys)];
     values[0].unshift(userId); // Insert userId at the beginning
