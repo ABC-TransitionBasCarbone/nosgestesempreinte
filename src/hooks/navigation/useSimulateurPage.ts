@@ -15,6 +15,7 @@ type GoToSimulateurPageProps = {
     defaultAdditionalQuestionsAnswers?: Record<string, string>
     poll?: string
     group?: string
+    opinionWayId: string
   }
 }
 const goToSimulateurPagePropsDefault = {

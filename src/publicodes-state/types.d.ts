@@ -71,6 +71,7 @@ export type Simulation = {
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
+  opinionWayId: string
 }
 
 type UpdateCurrentSimulationProps = {

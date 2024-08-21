@@ -31,6 +31,11 @@ export default function usePersistentSimulations({ storageKey }: Props) {
       setCurrentSimulationId(localCurrentSimulationId)
     } else {
       const newSimulation = generateSimulation()
+      const urlParams = new URLSearchParams(window.location.search);
+      const opinionWayId = urlParams.get('opinion-way-id');
+      if (opinionWayId) {
+        newSimulation.opinionWayId = opinionWayId;
+      }
       setSimulations([newSimulation])
       setCurrentSimulationId(newSimulation.id)
     }

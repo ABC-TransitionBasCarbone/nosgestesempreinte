@@ -1,22 +1,26 @@
+'use client';
+
 import Main from '@/design-system/layout/Main'
-import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 import Buttons from "@/app/_components/heading/Buttons";
+import {useEffect, useState} from 'react';
 
-export async function generateMetadata() {
-  return getMetadataObject({
-    title:
-      "Votre calculateur d'empreinte carbone personnelle - Nos Gestes Climat"
-    ,
-    description:
-      'Connaissez-vous votre empreinte sur le climat ? Faites le test et découvrez comment réduire votre empreinte carbone sur le climat.'
-    ,
-    alternates: {
-      canonical: '/',
-    },
-  })
-}
 
-export default async function Homepage() {
+export default function Homepage() {
+  const [opinionWayId, setOpinionWayId] = useState<string | null>(null);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const opinionWayId = urlParams.get('opinion-way-id');
+    setOpinionWayId(opinionWayId);
+
+    const storedData = localStorage.getItem('nosgestesempreinte::v1');
+    if (storedData && opinionWayId) {
+      const parsedData = JSON.parse(storedData);
+      const opinionWayIdExists = parsedData.simulations.some(simulation => simulation.opinionWayId === opinionWayId);
+      if (!opinionWayIdExists) {
+        localStorage.clear();
+      }
+    }
+  }, []);
   return (
     <>
       <Main>
@@ -25,7 +29,7 @@ export default async function Homepage() {
             <h1 className="md:text-5xl">
               {'Bonjour, vous allez répondre à des questions sur votre empreinte carbone'}
             </h1>
-            <Buttons/>
+            {opinionWayId && <Buttons/>}
           </div>
         </div>
       </Main>

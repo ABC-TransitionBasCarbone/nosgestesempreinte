@@ -63,6 +63,12 @@ export default function useSimulations({
           migrationInstructions,
         })
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const opinionWayId = urlParams.get('opinion-way-id');
+        if (opinionWayId) {
+          migratedSimulation.opinionWayId = opinionWayId;
+        }
+
         newCurrentId = migratedSimulation.id
 
         return [...prevSimulations, migratedSimulation]
