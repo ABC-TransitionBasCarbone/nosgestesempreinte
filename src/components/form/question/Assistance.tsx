@@ -13,15 +13,13 @@ type Props = {
 export default function Assistance({ question, assistance }: Props) {
   const { setValue: setValueOfParent, parent } = useRule(question)
 
-  const assistanceFullDottedName = parent + ' . ' + assistance
-
   const {
     type,
     label,
     description,
     unit,
     value: constantMultiplier,
-  } = useRule(assistanceFullDottedName)
+  } = useRule(assistance)
 
   const [inputValue, setInputValue] = useState(0)
 
