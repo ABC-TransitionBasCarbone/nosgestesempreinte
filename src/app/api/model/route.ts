@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { models, personas } from '@incubateur-ademe/nosgestesclimat'
+import { models, personas } from '@abc-transitionbascarbone/nosgestesempreinte-modele'
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)

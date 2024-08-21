@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
+"@abc-transitionbascarbone/nosgestesempreinte-modele@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@abc-transitionbascarbone/nosgestesempreinte-modele/-/nosgestesempreinte-modele-1.0.4.tgz#31a26281ddeceff52e7a2de77b09e1e4012b3982"
+  integrity sha512-DGlU9rtwmUlSuLWSS+bWwWv+tOy2wq2pdhVhWhRAnKUa5ln0kbW5uyogMggB2dmtdRM8IjZCtRCcI6v04xy5JQ==
+
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
@@ -707,11 +712,6 @@
     isomorphic-fetch "^3.0.0"
     prompt-sync "^4.2.0"
     yargs "^17.7.2"
-
-"@incubateur-ademe/nosgestesclimat@2.3.0-rc.3":
-  version "2.3.0-rc.3"
-  resolved "https://registry.yarnpkg.com/@incubateur-ademe/nosgestesclimat/-/nosgestesclimat-2.3.0-rc.3.tgz#a205d7ac1c519c3d5df67bd51c4bc9c75b1c7744"
-  integrity sha512-wXXS+YsoDD29eKJOzkKf5Jyo5T3UO+cqPz89zUexyUDwwV+YhgmaiUhcSVW3S1IhnVOYxfqQzbV7LxLj26HREg==
 
 "@jest/expect-utils@^29.7.0":
   version "29.7.0"

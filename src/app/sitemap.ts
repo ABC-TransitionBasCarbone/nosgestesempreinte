@@ -1,6 +1,6 @@
 import { getPosts } from '@/helpers/markdown/getPosts'
 import { encodeRuleName } from '@/utils/publicodes/encodeRuleName'
-import rules from '@incubateur-ademe/nosgestesclimat'
+import rules from '@abc-transitionbascarbone/nosgestesempreinte-modele'
 import { MetadataRoute } from 'next'
 import { utils } from 'publicodes'
 
