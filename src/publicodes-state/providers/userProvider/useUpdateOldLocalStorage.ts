@@ -17,18 +17,20 @@ function handleLocalStorageMigration(
   migrationInstructions: MigrationType
 ) {
   try {
-    const newSimulations = currentLocalStorage.simulations.map(
-      (simulation: Simulation) =>
-        migrateSimulation({
-          simulation,
-          migrationInstructions,
-        })
-    )
+    if(currentLocalStorage.simulations) {
+      const newSimulations = currentLocalStorage.simulations.map(
+          (simulation: Simulation) =>
+              migrateSimulation({
+                simulation,
+                migrationInstructions,
+              })
+      )
 
-    localStorage.setItem(
-      storageKey,
-      JSON.stringify({ ...currentLocalStorage, simulations: newSimulations })
-    )
+      localStorage.setItem(
+          storageKey,
+          JSON.stringify({ ...currentLocalStorage, simulations: newSimulations })
+      )
+    }
   } catch (error) {
     console.warn('Error trying to migrate LocalStorage:', error)
   }
