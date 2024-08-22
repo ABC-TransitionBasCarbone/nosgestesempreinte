@@ -42,6 +42,7 @@
   "logement . chauffage . bois . présent",
   "logement . climatisation . présent",
   "logement . électricité . consommation",
+  "logement . électricité . réseau . consommation",
   "logement . chauffage . réseau de chaleur . présent",
   "logement . chauffage . PAC . présent",
   "logement . chauffage . électricité . présent",
