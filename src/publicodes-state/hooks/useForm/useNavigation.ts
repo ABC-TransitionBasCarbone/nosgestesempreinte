@@ -1,5 +1,6 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
 import { useMemo } from 'react'
+import {useRouter} from "next/navigation";
 
 type Props = {
   remainingQuestions: string[]
@@ -13,6 +14,7 @@ export default function useNavigation({
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
+  const router = useRouter();
   const currentQuestionNamespace = useMemo<string | undefined>(
     () => getNamespace(currentQuestion),
     [currentQuestion]
@@ -58,11 +60,22 @@ export default function useNavigation({
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
+
     if (noNextQuestion) {
       return undefined
     }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
+
+    const currentCategory = relevantQuestions[currentQuestionIndex].split(' . ')[0];
+    const nextCategory = newCurrentQuestion.split(' . ')[0];
+
+    // Si la catégorie change, redirige vers une page intermédiaire
+    if (currentCategory !== nextCategory) {
+      const intermediateUrl = `/intermediate?from=${currentCategory}&to=${nextCategory}&next=${newCurrentQuestion}`;
+      router.push(intermediateUrl);
+      return undefined;
+    }
 
     setCurrentQuestion(newCurrentQuestion)
 
