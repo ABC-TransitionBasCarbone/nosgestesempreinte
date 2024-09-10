@@ -53,15 +53,6 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <link rel="icon" href="/images/misc/favicon.png" />
-
-        <meta
-          name="google-site-verification"
-          content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-
         <link rel="manifest" href="../manifest.webmanifest" />
 
         <meta name="theme-color" content="#4949ba" />
