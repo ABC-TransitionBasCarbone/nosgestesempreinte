@@ -3,8 +3,11 @@
 import Main from '@/design-system/layout/Main'
 import Buttons from "@/app/_components/heading/Buttons";
 import {useEffect, useState} from 'react';
+import { useCurrentSimulation } from '@/publicodes-state';
 
 export default function Homepage() {
+  const { progression } = useCurrentSimulation()
+
   const [opinionWayId, setOpinionWayId] = useState<string | null>(null);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -26,12 +29,16 @@ export default function Homepage() {
         <div className="relative flex items-center justify-center overflow-hidden p-4 h-[100vh]">
           <div className="relative mb-2 text-center md:mb-0">
             <h1 className="md:text-5xl">
-              Bonjour, vous allez répondre à des questions sur votre empreinte carbone
+              {
+                progression < 1
+                  ? 'Bonjour, vous allez répondre à des questions sur votre empreinte carbone'
+                  : 'Bonjour, vous avez déjà répondu à l\'enquête, merci'
+              }
             </h1>
-            {opinionWayId && <Buttons/>}
-'          </div>
-'        </div>
+            {opinionWayId && progression != 1 && <Buttons/>}
+          </div>
+        </div>
       </Main>
     </>
-)
+  )
 }

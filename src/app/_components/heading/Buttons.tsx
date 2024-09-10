@@ -1,6 +1,5 @@
 'use client'
 
-import Link from '@/components/Link'
 import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
@@ -15,7 +14,6 @@ export default function Buttons() {
   const isClient = useIsClient()
 
   const {
-    goToSimulateurPage,
     getLinkToSimulateurPage,
     linkToSimulateurPageLabel,
   } = useSimulateurPage()
@@ -32,14 +30,9 @@ export default function Buttons() {
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
         onClick={() => {
-          if (progression === 1) {
-            return
-          }
-
           if (progression > 0) {
             return
           }
-
         }}>
         <span
           className={twMerge(
@@ -51,19 +44,6 @@ export default function Buttons() {
           <Trans>{linkToSimulateurPageLabel}</Trans>
         </span>
       </ButtonLink>
-
-      {progression ? (
-        <Link
-          className={`absolute left-1/2 top-full -translate-x-1/2 translate-y-6 whitespace-nowrap transition-all delay-200 duration-300 md:text-lg ${
-            isClient ? 'opacity-100' : 'opacity-0'
-          }`}
-          onClick={() => {
-            goToSimulateurPage({ noNavigation: true, newSimulation: {} })
-          }}
-          href={getLinkToSimulateurPage({ newSimulation: true })}>
-          <Trans>Commencer un nouveau test</Trans>
-        </Link>
-      ) : null}
     </div>
   )
 }
