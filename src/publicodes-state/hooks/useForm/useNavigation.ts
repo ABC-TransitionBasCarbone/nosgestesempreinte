@@ -1,6 +1,5 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import { useMemo } from 'react'
-import {useRouter} from "next/navigation";
+import { useMemo, useState } from 'react'
 
 type Props = {
   remainingQuestions: string[]
@@ -14,7 +13,8 @@ export default function useNavigation({
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
-  const router = useRouter();
+  const [transitionPage, setTransitionPage] = useState<string | undefined>(undefined);
+
   const currentQuestionNamespace = useMemo<string | undefined>(
     () => getNamespace(currentQuestion),
     [currentQuestion]
@@ -26,8 +26,8 @@ export default function useNavigation({
   )
 
   const noPrevQuestion = useMemo<boolean>(
-    () => currentQuestionIndex === 0,
-    [currentQuestionIndex]
+    () => currentQuestionIndex === 0 && !transitionPage,
+    [currentQuestionIndex, transitionPage]
   )
   const noNextQuestion = useMemo<boolean>(
     () => !relevantQuestions[currentQuestionIndex + 1],
@@ -53,28 +53,43 @@ export default function useNavigation({
       return undefined
     }
 
+    if (transitionPage) {
+      setTransitionPage(undefined)
+      return;
+    }
+
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
+
+    const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
+    const nextCategory = getNamespace(newCurrentQuestion);
+
+    // Si la catégorie change, redirige vers une page intermédiaire
+    if (currentCategory !== nextCategory) {
+      setTransitionPage(nextCategory);
+    }
 
     setCurrentQuestion(newCurrentQuestion)
 
     return newCurrentQuestion
   }
   const gotoNextQuestion = (): string | undefined => {
-
     if (noNextQuestion) {
       return undefined
     }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
 
-    const currentCategory = relevantQuestions[currentQuestionIndex].split(' . ')[0];
-    const nextCategory = newCurrentQuestion.split(' . ')[0];
+    const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
+    const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (currentCategory !== nextCategory) {
-      const intermediateUrl = `/intermediate?from=${currentCategory}&to=${nextCategory}&next=${newCurrentQuestion}`;
-      router.push(intermediateUrl);
-      return undefined;
+    if (!transitionPage && currentCategory !== nextCategory) {
+      setTransitionPage(nextCategory);
+      return;
+    }
+
+    if (transitionPage) {
+      setTransitionPage(undefined)
     }
 
     setCurrentQuestion(newCurrentQuestion)
@@ -83,6 +98,7 @@ export default function useNavigation({
   }
 
   return {
+    transitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,

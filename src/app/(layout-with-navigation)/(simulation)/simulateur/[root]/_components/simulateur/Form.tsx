@@ -8,6 +8,7 @@ import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
 import { useContext, useEffect, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
+import TransitionPage from '@/app/(layout-with-navigation)/(simulation)/transition/page'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -15,10 +16,15 @@ export default function Form() {
   const { progression, id } = useCurrentSimulation()
 
   const {
+    transitionPage,
     remainingQuestions,
     relevantAnsweredQuestions,
     currentQuestion,
     setCurrentQuestion,
+    noPrevQuestion,
+    noNextQuestion,
+    gotoPrevQuestion,
+    gotoNextQuestion,
   } = useForm()
 
   const { questionInQueryParams, setQuestionInQueryParams } =
@@ -94,13 +100,18 @@ export default function Form() {
   return (
     <div className="relative mb-4 overflow-hidden rounded-xl bg-gray-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
-      <QuestionComponent
-        question={currentQuestion}
-        key={currentQuestion}
-        tempValue={tempValue}
-        setTempValue={setTempValue}
-      />
+      {
+        transitionPage
+          ? <TransitionPage transitionPage={transitionPage} />
+          : <QuestionComponent
+              question={currentQuestion}
+              key={currentQuestion}
+              tempValue={tempValue}
+              setTempValue={setTempValue}
+            />
+      }
       <Navigation
+        transitionPage={transitionPage}
         question={currentQuestion}
         tempValue={tempValue}
         onComplete={() => {
@@ -110,6 +121,10 @@ export default function Form() {
 
           setShouldGoToEndPage(true)
         }}
+        noPrevQuestion={noPrevQuestion}
+        noNextQuestion={noNextQuestion}
+        gotoPrevQuestion={gotoPrevQuestion}
+        gotoNextQuestion={gotoNextQuestion}
       />
     </div>
   )

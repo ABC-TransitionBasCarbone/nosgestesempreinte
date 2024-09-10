@@ -7,7 +7,7 @@ import {
 import Button from '@/design-system/inputs/Button'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useMagicKey } from '@/hooks/useMagicKey'
-import { useCurrentSimulation, useForm, useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 
 import { MouseEvent, useCallback } from 'react'
@@ -16,17 +16,24 @@ type Props = {
   question: DottedName
   tempValue?: number
   onComplete?: () => void
+  gotoPrevQuestion: () => string | undefined
+  gotoNextQuestion: () => string | undefined
+  noPrevQuestion: boolean
+  noNextQuestion: boolean
+  transitionPage?: string
 }
 
 export default function Navigation({
   question,
   tempValue,
+  noPrevQuestion,
+  noNextQuestion,
+  transitionPage,
   onComplete = () => '',
+  gotoPrevQuestion,
+  gotoNextQuestion,
 }: Props) {
   const { t } = useClientTranslation()
-
-  const { gotoPrevQuestion, gotoNextQuestion, noPrevQuestion, noNextQuestion } =
-    useForm()
 
   const { isMissing, plancher } = useRule(question)
 
@@ -111,7 +118,7 @@ export default function Navigation({
         onClick={handleGoToNextQuestion}>
         {noNextQuestion
           ? t('Terminer')
-          : isMissing
+          : isMissing && !transitionPage
             ? t('Je ne sais pas') + ' →'
             : t('Suivant') + ' →'}
       </Button>
