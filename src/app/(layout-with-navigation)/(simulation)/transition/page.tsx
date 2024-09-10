@@ -38,6 +38,15 @@ const TransitionPage = ({ transitionPage }: TransitionPageProps) => {
               </>
           ),
         }
+      case 'divers':
+        return {
+          title: "Transition divers",
+          content: (
+              <>
+                <p>Passons maintenant à des questions diverses.</p>
+              </>
+          ),
+        }
       default:
         return {
           title: "Transition",

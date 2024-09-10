@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import formContext from '../../providers/formProvider/context'
 import useNavigation from './useNavigation'
 
@@ -8,8 +8,6 @@ import useNavigation from './useNavigation'
  * A hook to help display a form inside the simulation
  */
 export default function useForm() {
-  const [transitionPage, setTransitionPage] = useState<string | undefined>(undefined);
-
   const {
     relevantQuestions,
     currentQuestion,
@@ -22,7 +20,7 @@ export default function useForm() {
   } = useContext(formContext)
 
   const {
-    transitionPage: transitionPageTmp,
+    transitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,
@@ -36,16 +34,11 @@ export default function useForm() {
     setCurrentQuestion,
   })
 
-  useEffect(() => {
-    setTransitionPage(transitionPageTmp);
-
-  }, [transitionPageTmp])
-
   return {
     /**
      * Undefined unless when a transitionPage needs to be displayed (between categories)
      */
-    transitionPage: transitionPage ?? "",
+    transitionPage,
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */

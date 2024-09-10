@@ -53,19 +53,19 @@ export default function useNavigation({
       return undefined
     }
 
-    if (transitionPage) {
-      setTransitionPage(undefined)
-      return;
-    }
-
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
 
     const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
     const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (currentCategory !== nextCategory) {
-      setTransitionPage(nextCategory);
+    if (!transitionPage && currentCategory !== nextCategory && currentCategory !== "services sociétaux") {
+      setTransitionPage(currentCategory);
+      return;
+    }
+
+    if (transitionPage) {
+      setTransitionPage(undefined)
     }
 
     setCurrentQuestion(newCurrentQuestion)
@@ -76,20 +76,20 @@ export default function useNavigation({
     if (noNextQuestion) {
       return undefined
     }
+    if (transitionPage) {
+      setTransitionPage(undefined);
+      return;
+    }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
 
     const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
     const nextCategory = getNamespace(newCurrentQuestion);
 
+    debugger
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (!transitionPage && currentCategory !== nextCategory) {
+    if (!transitionPage && currentCategory !== nextCategory && nextCategory !== "services sociétaux") {
       setTransitionPage(nextCategory);
-      return;
-    }
-
-    if (transitionPage) {
-      setTransitionPage(undefined)
     }
 
     setCurrentQuestion(newCurrentQuestion)
