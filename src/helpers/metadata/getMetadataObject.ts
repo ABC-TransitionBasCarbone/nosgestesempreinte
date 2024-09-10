@@ -1,11 +1,10 @@
 import i18nConfig from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
-import { generateOGImageURL } from '../openGraph/generateOGImageURL'
 import { SERVER_URL } from '@/constants/urls'
 
 type Props = {
   title: string
-  description: string
+  description?: string
   params?: Record<string, string>
   searchParams?: Record<string, string>
   noImage?: boolean
@@ -26,12 +25,6 @@ type Props = {
     canonical: string
   }
 }
-
-const URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE = [
-  'diapo=bilan',
-  'diapo=categories',
-  'diapo=actions',
-]
 
 const buildURL = ({
                     params,
@@ -63,7 +56,6 @@ export function getMetadataObject({
                                     description,
                                     params,
                                     searchParams,
-                                    noImage = false,
                                     alternates,
                                     ...props
                                   }: Props) {
@@ -83,13 +75,7 @@ export function getMetadataObject({
       description,
       url,
       type: 'website',
-      images:
-          URLS_SUBSTRING_WITH_DYNAMIC_OG_IMAGE.some((urlPart) =>
-              url.includes(urlPart)
-          ) && !noImage
-              ? generateOGImageURL(url)
-              : 'https://nosgestesclimat-git-ngc-577-ademe.vercel.app/images/misc/metadata.png', // TODO change this to the real image
-    },
+ },
     alternates,
     ...props,
   }

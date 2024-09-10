@@ -1,20 +1,12 @@
 import Main from '@/design-system/layout/Main'
 import { PropsWithChildren } from 'react'
 
-import { getServerTranslation } from '@/helpers/getServerTranslation'
 import { getMetadataObject } from '@/helpers/metadata/getMetadataObject'
 
 export async function generateMetadata() {
-  const { t } = await getServerTranslation()
-
   return getMetadataObject({
-    title: t('Simulateur d’empreinte climat - Nos Gestes Climat'),
-    description: t(
-      'Calculez votre empreinte sur le climat en 10 minutes chrono. Découvrez les gestes qui comptent vraiment pour le climat.'
-    ),
-    alternates: {
-      canonical: '/',
-    },
+    title: 'Enquête 2024',
+    alternates: { canonical: '/' },
   })
 }
 
