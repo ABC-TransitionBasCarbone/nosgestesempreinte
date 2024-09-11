@@ -1,16 +1,12 @@
-import FilAriane from '@/components/layout/FilAriane'
-import { getGeolocation } from '@/helpers/getGeolocation'
 import { getMigrationInstructions } from '@/helpers/modelFetching/getMigrationInstructions'
 // Initialise react-i18next
 import '@/locales/initClient'
 import '@/locales/initServer'
-import { ErrorBoundary } from '@sentry/nextjs'
 import { dir } from 'i18next'
 import { currentLocale } from 'next-i18n-router'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { PropsWithChildren } from 'react'
-import { ErrorFallback } from './_components/ErrorFallback'
 import MainLayoutProviders from './_components/MainLayoutProviders'
 import './globals.css'
 
@@ -52,39 +48,14 @@ export const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const region = await getGeolocation()
   const migrationInstructions = await getMigrationInstructions()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>
       <head>
-        <link rel="icon" href="/images/misc/favicon.png" />
-
-        <meta
-          name="google-site-verification"
-          content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
-        />
-
-        <meta property="twitter:card" content="summary_large_image" />
-
         <link rel="manifest" href="../manifest.webmanifest" />
 
         <meta name="theme-color" content="#4949ba" />
-
-        <Script id="matomo">
-          {`
-          var _paq = window._paq = window._paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://preprod-nosgestesclimat.matomo.cloud/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '1']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.async=true; g.src='https://cdn.matomo.cloud/preprod-nosgestesclimat.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        `}
-        </Script>
       </head>
 
       <body className={`${marianne.className} bg-white text-default`}>
@@ -93,15 +64,10 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           b.setAttribute('data-useragent', navigator.userAgent);
         `}</Script>
 
-        <ErrorBoundary showDialog fallback={ErrorFallback}>
-          <MainLayoutProviders
-            region={region}
-            migrationInstructions={migrationInstructions}>
-            <FilAriane />
-
-            {children}
-          </MainLayoutProviders>
-        </ErrorBoundary>
+        <MainLayoutProviders
+          migrationInstructions={migrationInstructions}>
+          {children}
+        </MainLayoutProviders>
       </body>
     </html>
   )

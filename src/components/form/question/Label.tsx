@@ -6,15 +6,11 @@
 
 import Trans from '@/components/translation/Trans'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
-import {
-  questionCloseInfo,
-  questionOpenInfo,
-} from '@/constants/tracking/question'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { QuestionSize } from '@/types/values'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
@@ -35,14 +31,13 @@ const sizeClassNames = {
 }
 
 export default function Label({
-  question,
   label,
   description,
   size = 'md',
   className,
   titleClassName,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const { t } = useClientTranslation()
 
@@ -71,11 +66,7 @@ export default function Label({
           <Button
             type="button"
             onClick={() => {
-              if (isOpen) {
-                trackEvent(questionCloseInfo({ question }))
-              } else {
-                trackEvent(questionOpenInfo({ question }))
-              }
+
               setIsOpen((previsOpen) => !previsOpen)
             }}
             color="secondary"
@@ -97,7 +88,6 @@ export default function Label({
           <Button
             size="sm"
             onClick={() => {
-              trackEvent(questionCloseInfo({ question }))
               setIsOpen(false)
             }}
             title={t('Fermer')}>

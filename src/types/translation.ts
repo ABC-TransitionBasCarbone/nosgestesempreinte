@@ -1,5 +1,4 @@
 import { TOptions } from 'i18next'
-import { JSX } from 'react'
 import { TransProps } from 'react-i18next'
 
 export enum Lang {
@@ -27,8 +26,6 @@ export type LangInfos = {
 }
 
 export type YamlEntry = { entries: { [key: string]: string } }
-
-export type TranslationFunctionType = (key: string) => JSX.Element | string
 
 export type TransPropsWithInterpolation = TransProps<
   string,

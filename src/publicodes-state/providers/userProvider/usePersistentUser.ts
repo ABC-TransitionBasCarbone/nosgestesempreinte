@@ -1,29 +1,19 @@
 import { getIsLocalStorageAvailable } from '@/utils/getIsLocalStorageAvailable'
 import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { RegionFromGeolocation, User } from '../../types'
+import { User } from '../../types'
 
 const isLocalStorageAvailable = getIsLocalStorageAvailable()
 
 type Props = {
   storageKey: string
-  initialRegion: RegionFromGeolocation
 }
 export default function usePersistentUser({
   storageKey,
-  initialRegion,
 }: Props) {
   const [initialized, setInitialized] = useState<boolean>(false)
 
   const [user, setUser] = useState<User>({
-    region: {
-      code: '',
-      name: '',
-    },
-    initialRegion: {
-      code: '',
-      name: '',
-    },
     userId: '',
   })
 
@@ -38,13 +28,11 @@ export default function usePersistentUser({
       setUser(formatUser({ user: localUser }))
     } else {
       setUser({
-        region: initialRegion,
-        initialRegion,
         userId: uuid(),
       })
     }
     setInitialized(true)
-  }, [storageKey, initialRegion])
+  }, [storageKey])
 
   useEffect(() => {
     if (initialized) {

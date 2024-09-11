@@ -59,7 +59,7 @@ export default function useRule(dottedName: DottedName) {
 
   const questionsOfMosaic = useQuestionsOfMosaic({
     options: rule?.rawNode?.mosaique?.options,
-    optionsSi: rule?.rawNode?.mosaique?.optionsSi,
+    optionsConditionnelles: rule?.rawNode?.mosaique?.optionsConditionnelles,
     everyMosaicChildren,
     everyRules,
   })

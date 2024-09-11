@@ -17,7 +17,6 @@ export default function Logo({ onClick = () => null, className }: Props) {
       <Link
         href="/"
         onClick={onClick}
-        data-cypress-id="home-logo-link"
         className={`flex items-center justify-center no-underline ${
           // @bjlaa : this is a hack to prevent the logo from being clickable in the iframe
           // not a recommended method a11y-wise, but in this case it's a good fit

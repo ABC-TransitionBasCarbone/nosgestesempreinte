@@ -1,17 +1,9 @@
 'use client'
 
 import Error500 from '@/components/layout/500'
-import * as Sentry from '@sentry/nextjs'
 import NextError from 'next/error'
-import { useEffect } from 'react'
 
-type Props = {
-  error: Error & { digest?: string }
-}
-export default function GlobalError({ error }: Props) {
-  useEffect(() => {
-    Sentry.captureException(error)
-  }, [error])
+export default function GlobalError() {
 
   return (
     <html lang="fr">

@@ -1,7 +1,6 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
-import { endClickSaveSimulation } from '@/constants/tracking/pages/end'
 import Button from '@/design-system/inputs/Button'
 import EmailInput from '@/design-system/inputs/EmailInput'
 import Card from '@/design-system/layout/Card'
@@ -11,7 +10,7 @@ import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useNumberSubscribers } from '@/hooks/useNumberSubscriber'
 import { useCurrentSimulation, useUser } from '@/publicodes-state'
 import { isEmailValid } from '@/utils/isEmailValid'
-import { trackEvent } from '@/utils/matomo/trackEvent'
+
 import { formatValue } from 'publicodes'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -48,8 +47,6 @@ export default function GetResultsByEmail({
       setErrorEmail(t('Veuillez renseigner un email valide.'))
       return
     }
-
-    trackEvent(endClickSaveSimulation)
 
     updateEmail(formEmail)
 

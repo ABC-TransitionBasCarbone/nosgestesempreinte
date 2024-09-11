@@ -15,17 +15,10 @@ export type UserOrganisationInfo = {
   name?: string
 }
 
-export type RegionFromGeolocation = { code: string; name: string }
-
 export type User = {
-  region?: {
-    code: string
-    name: string
-  }
   userId: string
   name?: string
   email?: string
-  initialRegion: RegionFromGeolocation
   northStarRatings?: any // TODO: should be NorthStartType or something
   loginExpirationDate?: Date
   organisation?: UserOrganisationInfo
@@ -78,6 +71,7 @@ export type Simulation = {
   polls?: string[] | null
   groups?: string[] | null
   savedViaEmail?: boolean
+  opinionWayId: string
 }
 
 type UpdateCurrentSimulationProps = {
@@ -121,7 +115,7 @@ type SuggestionsNode = Record<
 type MosaiqueNode = {
   type: 'selection' | 'nombre'
   options?: DottedName[]
-  optionsSi?: DottedName[]
+  optionsConditionnelles?: DottedName[]
   total?: number
   suggestions?: SuggestionsNode
 }

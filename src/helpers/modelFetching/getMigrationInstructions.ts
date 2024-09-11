@@ -1,5 +1,5 @@
 import { MigrationType } from '@/publicodes-state/types'
-import { migration } from '@incubateur-ademe/nosgestesclimat'
+import { migration } from '@abc-transitionbascarbone/nosgestesempreinte-modele'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {

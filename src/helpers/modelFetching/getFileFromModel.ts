@@ -19,20 +19,18 @@ export async function getFileFromModel({ fileName, PRNumber }: Props) {
   }
 
   // Otherwise, we want to use the production data
-  const file = await importFile({ fileName })
+  const file = await importFile(fileName)
 
   return file
 }
 
 async function importPreviewFile({
   fileName,
-  PRNumber,
 }: {
   fileName: string
   PRNumber: string
 }) {
-  const previewURL = getPreviewUrl(PRNumber)
-  console.log('fetching preview file', fileName)
+  const previewURL = getPreviewUrl()
   return axios
     .get(`${previewURL}/${fileName}`)
     .then((res) => res.data)
@@ -42,10 +40,9 @@ async function importPreviewFile({
     })
 }
 
-async function importFile({ fileName }: { fileName: string }) {
-  console.log('importing file', fileName)
+async function importFile(fileName: string) {
   try {
-    return await import("./test-chloe-data.json").then((module) => module.default)
+    return await import(`@abc-transitionbascarbone/nosgestesempreinte-modele/public/${fileName}`).then((module) => module.default)
   } catch (e) {
     console.error('importFile error', e)
     return {}

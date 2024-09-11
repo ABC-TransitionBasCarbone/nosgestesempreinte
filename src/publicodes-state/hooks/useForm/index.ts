@@ -20,6 +20,7 @@ export default function useForm() {
   } = useContext(formContext)
 
   const {
+    transitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,
@@ -34,6 +35,10 @@ export default function useForm() {
   })
 
   return {
+    /**
+     * Undefined unless when a transitionPage needs to be displayed (between categories)
+     */
+    transitionPage,
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */

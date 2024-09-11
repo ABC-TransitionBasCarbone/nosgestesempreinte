@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useCallback } from 'react'
-import { RegionFromGeolocation, User, UserOrganisationInfo } from '../../types'
+import { User, UserOrganisationInfo } from '../../types'
 
 type Props = {
   user: User
@@ -13,12 +13,6 @@ export default function useUserDetails({ setUser }: Props) {
 
   const updateEmail = useCallback(
     (email: string) => setUser((prevUser: User) => ({ ...prevUser, email })),
-    [setUser]
-  )
-
-  const updateRegion = useCallback(
-    (region: RegionFromGeolocation) =>
-      setUser((prevUser: User) => ({ ...prevUser, region })),
     [setUser]
   )
 
@@ -59,7 +53,6 @@ export default function useUserDetails({ setUser }: Props) {
   return {
     updateName,
     updateEmail,
-    updateRegion,
     updateLoginExpirationDate,
     updateUserOrganisation,
   }
