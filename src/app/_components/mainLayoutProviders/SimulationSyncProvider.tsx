@@ -39,6 +39,7 @@ export default function SimulationSyncProvider({
     polls,
     groups,
     savedViaEmail,
+    opinionWayId,
   } = useCurrentSimulation()
 
   const { saveSimulation, isPending } = useSaveSimulation()
@@ -88,6 +89,7 @@ export default function SimulationSyncProvider({
           polls,
           groups,
           savedViaEmail,
+          opinionWayId,
         },
       })
     }, SAVE_DELAY)
@@ -107,6 +109,7 @@ export default function SimulationSyncProvider({
     saveSimulation,
     shouldSyncWithBackend,
     resetSyncTimer,
+    opinionWayId
   ])
 
   useEffect(() => {
