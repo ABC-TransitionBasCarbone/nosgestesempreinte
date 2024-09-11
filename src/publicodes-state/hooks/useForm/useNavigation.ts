@@ -1,5 +1,5 @@
 import getNamespace from '@/publicodes-state/helpers/getNamespace'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 
 type Props = {
   remainingQuestions: string[]
@@ -13,6 +13,8 @@ export default function useNavigation({
   currentQuestion,
   setCurrentQuestion,
 }: Props) {
+  const [transitionPage, setTransitionPage] = useState<string | undefined>(undefined);
+
   const currentQuestionNamespace = useMemo<string | undefined>(
     () => getNamespace(currentQuestion),
     [currentQuestion]
@@ -24,8 +26,8 @@ export default function useNavigation({
   )
 
   const noPrevQuestion = useMemo<boolean>(
-    () => currentQuestionIndex === 0,
-    [currentQuestionIndex]
+    () => currentQuestionIndex === 0 && !transitionPage,
+    [currentQuestionIndex, transitionPage]
   )
   const noNextQuestion = useMemo<boolean>(
     () => !relevantQuestions[currentQuestionIndex + 1],
@@ -53,6 +55,19 @@ export default function useNavigation({
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex - 1]
 
+    const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
+    const nextCategory = getNamespace(newCurrentQuestion);
+
+    // Si la catégorie change, redirige vers une page intermédiaire
+    if (!transitionPage && currentCategory !== nextCategory && currentCategory !== "services sociétaux") {
+      setTransitionPage(currentCategory);
+      return;
+    }
+
+    if (transitionPage) {
+      setTransitionPage(undefined)
+    }
+
     setCurrentQuestion(newCurrentQuestion)
 
     return newCurrentQuestion
@@ -61,8 +76,21 @@ export default function useNavigation({
     if (noNextQuestion) {
       return undefined
     }
+    if (transitionPage) {
+      setTransitionPage(undefined);
+      return;
+    }
 
     const newCurrentQuestion = relevantQuestions[currentQuestionIndex + 1]
+
+    const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
+    const nextCategory = getNamespace(newCurrentQuestion);
+
+    debugger
+    // Si la catégorie change, redirige vers une page intermédiaire
+    if (!transitionPage && currentCategory !== nextCategory && nextCategory !== "services sociétaux") {
+      setTransitionPage(nextCategory);
+    }
 
     setCurrentQuestion(newCurrentQuestion)
 
@@ -70,6 +98,7 @@ export default function useNavigation({
   }
 
   return {
+    transitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,
