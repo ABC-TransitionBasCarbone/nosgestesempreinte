@@ -5,6 +5,7 @@ export function getIsLocalStorageAvailable() {
     localStorage.removeItem(testKey)
     return true
   } catch (e) {
+    console.error(e);
     return false
   }
 }
