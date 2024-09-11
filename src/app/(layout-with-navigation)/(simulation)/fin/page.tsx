@@ -3,7 +3,7 @@
 import {useEffect, useState} from 'react'
 
 export default function FinPage() {
-  const [data, setData] = useState(null);
+  const [_data, setData] = useState(null);
 
   useEffect(() => {
     const localStorageValue = localStorage.getItem('nosgestesempreinte::v1')

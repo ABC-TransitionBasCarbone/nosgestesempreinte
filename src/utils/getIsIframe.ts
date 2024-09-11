@@ -4,6 +4,7 @@ export function getIsIframe(): boolean {
   try {
     return window.self !== window.top
   } catch (e) {
+    console.error(e)
     return true
   }
 }

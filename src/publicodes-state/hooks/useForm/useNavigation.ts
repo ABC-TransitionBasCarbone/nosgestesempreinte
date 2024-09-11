@@ -86,7 +86,6 @@ export default function useNavigation({
     const currentCategory = getNamespace(relevantQuestions[currentQuestionIndex]);
     const nextCategory = getNamespace(newCurrentQuestion);
 
-    debugger
     // Si la catégorie change, redirige vers une page intermédiaire
     if (!transitionPage && currentCategory !== nextCategory && nextCategory !== "services sociétaux") {
       setTransitionPage(nextCategory);
