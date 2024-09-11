@@ -28,7 +28,7 @@
   "dependencies": {
     "@babel/eslint-parser": "^7.24.8",
     "@babel/runtime": "^7.23.1",
-    "@abc-transitionbascarbone/nosgestesempreinte-modele": "^1.0.4",
+    "@abc-transitionbascarbone/nosgestesempreinte-modele": "^1.0.6",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.0",
     "@next/bundle-analyzer": "^14.1.0",
