@@ -28,6 +28,7 @@ type Props = {
 export default function useQuestions({
   root,
   safeEvaluate,
+  safeGetRule,
   categories,
   subcategories,
   situation,
@@ -47,7 +48,7 @@ export default function useQuestions({
     [safeEvaluate, root, everyQuestions, situation]
   )
 
-  const remainingQuestions = useMemo<string[]>(
+  let remainingQuestions = useMemo<string[]>(
     () =>
       // We take every questions
       everyQuestions
@@ -143,6 +144,22 @@ export default function useQuestions({
       everyMosaicChildren,
     ]
   )
+
+  const questionsWithOrder: { key: string, ordre: number }[] = [];
+
+  remainingQuestions.forEach((key) => {
+    const rule = safeGetRule(key);
+    // On récupère l'ordre ou on utilise Infinity pour les éléments sans ordre
+    const ordre = rule?.rawNode?.ordre !== undefined ? rule?.rawNode?.ordre : Infinity;
+    questionsWithOrder.push({ key, ordre });
+  });
+
+  // Trier par ordre croissant
+  questionsWithOrder.sort((a, b) => a.ordre - b.ordre);
+
+  const sortedKeys = questionsWithOrder.map(item => item.key);
+
+  remainingQuestions = sortedKeys
 
   const relevantAnsweredQuestions = useMemo<string[]>(
     () =>
