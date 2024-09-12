@@ -1,5 +1,5 @@
 import { MigrationType } from '@/publicodes-state/types'
-import { migration } from '@abc-transitionbascarbone/nosgestesempreinte-modele'
+import migration from '@abc-transitionbascarbone/nosgestesempreinte-modele/public/migration.json'
 import { getFileFromModel } from './getFileFromModel'
 
 type Props = {
