@@ -145,19 +145,41 @@ export default function useQuestions({
     ]
   )
 
-  const questionsWithOrder: { key: string, ordre: number }[] = [];
+  // Regrouper les questions par catégorie (le premier mot avant le premier point)
+  const questionsByCategory: { [category: string]: { key: string, ordre: number }[] } = {};
 
+  // Parcourir toutes les questions
   remainingQuestions.forEach((key) => {
     const rule = safeGetRule(key);
-    // On récupère l'ordre ou on utilise Infinity pour les éléments sans ordre
-    const ordre = rule?.rawNode?.ordre !== undefined ? rule?.rawNode?.ordre : Infinity;
-    questionsWithOrder.push({ key, ordre });
+    const ordre = rule?.rawNode?.ordre !== undefined ? rule.rawNode.ordre : Infinity;
+
+    // Extraire la catégorie (le premier mot avant le premier point)
+    const category = key.split(' . ')[0];
+
+    // Si la catégorie n'existe pas encore, la créer
+    if (!questionsByCategory[category]) {
+      questionsByCategory[category] = [];
+    }
+
+    // Ajouter la question dans la catégorie correspondante
+    questionsByCategory[category].push({ key, ordre });
   });
 
-  // Trier par ordre croissant
-  questionsWithOrder.sort((a, b) => a.ordre - b.ordre);
+  // Créer un tableau pour stocker le résultat final trié
+  const sortedKeys: string[] = [];
 
-  const sortedKeys = questionsWithOrder.map(item => item.key);
+  // Parcourir les catégories et trier les questions dans chaque catégorie par ordre
+  Object.keys(questionsByCategory).forEach((category) => {
+    const questions = questionsByCategory[category];
+
+    // Trier les questions dans chaque catégorie par ordre
+    questions.sort((a, b) => a.ordre - b.ordre);
+
+    // Ajouter les clés triées dans le tableau final
+    questions.forEach((item) => {
+      sortedKeys.push(item.key);
+    });
+  });
 
   remainingQuestions = sortedKeys
 
