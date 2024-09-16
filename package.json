@@ -2,6 +2,7 @@
   "name": "nosgestesclimat-site-nextjs",
   "license": "MIT",
   "version": "1.4.5",
+  "type": "module",
   "description": "The leading open source climate footprint calculator",
   "repository": {
     "type": "git",
@@ -18,12 +19,7 @@
     "build:debug-memory": "next build --experimental-debug-memory-usage",
     "start": "next start",
     "lint": "next lint",
-    "ui:parse": "node scripts/i18n/generate-ui.js",
-    "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js",
-    "ui:translate": "node scripts/i18n/translate-ui.js",
-    "ui:clean": "node scripts/i18n/generate-ui.js -r",
-    "pages:translate": "node scripts/i18n/translate-pages.cjs",
-    "nouveautes:translate": "node scripts/i18n/translate-nouveautes.cjs"
+    "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.24.8",

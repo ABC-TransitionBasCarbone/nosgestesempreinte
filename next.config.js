@@ -1,18 +1,15 @@
-const withMDX = require('@next/mdx')({
+import createMDX from '@next/mdx'
+import { redirects } from './config/redirects.js';
+import { remoteImagesPatterns } from './config/remoteImagesPatterns.js';
+import withYAML from 'next-yaml';
+
+const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
   },
 });
-
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-const redirects = require('./config/redirects.js');
-const remoteImagesPatterns = require('./config/remoteImagesPatterns.js');
-const withYAML = require('next-yaml');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -53,4 +50,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withYAML(withMDX(nextConfig));
+export default withYAML(withMDX(nextConfig));

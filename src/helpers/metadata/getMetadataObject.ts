@@ -1,4 +1,4 @@
-import i18nConfig from '@/i18nConfig'
+import { i18nConfig } from '@/i18nConfig'
 import { currentLocale } from 'next-i18n-router'
 import { SERVER_URL } from '@/constants/urls'
 

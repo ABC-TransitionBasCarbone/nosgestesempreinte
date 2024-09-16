@@ -1,4 +1,4 @@
-const redirects = [
+export const redirects = [
   {
     source: '/actions/liste',
     destination: '/actions',
@@ -92,5 +92,3 @@ const redirects = [
     permanent: true,
   },
 ]
-
-module.exports = redirects

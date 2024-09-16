@@ -1,4 +1,4 @@
-const i18nConfig = {
+export const i18nConfig = {
   locales: ['fr', 'en', 'es'],
   defaultLocale: 'fr',
   localeDetector: (request) => {
@@ -14,5 +14,3 @@ const i18nConfig = {
     return preferedLanguage || 'fr'
   },
 }
-
-module.exports = i18nConfig
