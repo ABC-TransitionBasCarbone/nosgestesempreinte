@@ -1,6 +1,6 @@
-import createMDX from '@next/mdx'
-import { redirects } from './config/redirects.js';
-import { remoteImagesPatterns } from './config/remoteImagesPatterns.js';
+import createMDX from '@next/mdx';
+import redirects from './config/redirects.js';
+import remoteImagesPatterns from './config/remoteImagesPatterns.js';
 import withYAML from 'next-yaml';
 
 const withMDX = createMDX({
