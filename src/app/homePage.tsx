@@ -17,7 +17,7 @@ export default function Homepage() {
     const storedData = localStorage.getItem('nosgestesempreinte::v1');
     if (storedData && opinionWayId) {
       const parsedData = JSON.parse(storedData);
-      const opinionWayIdExists = parsedData.simulations.some(simulation => simulation.opinionWayId === opinionWayId);
+      const opinionWayIdExists = parsedData.simulations.some((simulation: { opinionWayId: string; }) => simulation.opinionWayId === opinionWayId);
       if (!opinionWayIdExists) {
         localStorage.clear();
       }
