@@ -146,6 +146,7 @@ type NGCRule = Rule & {
   résumé?: string
   plancher?: number
   avertissement?: string
+  ordre?: number
 }
 
 export type NGCRules = Record<DottedName, NGCRule>

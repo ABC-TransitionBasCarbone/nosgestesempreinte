@@ -14,9 +14,9 @@ export default function LanguageSwitchButton() {
 
   const router = useRouter()
 
-  const currentPathname = usePathname()
+  const currentPathname = usePathname() ?? ""
 
-  const searchParams = useSearchParams().toString()
+  const searchParams = useSearchParams()?.toString() ?? ""
 
   const currentLocale = 'fr'
 

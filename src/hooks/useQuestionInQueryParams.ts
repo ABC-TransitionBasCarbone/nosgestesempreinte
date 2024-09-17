@@ -7,7 +7,7 @@ export const useQuestionInQueryParams = () => {
 
   const searchParams = useSearchParams()
 
-  const questionInQueryParams = decodeURI(searchParams.get('question') || '')
+  const questionInQueryParams = decodeURI(searchParams?.get('question') || '')
     ?.replaceAll('.', ' . ')
     .replaceAll('_', ' ')
 
