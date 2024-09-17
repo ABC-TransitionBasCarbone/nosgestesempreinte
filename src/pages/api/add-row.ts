@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { google } from 'googleapis';
 import keys from '../../data/keys.json';

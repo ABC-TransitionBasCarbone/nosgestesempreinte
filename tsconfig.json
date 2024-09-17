@@ -33,5 +33,5 @@
     "src/app/(layout-with-navigation)/statistiques/_components/content/Chart.js",
     "next.config.cjs"
   ],
-  "exclude": ["node_modules", "scripts/**/*","dist/**/*", ".next/**/*", "src/pages/api/add-row.ts"]
+  "exclude": ["node_modules", "scripts/**/*","dist/**/*", ".next/**/*"]
 }
