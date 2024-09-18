@@ -1,23 +1,23 @@
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+import { getUiMissingTranslations } from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import { getArgs, printChecksResultTableHeader, printChecksResult } from '@incubateur-ademe/nosgestesclimat-scripts/cli'
 
-const paths = require('./paths')
+import { UI } from './paths'
 
-const { srcLang, destLangs, markdown } = cli.getArgs(
+const { srcLang, destLangs, markdown } = getArgs(
   'Check missing translations for UI texts.',
   { source: true, target: true, markdown: true }
 )
 
-cli.printChecksResultTableHeader(markdown)
+printChecksResultTableHeader(markdown)
 
 destLangs.forEach((destLang) => {
-  const missingTranslations = utils.getUiMissingTranslations(
-    paths.UI[srcLang].withLock,
-    paths.UI[destLang].withLock
+  const missingTranslations = getUiMissingTranslations(
+    UI[srcLang].withLock,
+    UI[destLang].withLock
   )
   const nbMissingTranslations = missingTranslations.length
 
-  cli.printChecksResult(
+  printChecksResult(
     nbMissingTranslations,
     missingTranslations,
     'UI texts',

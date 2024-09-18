@@ -4,7 +4,7 @@ import Button from '@/design-system/inputs/Button'
 import Emoji from '@/design-system/utils/Emoji'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
 import { useIframe } from '@/hooks/useIframe'
-import i18nConfig from '@/i18nConfig'
+import { i18nConfig } from '@/i18nConfig'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
@@ -14,9 +14,9 @@ export default function LanguageSwitchButton() {
 
   const router = useRouter()
 
-  const currentPathname = usePathname()
+  const currentPathname = usePathname() ?? ""
 
-  const searchParams = useSearchParams().toString()
+  const searchParams = useSearchParams()?.toString() ?? ""
 
   const currentLocale = 'fr'
 

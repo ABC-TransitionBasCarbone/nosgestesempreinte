@@ -48,7 +48,7 @@ export const marianne = localFont({
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   const lang = currentLocale()
-  const migrationInstructions = await getMigrationInstructions()
+  const migrationInstructions = getMigrationInstructions()
 
   return (
     <html lang={lang ?? ''} dir={dir(lang ?? '')}>

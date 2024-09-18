@@ -1,8 +1,6 @@
 // i18next-parser.config.js
 //
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-
-module.exports = {
+export const parser = {
   contextSeparator: '_',
   // Key separator used in your translation keys
 

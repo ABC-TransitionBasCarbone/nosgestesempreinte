@@ -1,45 +1,38 @@
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-});
+//@ts-check
+/* eslint-disable @typescript-eslint/no-var-requires */
+import createMDX from '@next/mdx'
+import { redirects } from './config/redirects.js'
+import { remoteImagesPatterns } from './config/remoteImagesPatterns.js'
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-const redirects = require('./config/redirects.js');
-const remoteImagesPatterns = require('./config/remoteImagesPatterns.js');
-const withYAML = require('next-yaml');
-
+const withMDX = createMDX({
+  extension: /\.mdx$/,
+})
+ 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   reactStrictMode: true,
   images: {
+    // @ts-expect-error remotePatterns is not typed
     remotePatterns: remoteImagesPatterns,
   },
   async redirects() {
-    return redirects;
+    return redirects
   },
   webpack: (config, { dev }) => {
     if (config.cache && !dev) {
       config.cache = Object.freeze({
         type: 'memory',
-      });
-      config.cache.maxMemoryGenerations = 0;
+      })
     }
 
+    // Add a rule for YAML files
     config.module.rules.push({
-      test: /\.mdx?$/,
-      use: [
-        '@mdx-js/loader',
-      ],
-    });
+      test: /\.ya?ml$/,
+      use: 'yaml-loader',
+    })
 
-    return config;
+    return config
   },
   experimental: {
     outputFileTracingExcludes: {
@@ -50,7 +43,16 @@ const nextConfig = {
       '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
     },
     webpackBuildWorker: true,
+    turbo: {
+      rules: {
+        '*.yaml': {
+          loaders: ['yaml-loader'],
+        },
+      },
+    },
   },
-};
+}
 
-module.exports = withYAML(withMDX(nextConfig));
+export default process.env.NODE_ENV !== 'development'
+    ? withMDX(nextConfig)
+    : nextConfig

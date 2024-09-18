@@ -1,4 +1,4 @@
-const remoteImagesPatterns = [
+export const remoteImagesPatterns = [
   {
     protocol: 'https',
     hostname: 'abc-transitionbascarbone.fr',
@@ -30,5 +30,3 @@ const remoteImagesPatterns = [
     pathname: '/**',
   },
 ]
-
-module.exports = remoteImagesPatterns
