@@ -13,7 +13,7 @@ type Props = {
 export default function ResultsSoonBanner({ hasLessThan3Participants }: Props) {
   const pathname = usePathname()
 
-  const isResultatsDetailles = pathname.includes('resultats-detailles')
+  const isResultatsDetailles = pathname?.includes('resultats-detailles')
 
   function handleScrollIntoView(id: string) {
     const shareSection = document.getElementById(id)

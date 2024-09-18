@@ -24,7 +24,7 @@ export default function Providers({
   // We don't want to display the loader when the user is on the tutorial page
   // or the landing page for organisations
   const shouldAlwaysDisplayChildren =
-    NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname)
+    NO_MODEL_PATHNAME_EXCEPTIONS.includes(pathname ?? "")
   if (shouldAlwaysDisplayChildren && isLoading) {
     return children
   }

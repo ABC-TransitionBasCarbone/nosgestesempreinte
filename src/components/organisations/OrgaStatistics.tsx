@@ -36,7 +36,7 @@ export default function OrgaStatistics({
       )}
 
       {hasAtLeastThreeParticipants &&
-        !pathname.includes('resultats-detailles') && (
+        !pathname?.includes('resultats-detailles') && (
           <SeeDetailedReportAndExport />
         )}
     </>

@@ -1,14 +1,14 @@
-const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
-const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+import { readYAML, LOCK_KEY_EXT } from '@incubateur-ademe/nosgestesclimat-scripts/utils'
+import { getArgs, printChecksResultTableHeader, printChecksResult } from '@incubateur-ademe/nosgestesclimat-scripts/cli'
 
-const paths = require('./paths')
+import { FAQ } from './paths'
 
-const { srcLang, destLangs, markdown } = cli.getArgs(
+const { srcLang, destLangs, markdown } = getArgs(
   'Check missing translations for FAQs.',
   { source: true, target: true, markdown: true }
 )
 
-const srcYAML = utils.readYAML(paths.FAQ[srcLang].withLock)
+const srcYAML = readYAML(FAQ[srcLang].withLock)
 
 const getIndexOfId = (id, targetEntries) => {
   return targetEntries.findIndex((entry) => {
@@ -20,13 +20,13 @@ const getIndexOfId = (id, targetEntries) => {
 const targetEntryIsUpToDate = (src, target) =>
   target !== undefined &&
   Object.entries(src).every(
-    ([key, val]) => key === 'id' || val === target[key + utils.LOCK_KEY_EXT]
+    ([key, val]) => key === 'id' || val === target[key + LOCK_KEY_EXT]
   )
 
-cli.printChecksResultTableHeader(markdown)
+printChecksResultTableHeader(markdown)
 
 destLangs.forEach((targetLang) => {
-  const targetEntries = utils.readYAML(paths.FAQ[targetLang].withLock)
+  const targetEntries = readYAML(FAQ[targetLang].withLock)
 
   const missingTranslations = srcYAML.reduce((acc, refEntry) => {
     const isUpToDate = targetEntryIsUpToDate(
@@ -39,7 +39,7 @@ destLangs.forEach((targetLang) => {
 
   const nbMissingTranslations = missingTranslations.length
 
-  cli.printChecksResult(
+  printChecksResult(
     nbMissingTranslations,
     missingTranslations,
     "FAQ's questions",
