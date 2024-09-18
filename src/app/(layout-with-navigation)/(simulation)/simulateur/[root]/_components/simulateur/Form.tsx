@@ -6,9 +6,10 @@ import { useEndPage } from '@/hooks/navigation/useEndPage'
 import { useDebug } from '@/hooks/useDebug'
 import { useQuestionInQueryParams } from '@/hooks/useQuestionInQueryParams'
 import { useCurrentSimulation, useEngine, useForm } from '@/publicodes-state'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 import TransitionPage from '@/app/(layout-with-navigation)/(simulation)/transition/page'
+import { TransitionPageKey, transitions } from '@/constants/transitions'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -91,6 +92,12 @@ export default function Form() {
   const { handleUpdateShouldPreventNavigation, shouldPreventNavigation } =
     useContext(PreventNavigationContext)
 
+  const content = useMemo(() => {
+      if (transitionPage && Object.keys(transitions).includes(transitionPage)) return transitions[transitionPage as TransitionPageKey];
+
+      return { buttonText: "" };
+    }, [transitionPage])
+
   if (!isInitialized || !currentQuestion) {
     return
   }
@@ -111,6 +118,7 @@ export default function Form() {
             />
       }
       <Navigation
+        buttonText={content.buttonText}
         transitionPage={transitionPage}
         question={currentQuestion}
         tempValue={tempValue}

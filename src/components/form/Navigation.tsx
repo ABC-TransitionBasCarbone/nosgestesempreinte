@@ -15,12 +15,13 @@ import { MouseEvent, useCallback } from 'react'
 type Props = {
   question: DottedName
   tempValue?: number
-  onComplete?: () => void
-  gotoPrevQuestion: () => string | undefined
-  gotoNextQuestion: () => string | undefined
   noPrevQuestion: boolean
   noNextQuestion: boolean
   transitionPage?: string
+  buttonText?: string
+  onComplete?: () => void
+  gotoPrevQuestion: () => string | undefined
+  gotoNextQuestion: () => string | undefined
 }
 
 export default function Navigation({
@@ -29,6 +30,7 @@ export default function Navigation({
   noPrevQuestion,
   noNextQuestion,
   transitionPage,
+  buttonText,
   onComplete = () => '',
   gotoPrevQuestion,
   gotoNextQuestion,
@@ -116,11 +118,13 @@ export default function Navigation({
         disabled={isNextDisabled}
         size="md"
         onClick={handleGoToNextQuestion}>
-        {noNextQuestion
-          ? t('Terminer')
-          : isMissing && !transitionPage
-            ? t('Je ne sais pas') + ' →'
-            : t('Suivant') + ' →'}
+        {buttonText ?
+          buttonText
+          : noNextQuestion
+            ? t('Terminer')
+            : isMissing && !transitionPage
+              ? t('Je ne sais pas') + ' →'
+              : t('Suivant') + ' →'}
       </Button>
     </div>
   )

@@ -33,10 +33,10 @@ export function useSimulateurPage() {
 
   const linkToSimulateurPageLabel = useMemo(() => {
     if (progression > 0) {
-      return t('Reprendre l\'enquête')
+      return t('Reprendre le questionnaire')
     }
     
-    return t('Commencer l\'enquête');
+    return t('Débuter le questionnaire');
   }, [progression, t])
 
   return {
