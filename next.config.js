@@ -19,8 +19,8 @@ const nextConfig = {
   async redirects() {
     return redirects
   },
-  webpack: (config) => {
-    if (config.cache) {
+  webpack: (config, { dev }) => {
+    if (config.cache && !dev) {
       config.cache = Object.freeze({
         type: 'memory',
       })
@@ -36,13 +36,12 @@ const nextConfig = {
   },
   experimental: {
     outputFileTracingExcludes: {
-      '*': ['.next/cache/webpack', '.git/**/*', 'cypress/**/*'],
+      '*': ['.next/cache/webpack', '.git/**/*'],
       '/blog': ['public/NGC_Kit.diffusion.zip'],
       '/nouveautes': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
       '/actions/plus': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
       '/sitemap.xml': ['public/images/blog', 'public/NGC_Kit.diffusion.zip'],
     },
-    optimizePackageImports: ['@incubateur-ademe/nosgestesclimat'],
     webpackBuildWorker: true,
     turbo: {
       rules: {
