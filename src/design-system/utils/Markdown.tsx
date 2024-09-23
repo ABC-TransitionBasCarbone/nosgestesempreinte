@@ -32,7 +32,7 @@ export default function Markdown({
                   sizes="100vw"
                   width={props.width ?? 900}
                   height={props.height ?? 500}
-                  style={{ width: '100%', height: 'auto' }}
+                  style={{ width: '40%', height: 'auto' }}
                   alt={props.alt as string}
                   {...(props as any)}
                 />
