@@ -20,9 +20,10 @@ type Props = {
   question: string
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
+  showInput?: boolean
 }
 
-export default function Question({ question, tempValue, setTempValue }: Props) {
+export default function Question({ question, tempValue, setTempValue, showInput = true }: Props) {
   const {
     type,
     label,
@@ -59,16 +60,19 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
       <div className="mb-4">
         <Label question={question} label={label} description={description} />
 
-        <Suggestions
-          question={question}
-          setValue={(value) => {
-            if (type === 'number') {
-              if (setTempValue) setTempValue(value)
-            }
-            setValue(value, { foldedStep: question })
-          }}
-        />
-        {type === 'number' && (
+        {showInput && (
+          <Suggestions
+            question={question}
+            setValue={(value) => {
+              if (type === 'number') {
+                if (setTempValue) setTempValue(value)
+              }
+              setValue(value, { foldedStep: question })
+            }}
+          />
+        )}
+
+        {type === 'number' && showInput && (
           <NumberInput
             unit={unit}
             value={setTempValue ? tempValue : numericValue}
@@ -85,7 +89,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           />
         )}
 
-        {type === 'boolean' && (
+        {type === 'boolean' && showInput && (
           <BooleanInput
             value={value}
             setValue={(value) => {
@@ -100,7 +104,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           />
         )}
 
-        {type === 'choices' && (
+        {type === 'choices' && showInput && (
           <ChoicesInput
             question={question}
             choices={choices}
@@ -117,7 +121,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           />
         )}
 
-        {type === 'mosaic' && (
+        {type === 'mosaic' && showInput && (
           <Mosaic
             question={question}
             aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}

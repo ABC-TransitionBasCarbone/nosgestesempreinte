@@ -12,7 +12,7 @@ export default function Voiture({ question, ...props }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Question question={question} {...props} />
+      <Question question={question} {...props} showInput={false} />
       <div className="mb-4 flex flex-col items-end">
         <Button
           color="link"
