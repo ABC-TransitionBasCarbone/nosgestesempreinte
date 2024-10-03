@@ -99,19 +99,31 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
       <td className="block border-primary-700 py-2 pl-2 text-right text-xs md:table-cell md:border-t">
         <Button
           size="sm"
-          onClick={() =>
-            setJourneys((prevJourneys) => [
-              ...prevJourneys,
-              {
-                id: uuid(),
-                label,
-                distance: Number(distance),
-                reccurrence,
-                period,
-                passengers,
-              },
-            ])
-          }>
+          onClick={() => {
+            setJourneys((prevJourneys) => {
+              const currentLocalStorage = JSON.parse(
+                localStorage.getItem('nosgestesempreinte::v1') || '{}'
+              )
+              const updatedJourneys = [
+                ...prevJourneys,
+                {
+                  id: uuid(),
+                  label,
+                  opinionWayId: currentLocalStorage.opinionWayId,
+                  distance: Number(distance),
+                  reccurrence,
+                  period,
+                  passengers,
+                },
+              ];
+
+              // Mise à jour du localStorage avec les données mises à jour
+              localStorage.setItem('nosgestesempreinte::v1', JSON.stringify({ ...currentLocalStorage, voitures: updatedJourneys }));
+
+              return updatedJourneys;
+            });
+          }}
+          >
           <Trans>Ajouter</Trans>
         </Button>
       </td>

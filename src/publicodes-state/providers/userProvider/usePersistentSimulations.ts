@@ -50,6 +50,15 @@ export default function usePersistentSimulations({ storageKey }: Props) {
       )
       const updatedStorage = { ...currentStorage, simulations }
       localStorage.setItem(storageKey, JSON.stringify(updatedStorage))
+      const urlParams = new URLSearchParams(window.location.search);
+      const opinionWayId = urlParams.get('opinion-way-id');
+      if (opinionWayId) {
+        const currentLocalStorage = JSON.parse(
+          localStorage.getItem(storageKey) || '{}'
+        )
+        localStorage.setItem(storageKey, JSON.stringify({ ...currentLocalStorage, opinionWayId: opinionWayId }));
+      }
+
     }
   }, [storageKey, simulations, initialized])
 

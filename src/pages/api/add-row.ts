@@ -13,6 +13,7 @@ const ERROR_MESSAGES = {
   INVALID_UUID: 'The provided UUID is not valid.',
   MISSING_SPREADSHEET_ID: 'The SPREADSHEET_ID is not defined in the .env.',
   APPEND_ERROR: 'An error occurred while adding the row.',
+  APPEND_ERROR_CAR: 'An error occurred while adding the row in car details.',
   ROUTE_NOT_FOUND: 'API route not found',
 };
 
@@ -35,6 +36,7 @@ export default async function handler(
     }
 
     const jsonData = JSON.parse(data);
+
     const userId = jsonData.simulation?.opinionWayId;
     const spreadsheetId = process.env.SPREADSHEET_ID;
 
@@ -76,15 +78,43 @@ export default async function handler(
         range: 'A1',
         resource,
       });
-      return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });
     } catch (error) {
       console.error('Append Error:', error);
       return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
     }
+
+    if (jsonData.voitures) {
+      try {
+        await service.spreadsheets.values.append({
+          spreadsheetId,
+          valueInputOption: 'USER_ENTERED',
+          range: "'details-trajet'!A1",
+          resource: {
+            values: jsonData.voitures.map(({ label, opinionWayId, distance, reccurrence, period, passengers }) => [
+              opinionWayId,
+              label,
+              distance,
+              reccurrence,
+              period,
+              passengers,
+            ])
+          },
+        });
+      } catch (error) {
+        console.error('Append Error:', error);
+        return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR_CAR });
+      }
+    }
+
+
+
+    return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });
   } catch (err) {
     console.error('Handler Error:', err);
     return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
   }
+
+
 }
 
 function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): any[][] {
