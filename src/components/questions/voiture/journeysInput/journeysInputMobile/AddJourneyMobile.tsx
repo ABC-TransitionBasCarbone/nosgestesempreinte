@@ -91,7 +91,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           className="w-16 text-sm"
           name="passengers"
           value={passengers}
-          label={t('Passagers')}
+          label={t('Nombre d’occupants (vous inclus)')}
           onChange={(e) => setPassengers(Number(e.target.value))}>
           {new Array(5).fill(0).map((_, i) => {
             return (

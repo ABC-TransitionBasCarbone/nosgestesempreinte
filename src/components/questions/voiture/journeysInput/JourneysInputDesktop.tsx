@@ -40,7 +40,7 @@ export function JourneysInputDesktop({
               <Trans>Fréquence</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs">
-              <Trans>Passagers</Trans>
+              <Trans>Nombre d’occupants (vous inclus)</Trans>
             </th>
             <th className="table-cell p-2 text-left text-xs opacity-0">
               Options
