@@ -61,71 +61,73 @@ export default function Question({ question, tempValue, setTempValue, showInput 
         <Label question={question} label={label} description={description} />
 
         {showInput && (
-          <Suggestions
-            question={question}
-            setValue={(value) => {
-              if (type === 'number') {
-                if (setTempValue) setTempValue(value)
-              }
-              setValue(value, { foldedStep: question })
-            }}
-          />
-        )}
-
-        {type === 'number' && showInput && (
-          <NumberInput
-            unit={unit}
-            value={setTempValue ? tempValue : numericValue}
-            setValue={(value) => {
-              if (setTempValue) {
-                setTempValue(value)
-              }
-              setValue(value, { foldedStep: question })
-            }}
-            isMissing={isMissing}
-            min={0}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
-
-        {type === 'boolean' && showInput && (
-          <BooleanInput
-            value={value}
-            setValue={(value) => {
-              {
+          <>
+            <Suggestions
+              question={question}
+              setValue={(value) => {
+                if (type === 'number') {
+                  if (setTempValue) setTempValue(value)
+                }
                 setValue(value, { foldedStep: question })
-              }
-            }}
-            isMissing={isMissing}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+              }}
+            />
 
-        {type === 'choices' && showInput && (
-          <ChoicesInput
-            question={question}
-            choices={choices}
-            value={String(value)}
-            setValue={(value) => {
-              {
-                setValue(value, { foldedStep: question })
-              }
-            }}
-            isMissing={isMissing}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+            {type === 'number' && (
+              <NumberInput
+                unit={unit}
+                value={setTempValue ? tempValue : numericValue}
+                setValue={(value) => {
+                  if (setTempValue) {
+                    setTempValue(value)
+                  }
+                  setValue(value, { foldedStep: question })
+                }}
+                isMissing={isMissing}
+                min={0}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
 
-        {type === 'mosaic' && showInput && (
-          <Mosaic
-            question={question}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
+            {type === 'boolean' && (
+              <BooleanInput
+                value={value}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                  }
+                }}
+                isMissing={isMissing}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+
+            {type === 'choices' && (
+              <ChoicesInput
+                question={question}
+                choices={choices}
+                value={String(value)}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                  }
+                }}
+                isMissing={isMissing}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+
+            {type === 'mosaic' && (
+              <Mosaic
+                question={question}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+          </>
         )}
       </div>
 
