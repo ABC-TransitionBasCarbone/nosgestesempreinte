@@ -49,7 +49,12 @@ export default function Navigation({
       e.preventDefault()
 
       if (isMissing) {
-        updateCurrentSimulation({ foldedStepToAdd: question })
+        updateCurrentSimulation({
+          situationToAdd: {
+            [question]: 'Je ne sais pas'
+          },
+          foldedStepToAdd: question
+        })
       }
 
       handleMoveFocus()
