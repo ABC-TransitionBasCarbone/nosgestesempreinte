@@ -46,8 +46,6 @@ export default function Navigation({
 
   const [_data, setData] = useState(null);
 
-  const [canEndSurvey, setCanEndSurvey] = useState<boolean>(false);
-
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
@@ -85,13 +83,10 @@ export default function Navigation({
           .then((data) => {
             console.log('Réponse du serveur:', data);
             setData(data.message);
-            setCanEndSurvey(true);
           })
           .catch((error) => {
             console.error('Erreur lors de l\'envoi de la requête:', error);
           });
-
-        window.location.replace('/');
         onComplete()
         return
       }
