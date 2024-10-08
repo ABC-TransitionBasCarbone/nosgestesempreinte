@@ -1,11 +1,11 @@
 'use client'
 
 import Button from '@/design-system/inputs/Button';
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 
 export default function FinPage() {
-  const [_data, setData] = useState(null);
-  const [canEndSurvey, setCanEndSurvey] = useState<boolean>(false);
+  const [_data] = useState(null);
+  const [canEndSurvey] = useState<boolean>(false);
 
   const goToOpinionWay = () => {
     if (!canEndSurvey) return;
