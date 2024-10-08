@@ -11,6 +11,7 @@ import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { v4 as uuid } from 'uuid'
+import { useCurrentSimulation } from '@/publicodes-state'
 
 type Props = {
   setJourneys: Dispatch<SetStateAction<Journey[]>>
@@ -24,6 +25,8 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
   const [reccurrence, setReccurrence] = useState(1)
   const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
+  const currentSimulation = useCurrentSimulation()
+  const { updateCurrentSimulation } = useCurrentSimulation()
 
   return (
     <tr className={twMerge('block md:table-row', className)}>
@@ -117,8 +120,10 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
                 },
               ];
 
-              // Mise à jour du localStorage avec les données mises à jour
-              localStorage.setItem('nosgestesempreinte::v1', JSON.stringify({ ...currentLocalStorage, voitures: updatedJourneys }));
+              // Mise à jour du localStorage avec les données mises à jour.
+              updateCurrentSimulation({
+                voitures: updatedJourneys,
+              })
 
               return updatedJourneys;
             });

@@ -11,7 +11,7 @@ const withMDX = createMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     // @ts-expect-error remotePatterns is not typed
     remotePatterns: remoteImagesPatterns,

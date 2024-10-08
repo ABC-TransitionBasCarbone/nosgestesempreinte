@@ -6,6 +6,8 @@ import {
   Rule,
   RuleNode,
 } from 'publicodes'
+import { v4 as uuid } from 'uuid'
+import { Journey } from '@/types/journey'
 
 export type DottedName = string
 
@@ -72,6 +74,7 @@ export type Simulation = {
   groups?: string[] | null
   savedViaEmail?: boolean
   opinionWayId: string
+  voitures?: Journey[]
 }
 
 type UpdateCurrentSimulationProps = {
@@ -87,6 +90,7 @@ type UpdateCurrentSimulationProps = {
   groupToAdd?: string | null
   groupToDelete?: string | null
   savedViaEmail?: boolean
+  voitures?: Journey[]
 }
 
 export type Persona = {

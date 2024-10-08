@@ -83,14 +83,14 @@ export default async function handler(
       return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
     }
 
-    if (jsonData.voitures) {
+    if (jsonData.simulation.voitures) {
       try {
         await service.spreadsheets.values.append({
           spreadsheetId,
           valueInputOption: 'USER_ENTERED',
           range: "'details-trajet'!A1",
           resource: {
-            values: jsonData.voitures.map(({ label, opinionWayId, distance, reccurrence, period, passengers }) => [
+            values: jsonData.simulation.voitures.map(({ label, opinionWayId, distance, reccurrence, period, passengers }) => [
               opinionWayId,
               label,
               distance,
