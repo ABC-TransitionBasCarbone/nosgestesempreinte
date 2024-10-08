@@ -26,7 +26,6 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
   const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
   const currentSimulation = useCurrentSimulation()
-  const { updateCurrentSimulation } = useCurrentSimulation()
 
   return (
     <tr className={twMerge('block md:table-row', className)}>
@@ -104,15 +103,12 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
           size="sm"
           onClick={() => {
             setJourneys((prevJourneys) => {
-              const currentLocalStorage = JSON.parse(
-                localStorage.getItem('nosgestesempreinte::v1') || '{}'
-              )
               const updatedJourneys = [
                 ...prevJourneys,
                 {
                   id: uuid(),
                   label,
-                  opinionWayId: currentLocalStorage.opinionWayId,
+                  opinionWayId: currentSimulation.opinionWayId,
                   distance: Number(distance),
                   reccurrence,
                   period,
@@ -121,7 +117,7 @@ export default function AddJourneyDesktop({ setJourneys, className }: Props) {
               ];
 
               // Mise à jour du localStorage avec les données mises à jour.
-              updateCurrentSimulation({
+              currentSimulation.updateCurrentSimulation({
                 voitures: updatedJourneys,
               })
 
