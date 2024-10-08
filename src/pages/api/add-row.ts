@@ -90,7 +90,13 @@ export default async function handler(
 function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): any[][] {
   const values: any[] = [];
   keys.forEach(key => {
-    const value = simulationData.situation[key] || '';
+    let value = simulationData.situation[key];
+
+    if (value === null) {
+      value = 'je ne sais pas';
+    } else if (value === undefined) {
+      value = '';
+    }
     values.push(value);
   });
   return values;

@@ -51,7 +51,7 @@ export default function Navigation({
       if (isMissing) {
         updateCurrentSimulation({
           situationToAdd: {
-            [question]: 'Je ne sais pas'
+            [question]: null
           },
           foldedStepToAdd: question
         })
