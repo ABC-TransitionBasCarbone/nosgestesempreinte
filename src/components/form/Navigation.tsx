@@ -79,15 +79,21 @@ export default function Navigation({
           },
           body: JSON.stringify({ data: value }),
         })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log('Réponse du serveur:', data);
-            setData(data.message);
-          })
-          .catch((error) => {
-            console.error('Erreur lors de l\'envoi de la requête:', error);
-          });
-        onComplete()
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error(`Erreur HTTP: ${res.status}`);
+              }
+              return res.json();
+            })
+            .then((data) => {
+              console.log('Réponse du serveur:', data);
+              onComplete();
+              setData(data.message);
+            })
+            .catch((error) => {
+              alert("Une erreur s'est produite lors de l'enregistrement de votre sondage. Réessayer dans quelques instants ou contactez xx.xx@xx.com")
+              console.error("Erreur lors de l'envoi de la requête:", error);
+            });
         return
       }
 
