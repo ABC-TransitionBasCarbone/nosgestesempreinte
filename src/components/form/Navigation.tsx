@@ -10,7 +10,7 @@ import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 
-import { MouseEvent, useCallback } from 'react'
+import { MouseEvent, useCallback, useState } from 'react'
 
 type Props = {
   question: DottedName
@@ -44,6 +44,8 @@ export default function Navigation({
   const isNextDisabled =
     tempValue !== undefined && plancher !== undefined && tempValue < plancher
 
+  const [_data, setData] = useState(null);
+
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
@@ -60,7 +62,38 @@ export default function Navigation({
       handleMoveFocus()
 
       if (noNextQuestion) {
-        onComplete()
+        const localStorageValue = localStorage.getItem('nosgestesempreinte::v1')
+        let value = null
+        if (localStorageValue) {
+          const JSONValue = JSON.parse(localStorageValue)
+          //TODO: Pour l'instant on prend la dernière mais à voir pour la suite
+          JSONValue.simulation = JSONValue.simulations.at(-1)
+          delete JSONValue.simulations
+          value = JSON.stringify(JSONValue)
+        }
+
+        fetch('/api/add-row', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ data: value }),
+        })
+            .then((res) => {
+              if (!res.ok) {
+                throw new Error(`Erreur HTTP: ${res.status}`);
+              }
+              return res.json();
+            })
+            .then((data) => {
+              console.log('Réponse du serveur:', data);
+              onComplete();
+              setData(data.message);
+            })
+            .catch((error) => {
+              alert("Une erreur s'est produite lors de l'enregistrement de votre sondage. Réessayer dans quelques instants ou contactez xx.xx@xx.com")
+              console.error("Erreur lors de l'envoi de la requête:", error);
+            });
         return
       }
 
