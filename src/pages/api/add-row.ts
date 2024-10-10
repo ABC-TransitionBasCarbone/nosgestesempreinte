@@ -66,7 +66,12 @@ export default async function handler(
 
     const service = google.sheets({ version: 'v4', auth });
 
-    const values = [mapDataToSheet(jsonData.simulation, keys)];
+    const fusion = {
+      ...jsonData.situation,
+      ...jsonData.suggestions,
+    };
+
+    const values = [mapDataToSheet(fusion, keys)];
     values[0].unshift(userId); // Insert userId at the beginning
 
     const resource = { values };
