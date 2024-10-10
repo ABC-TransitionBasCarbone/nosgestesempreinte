@@ -8,12 +8,14 @@ type Props = {
   question: string
   assistance: string
   setTempValue?: (value: number | undefined) => void
+  updateOrAddSuggestion: (question: string, value: any) => void
 }
 
 export default function Assistance({
                                      question,
                                      assistance,
                                      setTempValue,
+                                     updateOrAddSuggestion,
                                    }: Props) {
   const { setValue: setValueOfQuestion, value: valueOfQuestion } =
     useRule(question)
@@ -29,6 +31,14 @@ export default function Assistance({
   } = useRule(assistance)
 
   const { numericValue: numericValueOfParent } = useRule(parent)
+
+  const handleSetValueOfAssistance = (value: number | undefined) => {
+    setValueOfAssistance(value); // Mettre à jour la valeur de l'assistance
+    if (setTempValue) {
+      setTempValue(value); // Mettre à jour la valeur temporaire
+    }
+    updateOrAddSuggestion(question, value);
+  };
 
   // If the assistance value changed and it is not synced with the question value
   // we update the question value (and the tempValue of the input)
@@ -66,7 +76,7 @@ export default function Assistance({
         <NumberInput
           unit={unit ? unit.split('/')[0] : ''}
           value={numericValueOfAssistance}
-          setValue={setValueOfAssistance}
+          setValue={handleSetValueOfAssistance}
           isMissing={numericValueOfAssistance ? false : true}
         />
       )}

@@ -166,6 +166,7 @@ export default function Question({ question, tempValue, setTempValue, showInput 
           question={question}
           assistance={assistance}
           setTempValue={setTempValue}
+          updateOrAddSuggestion={updateOrAddSuggestion}
         />
       ) : null}
 
