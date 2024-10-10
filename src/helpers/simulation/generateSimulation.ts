@@ -18,7 +18,7 @@ export function generateSimulation({
   migrationInstructions,
   opinionWayId,
   voitures = [],
-  suggestions = []
+  suggestions = {}
 }: Partial<Simulation> & {
   migrationInstructions?: MigrationType
 } = {}): Simulation {

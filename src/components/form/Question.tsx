@@ -15,7 +15,6 @@ import {
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
-import { AideSaisie } from '@/publicodes-state/types'
 
 type Props = {
   question: string
@@ -63,16 +62,12 @@ export default function Question({ question, tempValue, setTempValue, showInput 
     value: any
   ): void => {
     const suggestionKey = `${question} . aide saisie`;
-    const existingSuggestion = currentSimulation.suggestions?.find(suggestion =>
-      Object.prototype.hasOwnProperty.call(suggestion, suggestionKey)
-    );
 
-    if (existingSuggestion) {
-      existingSuggestion[suggestionKey] = value;
-    } else {
-      const newSuggestion: AideSaisie = { [suggestionKey]: value };
-      currentSimulation.suggestions?.push(newSuggestion);
+    if (currentSimulation.suggestions === undefined) {
+      currentSimulation.suggestions = {};
     }
+
+    currentSimulation.suggestions[suggestionKey] = value;
 
     currentSimulation.updateCurrentSimulation({ suggestions: currentSimulation.suggestions });
   };

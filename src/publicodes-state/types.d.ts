@@ -76,7 +76,7 @@ export type Simulation = {
   savedViaEmail?: boolean
   opinionWayId: string
   voitures?: Journey[]
-  suggestions?: AideSaisie[]
+  suggestions?: AideSaisie
 }
 
 type UpdateCurrentSimulationProps = {
@@ -93,7 +93,7 @@ type UpdateCurrentSimulationProps = {
   groupToDelete?: string | null
   savedViaEmail?: boolean
   voitures?: Journey[]
-  suggestions?: AideSaisie[]
+  suggestions?: AideSaisie
 }
 
 export type Persona = {
