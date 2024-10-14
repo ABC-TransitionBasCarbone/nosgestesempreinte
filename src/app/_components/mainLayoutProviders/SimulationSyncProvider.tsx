@@ -40,7 +40,8 @@ export default function SimulationSyncProvider({
     groups,
     savedViaEmail,
     opinionWayId,
-    voitures
+    voitures,
+    suggestions
   } = useCurrentSimulation()
 
   const { saveSimulation, isPending } = useSaveSimulation()
@@ -91,7 +92,8 @@ export default function SimulationSyncProvider({
           groups,
           savedViaEmail,
           opinionWayId,
-          voitures
+          voitures,
+          suggestions
         },
       })
     }, SAVE_DELAY)
@@ -112,7 +114,8 @@ export default function SimulationSyncProvider({
     shouldSyncWithBackend,
     resetSyncTimer,
     opinionWayId,
-    voitures
+    voitures,
+    suggestions
   ])
 
   useEffect(() => {

@@ -63,10 +63,6 @@ export default function Question({ question, tempValue, setTempValue, showInput 
   ): void => {
     const suggestionKey = `${question} . aide saisie`;
 
-    if (currentSimulation.suggestions === undefined) {
-      currentSimulation.suggestions = {};
-    }
-
     currentSimulation.suggestions[suggestionKey] = value;
 
     currentSimulation.updateCurrentSimulation({ suggestions: currentSimulation.suggestions });

@@ -76,7 +76,7 @@ export type Simulation = {
   savedViaEmail?: boolean
   opinionWayId: string
   voitures?: Journey[]
-  suggestions?: AideSaisie
+  suggestions: AideSaisie
 }
 
 type UpdateCurrentSimulationProps = {
