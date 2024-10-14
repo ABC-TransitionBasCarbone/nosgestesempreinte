@@ -2,7 +2,6 @@
 // @ts-nocheck
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { google } from 'googleapis';
-import keys from '../../data/keys.json';
 import { validate as uuidValidate } from 'uuid';
 
 type ResponseData = {
@@ -64,19 +63,24 @@ export default async function handler(
       },
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
-
-
-
+    
     const service = google.sheets({ version: 'v4', auth });
 
+    const response = await service.spreadsheets.values.get({
+      spreadsheetId,
+      range: 'A1:1',
+    });
 
-    const fusion = {
+    const headers = response.data.values[0]
+
+    const valuesMerged = {
       ...jsonData.simulation.situation,
       ...jsonData.simulation.suggestions,
     };
 
-    const values = [mapDataToSheet(fusion, keys)];
-    values[0][0] = userId
+    const values = [mapDataToSheet(valuesMerged, headers)];
+
+    values[0][0] = userId;
 
     const resource = { values };
 
@@ -115,15 +119,11 @@ export default async function handler(
       }
     }
 
-
-
     return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });
   } catch (err) {
     console.error('Handler Error:', err);
     return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
   }
-
-
 }
 
 function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): any[][] {
