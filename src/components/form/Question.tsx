@@ -59,7 +59,7 @@ export default function Question({ question, tempValue, setTempValue, showInput 
 
   const updateOrAddSuggestion = (
     question: string,
-    value: any
+    value: string | number
   ): void => {
     const suggestionKey = `${question} . aide saisie`;
 
