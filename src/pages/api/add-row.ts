@@ -14,6 +14,7 @@ const ERROR_MESSAGES = {
   APPEND_ERROR: 'An error occurred while adding the row.',
   APPEND_ERROR_CAR: 'An error occurred while adding the row in car details.',
   ROUTE_NOT_FOUND: 'API route not found',
+  HEADERS_ERROR: 'An error occurred while retrieving the headers',
 };
 
 const SUCCESS_MESSAGES = {
@@ -36,9 +37,9 @@ export default async function handler(
     }
 
     const jsonData = JSON.parse(data);
-
     const userId = jsonData.simulation?.opinionWayId;
     const spreadsheetId = process.env.SPREADSHEET_ID;
+    let headers = [];
 
     if (!userId || !uuidValidate(userId)) {
       return res.status(422).json({ message: ERROR_MESSAGES.INVALID_UUID });
@@ -65,22 +66,23 @@ export default async function handler(
     });
     
     const service = google.sheets({ version: 'v4', auth });
-
-    const response = await service.spreadsheets.values.get({
-      spreadsheetId,
-      range: 'A1:1',
-    });
-
-    const headers = response.data.values[0]
+    try {
+      const response = await service.spreadsheets.values.get({
+        spreadsheetId,
+        range: 'A1:1',
+      });
+      headers = response.data.values[0]
+    }catch (error) {
+      console.error('Append Error:', error);
+      return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
+    }
 
     const valuesMerged = {
       ...jsonData.simulation.situation,
       ...jsonData.simulation.suggestions,
     };
 
-    const values = [mapDataToSheet(valuesMerged, headers)];
-
-    values[0][0] = userId;
+    const values = [mapDataToSheet(valuesMerged, headers, userId)];
 
     const resource = { values };
 
@@ -93,7 +95,7 @@ export default async function handler(
       });
     } catch (error) {
       console.error('Append Error:', error);
-      return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR });
+      return res.status(500).json({ message: ERROR_MESSAGES.HEADERS_ERROR });
     }
 
     if (jsonData.simulation.voitures) {
@@ -126,7 +128,7 @@ export default async function handler(
   }
 }
 
-function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): any[][] {
+function mapDataToSheet(simulationData: Record<string, any>, keys: string[], userId: string): any[][] {
   const values: any[] = [];
   keys.forEach(key => {
     let value = simulationData[key];
@@ -138,5 +140,6 @@ function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): an
     }
     values.push(value);
   });
+  values[0] = userId;
   return values;
 }
