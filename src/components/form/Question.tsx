@@ -15,6 +15,7 @@ import {
 import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
+import {NodeValue} from "@/publicodes-state/types";
 
 type Props = {
   question: string
@@ -59,7 +60,7 @@ export default function Question({ question, tempValue, setTempValue, showInput 
 
   const updateOrAddSuggestion = (
     question: string,
-    value: string | number
+    value: NodeValue
   ): void => {
     const suggestionKey = `${question} . aide saisie`;
 
