@@ -40,12 +40,12 @@ export default function Navigation({
 
   const { t } = useClientTranslation()
 
-  const { isMissing, plancher } = useRule(question)
+  const { isMissing, plancher, value } = useRule(question)
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
   const isNextDisabled =
-    tempValue !== undefined && plancher !== undefined && tempValue < plancher
+      (tempValue !== undefined && plancher !== undefined && tempValue < plancher) || value === undefined
 
   const [_data, setData] = useState(null);
   // Fonction pour préparer les données à envoyer
@@ -223,7 +223,7 @@ export default function Navigation({
           buttonText
           : noNextQuestion
             ? t('Terminer')
-            : isMissing && !transitionPage
+            : isMissing && !transitionPage && !isNextDisabled
               ? t('Je ne sais pas') + ' →'
               : t('Suivant') + ' →'}
       </Button>
