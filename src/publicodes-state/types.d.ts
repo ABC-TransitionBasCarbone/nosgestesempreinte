@@ -32,6 +32,8 @@ export type Tutorials = Record<string, boolean>
 
 export type Situation = Record<DottedName, NodeValue>
 
+export type AideSaisie = Record<DottedName, NodeValue>
+
 export type Suggestion = {
   label: string
   value: any // TODO: sorry...
@@ -74,6 +76,7 @@ export type Simulation = {
   savedViaEmail?: boolean
   opinionWayId: string
   voitures?: Journey[]
+  suggestions: AideSaisie
 }
 
 type UpdateCurrentSimulationProps = {
@@ -90,6 +93,7 @@ type UpdateCurrentSimulationProps = {
   groupToDelete?: string | null
   savedViaEmail?: boolean
   voitures?: Journey[]
+  suggestions?: AideSaisie
 }
 
 export type Persona = {

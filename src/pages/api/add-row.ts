@@ -31,6 +31,7 @@ export default async function handler(
 
   try {
     const data = req.body.data;
+
     if (!data) {
       return res.status(400).json({ message: ERROR_MESSAGES.INVALID_UUID });
     }
@@ -64,10 +65,18 @@ export default async function handler(
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
+
+
     const service = google.sheets({ version: 'v4', auth });
 
-    const values = [mapDataToSheet(jsonData.simulation, keys)];
-    values[0].unshift(userId); // Insert userId at the beginning
+
+    const fusion = {
+      ...jsonData.simulation.situation,
+      ...jsonData.simulation.suggestions,
+    };
+
+    const values = [mapDataToSheet(fusion, keys)];
+    values[0][0] = userId
 
     const resource = { values };
 
@@ -120,7 +129,7 @@ export default async function handler(
 function mapDataToSheet(simulationData: Record<string, any>, keys: string[]): any[][] {
   const values: any[] = [];
   keys.forEach(key => {
-    let value = simulationData.situation[key];
+    let value = simulationData[key];
 
     if (value === null) {
       value = 'je ne sais pas';

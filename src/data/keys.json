@@ -179,5 +179,6 @@
   "logement . chauffage . bois . type . bûches . consommation",
   "transport . ferry . heures",
   "transport . vacances . camping car . km",
-  "transport . vacances . camping car . consommation aux 100"
+  "transport . vacances . camping car . consommation aux 100",
+  "logement . électricité . réseau . consommation . aide saisie"
 ]

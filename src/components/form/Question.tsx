@@ -12,9 +12,10 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
+import {NodeValue} from "@/publicodes-state/types";
 
 type Props = {
   question: string
@@ -43,6 +44,8 @@ export default function Question({ question, tempValue, setTempValue, showInput 
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
 
+  const currentSimulation  = useCurrentSimulation()
+
   useEffect(() => {
     if (type !== 'number') {
       if (setTempValue) setTempValue(undefined)
@@ -54,6 +57,17 @@ export default function Question({ question, tempValue, setTempValue, showInput 
       prevQuestion.current = question
     }
   }, [type, numericValue, setTempValue, question])
+
+  const updateOrAddSuggestion = (
+    question: string,
+    value: NodeValue
+  ): void => {
+    const suggestionKey = `${question} . aide saisie`;
+
+    currentSimulation.suggestions[suggestionKey] = value;
+
+    currentSimulation.updateCurrentSimulation({ suggestions: currentSimulation.suggestions });
+  };
 
   return (
     <>
@@ -69,6 +83,7 @@ export default function Question({ question, tempValue, setTempValue, showInput 
                   if (setTempValue) setTempValue(value)
                 }
                 setValue(value, { foldedStep: question })
+                updateOrAddSuggestion(question, value)
               }}
             />
 
@@ -143,6 +158,7 @@ export default function Question({ question, tempValue, setTempValue, showInput 
           question={question}
           assistance={assistance}
           setTempValue={setTempValue}
+          updateOrAddSuggestion={updateOrAddSuggestion}
         />
       ) : null}
 
