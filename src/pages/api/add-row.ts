@@ -76,7 +76,7 @@ export default async function handler(
     };
 
     const values = [mapDataToSheet(fusion, keys)];
-    values[0][0].unshift(userId); // Insert userId at the beginning
+    values[0][0] = userId
 
     const resource = { values };
 
