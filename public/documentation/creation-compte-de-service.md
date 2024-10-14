@@ -8,17 +8,13 @@
    [https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts?hl=fr&pli=1&supportedpurview=project](https://console.cloud.google.com/projectselector2/iam-admin/serviceaccounts?hl=fr&pli=1&supportedpurview=project)
 
 2. Cliquer sur **Créer un projet** et renseigner les champs :  
-   ![Capture 1](creation-projet.PNG)
 
 
 3. Créer un compte de service :  
-   ![Capture 2](creation-compte-service.PNG)
 
 4. Cliquer sur l’email du compte de service, puis sur **Clés**  
-   ![Capture 3](ajout-clé.PNG)
 
 5. Ajouter une clé puis **Créer une clé JSON**  
-   ![Capture 4](recuperation-cle-json.PNG)
 
    Cela va télécharger un fichier JSON contenant toutes les informations nécessaires :
 
@@ -47,4 +43,3 @@ Dans le projet, remplir le fichier `.env` avec les variables ci-dessus.
 Une fois la feuille de calcul créée, rendez-vous dessus via le navigateur et cliquez sur **Partager** en haut à droite.
 
 Ajoutez l'adresse email du compte de service.  
-![Capture 5](ajout-autorisation-feuille-calcul.PNG)
