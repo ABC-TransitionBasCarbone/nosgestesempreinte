@@ -51,7 +51,7 @@ export default function Navigation({
   // Fonction pour préparer les données à envoyer
   const prepareDataToSend = useCallback((JSONValue: any, headers: any[]): Record<string, any>[] => {
     const dataToSend: any[] = [];
-    const opinionWayId = JSONValue.simulation.id;
+    const opinionWayId = JSONValue.simulation.opinionWayId;
     const simulationData = {
       ...JSONValue.simulation.situation,
       ...JSONValue.simulation.suggestions,
