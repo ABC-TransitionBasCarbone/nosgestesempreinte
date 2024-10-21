@@ -34,13 +34,6 @@ export default function NumberInput({
         type="number"
         min={min}
         value={isMissing ? '' : value}
-        placeholder={
-          isMissing
-            ? value?.toLocaleString(locale, {
-                maximumFractionDigits: 1,
-              }) ?? '0'
-            : '0'
-        }
         onChange={(event) => {
           const inputValue = (event.target as HTMLInputElement).value
           if (inputValue === '') {
