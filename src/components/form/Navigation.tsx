@@ -59,13 +59,25 @@ export default function Navigation({
 
     headers.forEach((key) => {
       let value = simulationData[key];
+
       if (key === 'id opinion way') {
         dataToSend.push(opinionWayId);
         return;
       }
       if (value === null) {
         value = 'je ne sais pas';
-      } else if (!key.includes('aide saisie')) {
+      }
+      //TODO: patch rapide en attendant de fixer le modele
+      else if (value === 'non') {
+        value = 'FALSE'
+      }
+      //Gestion du cas undefined
+      // par exemple pour logement . vacances . camping . nombre de nuitées qui prenait la valeur par défaut
+      // alors que la question n'était pas dans le sondage
+      else if (value === undefined) {
+        value = ''
+      }
+      else if (!key.includes('aide saisie')) {
         value = safeEvaluateHelper(key, engine)?.nodeValue ?? '';
       }
       dataToSend.push(value);
@@ -100,17 +112,31 @@ export default function Navigation({
     }
   }, [onComplete]);
 
+  const { type, questionsOfMosaic } = useRule(question)
+
   const handleGoToNextQuestion = useCallback(
     async (e: KeyboardEvent | MouseEvent) => {
       e.preventDefault()
 
       if (isMissing) {
-        updateCurrentSimulation({
-          situationToAdd: {
-            [question]: null
-          },
-          foldedStepToAdd: question
-        })
+        if (type === 'mosaic') {
+          questionsOfMosaic.forEach((key) => {
+            updateCurrentSimulation({
+              situationToAdd: {
+                [key]: null
+              },
+              foldedStepToAdd: question
+            })
+          })
+        } else {
+          updateCurrentSimulation({
+            situationToAdd: {
+              [question]: null
+            },
+            foldedStepToAdd: question
+          })
+        }
+
       }
 
       handleMoveFocus()
