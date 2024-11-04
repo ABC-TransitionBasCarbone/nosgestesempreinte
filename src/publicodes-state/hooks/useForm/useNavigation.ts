@@ -26,8 +26,8 @@ export default function useNavigation({
   )
 
   const noPrevQuestion = useMemo<boolean>(
-    () => currentQuestionIndex === 0 && !transitionPage,
-    [currentQuestionIndex, transitionPage]
+    () => transitionPage === getNamespace(relevantQuestions[0]),
+    [relevantQuestions, transitionPage]
   )
   const noNextQuestion = useMemo<boolean>(
     () => !relevantQuestions[currentQuestionIndex + 1],
@@ -98,6 +98,7 @@ export default function useNavigation({
 
   return {
     transitionPage,
+    setTransitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,
