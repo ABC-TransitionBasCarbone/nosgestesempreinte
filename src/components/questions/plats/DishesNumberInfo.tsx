@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import Emoji from '@/design-system/utils/Emoji'
 import { useRule } from '@/publicodes-state'
 
 export default function DishesNumberInfo() {
@@ -10,32 +9,14 @@ export default function DishesNumberInfo() {
   return (
     <>
       <div aria-live="polite" className="mb-2 text-center text-sm">
-        {totalNumberOfPlats < 12 ? (
+        {totalNumberOfPlats < 14 ? (
           <span className="text-red-700">
-            <strong>{totalNumberOfPlats}</strong>{' '}
-            <strong>
-              <Trans>repas</Trans>
-            </strong>{' '}
-            <Trans>par semaine, quel appétit de moineau</Trans>
-            <Emoji>🐦</Emoji>
+            <Trans>Êtes-vous sûr de faire moins de 14 repas ?</Trans>
           </span>
         ) : null}
-        {totalNumberOfPlats > 16 ? (
+        {totalNumberOfPlats > 14 ? (
           <span className="text-red-700">
-            <strong>{totalNumberOfPlats}</strong>{' '}
-            <strong>
-              <Trans>repas</Trans>
-            </strong>{' '}
-            <Trans>par semaine, quel appétit !</Trans> <Emoji>💪</Emoji>
-          </span>
-        ) : null}
-        {totalNumberOfPlats >= 12 && totalNumberOfPlats <= 16 ? (
-          <span>
-            <strong>{totalNumberOfPlats}</strong>{' '}
-            <strong>
-              <Trans>repas</Trans>
-            </strong>{' '}
-            <Trans>par semaine, miam</Trans> <Emoji>😋</Emoji>
+            <Trans>Êtes-vous sûr de faire plus de 14 repas ?</Trans>
           </span>
         ) : null}
       </div>
