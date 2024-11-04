@@ -71,12 +71,6 @@ export default function Navigation({
       else if (value === 'non') {
         value = 'FALSE'
       }
-      // Gestion du cas undefined
-      // par exemple pour logement . vacances . camping . nombre de nuitées qui prenait la valeur par défaut
-      // alors que la question n'était pas dans le sondage
-      else if (value === undefined) {
-        value = ''
-      }
       else if (!key.includes('aide saisie')) {
         value = safeEvaluateHelper(key, engine)?.nodeValue ?? '';
       }
