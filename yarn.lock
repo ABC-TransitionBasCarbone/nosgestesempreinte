@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@abc-transitionbascarbone/nosgestesempreinte-modele@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@abc-transitionbascarbone/nosgestesempreinte-modele/-/nosgestesempreinte-modele-1.0.14.tgz#e7ca1021031ed1bddcaa35568596965e54398e0b"
-  integrity sha512-I89wHTOXMfDSWEA2feU9aguc9Het5wDQI+CH5KVoPhs/ooYJt2ZgJuhoDOiDlSxPRH4ZM3G9j9xe1CLwjNsU6A==
+"@abc-transitionbascarbone/nosgestesempreinte-modele@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@abc-transitionbascarbone/nosgestesempreinte-modele/-/nosgestesempreinte-modele-1.0.15.tgz#5b79a21a5e2fe9b4f458eb17f2ecda31cfd2ae77"
+  integrity sha512-q9rN+aHsO3QBPAvqvaEt1FZa7eYqqcBRJdMc5xcGXb89tgWJt4sD8+tA/r7/WxxOo2+imFsSWt2r7rvfgtM8oQ==
 
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
