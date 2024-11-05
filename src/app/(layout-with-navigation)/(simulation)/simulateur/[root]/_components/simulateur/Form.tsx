@@ -10,6 +10,7 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import ColorIndicator from './form/ColorIndicator'
 import TransitionPage from '@/app/(layout-with-navigation)/(simulation)/transition/page'
 import { TransitionPageKey, transitions } from '@/constants/transitions'
+import getNamespace from '@/publicodes-state/helpers/getNamespace'
 
 export default function Form() {
   const isDebug = useDebug()
@@ -18,8 +19,10 @@ export default function Form() {
 
   const {
     transitionPage,
+    setTransitionPage,
     remainingQuestions,
     relevantAnsweredQuestions,
+    relevantQuestions,
     currentQuestion,
     setCurrentQuestion,
     noPrevQuestion,
@@ -60,24 +63,21 @@ export default function Form() {
 
   useEffect(() => {
     if (!isInitialized) {
+      let nextCurrentQuestion;
       if (
         questionInQueryParams &&
         (relevantAnsweredQuestions.includes(questionInQueryParams) || isDebug)
       ) {
-        setCurrentQuestion(questionInQueryParams)
+        nextCurrentQuestion = questionInQueryParams;
       } else {
-        setCurrentQuestion(remainingQuestions[0])
+        nextCurrentQuestion = remainingQuestions[0];
       }
+      if (relevantQuestions?.indexOf(nextCurrentQuestion) === 0) setTransitionPage(getNamespace(relevantQuestions[0]))
+      setCurrentQuestion(nextCurrentQuestion);
+
       setIsInitialized(true)
     }
-  }, [
-    isDebug,
-    questionInQueryParams,
-    remainingQuestions,
-    relevantAnsweredQuestions,
-    setCurrentQuestion,
-    isInitialized,
-  ])
+  }, [isDebug, questionInQueryParams, remainingQuestions, relevantAnsweredQuestions, setCurrentQuestion, isInitialized, relevantQuestions, setTransitionPage])
 
   useEffect(() => {
     window.scrollTo(0, 0)

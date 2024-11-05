@@ -10,7 +10,7 @@ import { useMagicKey } from '@/hooks/useMagicKey'
 import { useCurrentSimulation, useEngine, useRule } from '@/publicodes-state'
 import { DottedName } from '@/publicodes-state/types'
 
-import { MouseEvent, useCallback, useState } from 'react'
+import { MouseEvent, useCallback, useMemo, useState } from 'react'
 import { safeEvaluateHelper } from '@/publicodes-state/helpers/safeEvaluateHelper'
 
 type Props = {
@@ -44,10 +44,13 @@ export default function Navigation({
 
   const { updateCurrentSimulation } = useCurrentSimulation()
 
-  const isNextDisabled =
-      (tempValue !== undefined && plancher !== undefined && tempValue < plancher) || value === undefined
+  const isNextDisabled = useMemo(() => {
+    return !transitionPage &&
+    ((tempValue !== undefined && plancher !== undefined && tempValue < plancher) || value === undefined);
+  }, [plancher, tempValue, transitionPage, value]);
 
   const [_data, setData] = useState(null);
+
   // Fonction pour préparer les données à envoyer
   const prepareDataToSend = useCallback((JSONValue: any, headers: any[]): Record<string, any>[] => {
     const dataToSend: any[] = [];
@@ -70,12 +73,6 @@ export default function Navigation({
       //TODO: patch rapide en attendant de fixer le modele
       else if (value === 'non') {
         value = 'FALSE'
-      }
-      // Gestion du cas undefined
-      // par exemple pour logement . vacances . camping . nombre de nuitées qui prenait la valeur par défaut
-      // alors que la question n'était pas dans le sondage
-      else if (value === undefined) {
-        value = ''
       }
       else if (!key.includes('aide saisie')) {
         value = safeEvaluateHelper(key, engine)?.nodeValue ?? '';

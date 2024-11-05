@@ -26,7 +26,9 @@ export default function useContent({ dottedName, rule }: Props) {
     [rule]
   )
   const description = useMemo<string | undefined>(
-    () => rule?.rawNode.description,
+    () => {
+      return rule?.rawNode.description?.replace(/^\n.*Cette règle provient du modèle.*\n\n\n/i, "")
+    },
     [rule]
   )
   const icons = useMemo<string | undefined>(
