@@ -59,7 +59,7 @@ export default function useNavigation({
     const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (!transitionPage && currentCategory !== nextCategory && currentCategory !== "services sociétaux") {
+    if (!transitionPage && currentCategory !== nextCategory) {
       setTransitionPage(currentCategory);
       return;
     }
@@ -87,7 +87,7 @@ export default function useNavigation({
     const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (!transitionPage && currentCategory !== nextCategory && nextCategory !== "services sociétaux") {
+    if (!transitionPage && currentCategory !== nextCategory) {
       setTransitionPage(nextCategory);
     }
 

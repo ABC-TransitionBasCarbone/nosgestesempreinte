@@ -4,7 +4,10 @@ import Button from '@/design-system/inputs/Button';
 
 export default function FinPage() {
   const goToOpinionWay = () => {
-    window.location.replace('/');
+    const storedData = JSON.parse(localStorage.getItem('nosgestesempreinte::v1') ?? "");
+
+    window.location.href = `https://ow3.cawi.fr/cgi-bin/xcawi2/Q/bj27428/bj27428.pl?login=${storedData.simulations[0].opinionWayId}`;
+    return;
   }
 
   return (
