@@ -2,12 +2,12 @@ export type TransitionPageKey = "transport" | "alimentation" | "logement" | "div
 export const transitions = {
     transport : {
         title: "Transport",
-        content: "Commençons avec des questions sur vos déplacements quotidiens comme ponctuels. Comme expliqué certaines questions portent directement sur l’année 2023 tandis que d’autres interroge vos déplacements moyens actuels",
+        content: "Commençons avec des questions sur vos déplacements quotidiens comme ponctuels. Comme expliqué certaines questions portent directement sur l’année 2023 tandis que d’autres interrogent vos déplacements moyens actuels",
         buttonText: "Questionnaire transport"
     },
     alimentation : {
         title: "Alimentation",
-        content: "Nous allons maintenant aborder votre alimentation avec des questions sur vos habitudes et pratiques alimentaires hebdomadaire et quotidienne",
+        content: "Nous allons maintenant aborder votre alimentation avec des questions sur vos habitudes et pratiques alimentaires hebdomadaires et quotidiennes",
         buttonText: "Questionnaire alimentation"
     },
     logement: {
@@ -17,7 +17,7 @@ export const transitions = {
     },
     divers: {
         title: "Achats et équipements",
-        content: "Avant-dernier chapitre de notre questionnaire : vos équipements, vos achats et d’autres questions portant sur votre de vie.",
+        content: "Avant-dernier chapitre de notre questionnaire : vos animaux, vos équipements, vos achats et d’autres questions portant sur votre mode de vie.",
         buttonText: "Questionnaire achats et équipements"
     },
     "services sociétaux": {
