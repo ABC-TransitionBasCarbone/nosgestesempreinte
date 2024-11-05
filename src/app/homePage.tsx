@@ -32,10 +32,19 @@ export default function Homepage() {
               {
                 progression < 1
                   ? <>
-                      <div style={{ margin: "8px", fontSize: "20px", fontStyle: "bold" }}>Bonjour !</div>
-                      <div style={{ margin: "8px" }}>Vous allez maintenant répondre à une série de questions portant sur votre mode de vies et sur vos actes de consommation. Déplacements, alimentation, logement, achats et équipements, nous allons passer de nombreuses choses en revue.</div>
-                      <div style={{ margin: "8px" }}>Vous pouvez répondre à l’enquête en une seule fois ou bien en plusieurs. Une barre d’avancement au-dessus des questions vous affichera le taux de complétion du questionnaire.</div>
-                      <div style={{ margin: "8px" }}><span style={{ textDecoration: "underline" }}>A savoir</span> : l’enquête s’intéresse à vos actes de consommation sur l’année 2023. Ainsi, certaines questions mentionnent directement cette période temporelle dans leur formulation. Toutefois, pour certaines pratiques et modes de vie, il est complexe de se replonger en arrière. C’est pourquoi, nous raisonnons parfois sur un comportement moyen actuel via des questions formulées selon une temporalité journalière ou hebdomadaire.</div>
+                      <div style={{ margin: "8px", fontSize: "20px", fontWeight: "bold" }}>Bonjour !</div>
+                      <div style={{ marginLeft: "8px" }}>Vous allez à présent répondre à diverses questions afférentes à vos déplacements, modes d’alimentation etc.</div>
+                      <div style={{ marginLeft: "8px" }}>Vous pouvez répondre à l’enquête en une seule fois ou bien en plusieurs. Une barre d’avancement au-dessus des questions vous affichera le taux de complétion du questionnaire.</div>
+                      <div style={{ marginLeft: "8px", marginTop: "8px" }}><span style={{ textDecoration: "underline" }}>Deux choses à savoir !</span>  L'enquête : </div>
+                      <ul style={{ marginLeft: "8px", listStyle: "disc", listStylePosition: "inside" }}>
+                        <li>
+                          <span style={{ fontWeight: "bold" }}>Porte sur l’année 2023.</span> Ainsi, certaines questions mentionnent directement cette période temporelle dans leur formulation.
+                          Toutefois, pour certaines pratiques et modes de vie, il est complexe de se replonger en arrière. C’est pourquoi, nous raisonnons parfois sur un comportement moyen actuel via des questions formulées selon une temporalité journalière ou hebdomadaire.
+                        </li>
+                        <li>
+                          <span style={{ fontWeight: "bold" }}>S’intéresse à vos actes de consommation personnelle.</span> . C’est-à-dire que tout ce qui est en lien avec votre activité professionnelle (comme des déplacements professionnels, de l’achat de matériel, etc.) n’est pas à prendre en compte ici. Une seule exception toutefois : vos déplacements domicile-travail que l’on questionnera.
+                        </li>
+                      </ul>
                   </>
                   : 'Bonjour, vous avez déjà répondu à l\'enquête, merci'
               }

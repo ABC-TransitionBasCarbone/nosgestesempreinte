@@ -1,5 +1,4 @@
 import Trans from '@/components/translation/Trans'
-import { useLocale } from '@/hooks/useLocale'
 import { HTMLAttributes } from 'react'
 import { DebounceInput } from 'react-debounce-input'
 import { twMerge } from 'tailwind-merge'
@@ -24,8 +23,6 @@ export default function NumberInput({
   id,
   ...props
 }: HTMLAttributes<HTMLInputElement> & Props) {
-  const locale = useLocale()
-
   return (
     <div className={twMerge(`flex items-center justify-end gap-1`, className)}>
       <DebounceInput
@@ -34,13 +31,6 @@ export default function NumberInput({
         type="number"
         min={min}
         value={isMissing ? '' : value}
-        placeholder={
-          isMissing
-            ? value?.toLocaleString(locale, {
-                maximumFractionDigits: 1,
-              }) ?? '0'
-            : '0'
-        }
         onChange={(event) => {
           const inputValue = (event.target as HTMLInputElement).value
           if (inputValue === '') {

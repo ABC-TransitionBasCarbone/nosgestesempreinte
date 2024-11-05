@@ -26,8 +26,8 @@ export default function useNavigation({
   )
 
   const noPrevQuestion = useMemo<boolean>(
-    () => currentQuestionIndex === 0 && !transitionPage,
-    [currentQuestionIndex, transitionPage]
+    () => transitionPage === getNamespace(relevantQuestions[0]),
+    [relevantQuestions, transitionPage]
   )
   const noNextQuestion = useMemo<boolean>(
     () => !relevantQuestions[currentQuestionIndex + 1],
@@ -59,7 +59,7 @@ export default function useNavigation({
     const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (!transitionPage && currentCategory !== nextCategory && currentCategory !== "services sociétaux") {
+    if (!transitionPage && currentCategory !== nextCategory) {
       setTransitionPage(currentCategory);
       return;
     }
@@ -87,7 +87,7 @@ export default function useNavigation({
     const nextCategory = getNamespace(newCurrentQuestion);
 
     // Si la catégorie change, redirige vers une page intermédiaire
-    if (!transitionPage && currentCategory !== nextCategory && nextCategory !== "services sociétaux") {
+    if (!transitionPage && currentCategory !== nextCategory) {
       setTransitionPage(nextCategory);
     }
 
@@ -98,6 +98,7 @@ export default function useNavigation({
 
   return {
     transitionPage,
+    setTransitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,

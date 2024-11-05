@@ -47,7 +47,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
       <td className="block border-primary-700 pb-4 text-sm ">
         <span className="flex items-end gap-4">
           <TextInputGroup
-            className="w-12 text-sm md:w-16"
+            className="text-sm md:w-16"
             name="distance"
             type="number"
             label={t('Distance')}
@@ -91,7 +91,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
           className="w-16 text-sm"
           name="passengers"
           value={passengers}
-          label={t('Passagers')}
+          label={t('Nombre d’occupants (vous inclus)')}
           onChange={(e) => setPassengers(Number(e.target.value))}>
           {new Array(5).fill(0).map((_, i) => {
             return (

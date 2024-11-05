@@ -6,6 +6,7 @@ import {
   Rule,
   RuleNode,
 } from 'publicodes'
+import { Journey } from '@/types/journey'
 
 export type DottedName = string
 
@@ -30,6 +31,8 @@ export type Rules = any
 export type Tutorials = Record<string, boolean>
 
 export type Situation = Record<DottedName, NodeValue>
+
+export type AideSaisie = Record<DottedName, NodeValue>
 
 export type Suggestion = {
   label: string
@@ -72,6 +75,8 @@ export type Simulation = {
   groups?: string[] | null
   savedViaEmail?: boolean
   opinionWayId: string
+  voitures?: Journey[]
+  suggestions: AideSaisie
 }
 
 type UpdateCurrentSimulationProps = {
@@ -87,6 +92,8 @@ type UpdateCurrentSimulationProps = {
   groupToAdd?: string | null
   groupToDelete?: string | null
   savedViaEmail?: boolean
+  voitures?: Journey[]
+  suggestions?: AideSaisie
 }
 
 export type Persona = {

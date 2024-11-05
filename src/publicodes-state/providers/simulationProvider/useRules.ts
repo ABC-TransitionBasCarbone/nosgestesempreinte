@@ -60,12 +60,16 @@ export function useRules({ engine, root }: Props) {
         }
         const mosaicChildren = mosaicRule.rawNode.mosaique['options']?.map(
           (option: string) => {
-            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+            const mosaicFound = everyQuestions.find((rule) => rule.match(new RegExp(`\\s${option}$`)));
+
+            return mosaicFound || ''
           }
         ) ?? [];
         const mosaicSiChildren = mosaicRule.rawNode.mosaique['optionsConditionnelles']?.map(
           (option: string) => {
-            return everyQuestions.find((rule) => rule.endsWith(option)) || ''
+            const mosaicFound = everyQuestions.find((rule) => rule.match(new RegExp(`\\s${option}$`)));
+
+            return mosaicFound || ''
           }
         ) ?? [];
 

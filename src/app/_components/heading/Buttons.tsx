@@ -4,13 +4,10 @@ import Trans from '@/components/translation/Trans'
 import ButtonLink from '@/design-system/inputs/ButtonLink'
 import { useSimulateurPage } from '@/hooks/navigation/useSimulateurPage'
 import { useIsClient } from '@/hooks/useIsClient'
-import { useCurrentSimulation } from '@/publicodes-state'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 export default function Buttons() {
-  const { progression } = useCurrentSimulation()
-
   const isClient = useIsClient()
 
   const {
@@ -28,12 +25,7 @@ export default function Buttons() {
         }`}
         href={getLinkToSimulateurPage()}
         onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-        onClick={() => {
-          if (progression > 0) {
-            return
-          }
-        }}>
+        onMouseLeave={() => setIsHover(false)}>
         <span
           className={twMerge(
             isHover

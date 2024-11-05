@@ -104,6 +104,7 @@ export default function useSimulations({
       groupToAdd,
       groupToDelete,
       savedViaEmail,
+      voitures
     }: UpdateCurrentSimulationProps) => {
       setSimulations((prevSimulations: Simulation[]) =>
         prevSimulations.map((simulation) => {
@@ -120,6 +121,10 @@ export default function useSimulations({
               ...simulationToUpdate.situation,
               ...situationToAdd,
             }
+          }
+
+          if (voitures !== undefined){
+            simulationToUpdate.voitures = voitures
           }
 
           if (

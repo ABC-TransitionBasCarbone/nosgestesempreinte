@@ -12,17 +12,19 @@ import {
   DEFAULT_FOCUS_ELEMENT_ID,
   QUESTION_DESCRIPTION_BUTTON_ID,
 } from '@/constants/accessibility'
-import { useRule } from '@/publicodes-state'
+import { useCurrentSimulation, useRule } from '@/publicodes-state'
 import { useEffect, useRef } from 'react'
 import Warning from './question/Warning'
+import {NodeValue} from "@/publicodes-state/types";
 
 type Props = {
   question: string
   tempValue?: number | undefined
   setTempValue?: (value: number | undefined) => void
+  showInput?: boolean
 }
 
-export default function Question({ question, tempValue, setTempValue }: Props) {
+export default function Question({ question, tempValue, setTempValue, showInput = true }: Props) {
   const {
     type,
     label,
@@ -42,6 +44,8 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
   // It should happen only on mount (the component remount every time the question changes)
   const prevQuestion = useRef('')
 
+  const currentSimulation  = useCurrentSimulation()
+
   useEffect(() => {
     if (type !== 'number') {
       if (setTempValue) setTempValue(undefined)
@@ -54,74 +58,91 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
     }
   }, [type, numericValue, setTempValue, question])
 
+  const updateOrAddSuggestion = (
+    question: string,
+    value: NodeValue
+  ): void => {
+    const suggestionKey = `${question} . aide saisie`;
+
+    currentSimulation.suggestions[suggestionKey] = value;
+
+    currentSimulation.updateCurrentSimulation({ suggestions: currentSimulation.suggestions });
+  };
+
   return (
     <>
       <div className="mb-4">
         <Label question={question} label={label} description={description} />
 
-        <Suggestions
-          question={question}
-          setValue={(value) => {
-            if (type === 'number') {
-              if (setTempValue) setTempValue(value)
-            }
-            setValue(value, { foldedStep: question })
-          }}
-        />
-        {type === 'number' && (
-          <NumberInput
-            unit={unit}
-            value={setTempValue ? tempValue : numericValue}
-            setValue={(value) => {
-              if (setTempValue) {
-                setTempValue(value)
-              }
-              setValue(value, { foldedStep: question })
-            }}
-            isMissing={isMissing}
-            min={0}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
-
-        {type === 'boolean' && (
-          <BooleanInput
-            value={value}
-            setValue={(value) => {
-              {
+        {showInput && (
+          <>
+            <Suggestions
+              question={question}
+              setValue={(value) => {
+                if (type === 'number') {
+                  if (setTempValue) setTempValue(value)
+                }
                 setValue(value, { foldedStep: question })
-              }
-            }}
-            isMissing={isMissing}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+                updateOrAddSuggestion(question, value)
+              }}
+            />
 
-        {type === 'choices' && (
-          <ChoicesInput
-            question={question}
-            choices={choices}
-            value={String(value)}
-            setValue={(value) => {
-              {
-                setValue(value, { foldedStep: question })
-              }
-            }}
-            isMissing={isMissing}
-            label={label || ''}
-            id={DEFAULT_FOCUS_ELEMENT_ID}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
-        )}
+            {type === 'number' && (
+              <NumberInput
+                unit={unit}
+                value={setTempValue ? tempValue : numericValue}
+                setValue={(value) => {
+                  if (setTempValue) {
+                    setTempValue(value)
+                  }
+                  setValue(value, { foldedStep: question })
+                }}
+                isMissing={isMissing}
+                min={0}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
 
-        {type === 'mosaic' && (
-          <Mosaic
-            question={question}
-            aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
-          />
+            {type === 'boolean' && (
+              <BooleanInput
+                value={value}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                  }
+                }}
+                isMissing={isMissing}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+
+            {type === 'choices' && (
+              <ChoicesInput
+                question={question}
+                choices={choices}
+                value={String(value)}
+                setValue={(value) => {
+                  {
+                    setValue(value, { foldedStep: question })
+                  }
+                }}
+                isMissing={isMissing}
+                label={label || ''}
+                id={DEFAULT_FOCUS_ELEMENT_ID}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+
+            {type === 'mosaic' && (
+              <Mosaic
+                question={question}
+                aria-describedby={QUESTION_DESCRIPTION_BUTTON_ID}
+              />
+            )}
+          </>
         )}
       </div>
 
@@ -137,6 +158,7 @@ export default function Question({ question, tempValue, setTempValue }: Props) {
           question={question}
           assistance={assistance}
           setTempValue={setTempValue}
+          updateOrAddSuggestion={updateOrAddSuggestion}
         />
       ) : null}
 

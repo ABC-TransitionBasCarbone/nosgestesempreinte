@@ -21,6 +21,7 @@ export default function useForm() {
 
   const {
     transitionPage,
+    setTransitionPage,
     gotoPrevQuestion,
     gotoNextQuestion,
     noPrevQuestion,
@@ -39,6 +40,7 @@ export default function useForm() {
      * Undefined unless when a transitionPage needs to be displayed (between categories)
      */
     transitionPage,
+    setTransitionPage,
     /**
      * Every questions (answered and missing) that should be displayed in the form
      */
