@@ -24,7 +24,9 @@ export default function useQuestionsOfMosaic({
         return options.map(
           (mosaicName) => {
             // TODO: we should manage the case where options don't correspond to exisiting rules
-            return everyMosaicChildren.find((child) => child.match(new RegExp(`\\b${mosaicName}$`))) ?? ''
+            const foundMosaic = everyMosaicChildren.find((child) => child.match(new RegExp(`\\s${mosaicName}$`)));
+
+            return foundMosaic ?? ''
           }
         ) ?? [];
       }
@@ -33,12 +35,16 @@ export default function useQuestionsOfMosaic({
         (mosaicName) => {
           const tmpMosaicName = mosaicName.replace(" . choix . nombre", "");
           // TODO: we should manage the case where options don't correspond to exisiting rules
-          const mosaicParent = everyRules.find((child) => child.match(new RegExp(`\\b${tmpMosaicName}$`))) ?? ''
-          if (!mosaicParent) return '';
-
+          const mosaicParent = everyRules.find((child) => child.match(new RegExp(`\\s${tmpMosaicName}$`))) ?? ''
+          if (!mosaicParent) {
+            return '';
+          }
           const parentValue = engine.evaluate(mosaicParent);
-          if (parentValue.nodeValue > 0) return everyMosaicChildren.find((child) => child.match(new RegExp(`\\b${mosaicName}$`))) ?? ''
+          if (parentValue.nodeValue > 0) {
+            const foundMosaic = everyMosaicChildren.find((child) => child.match(new RegExp(`\\s${mosaicName}$`)));
 
+            return foundMosaic ?? ''
+          }
           return ''
         }
       ).filter(m => !!m) ?? [];
