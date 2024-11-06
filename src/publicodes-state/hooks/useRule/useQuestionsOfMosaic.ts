@@ -33,7 +33,7 @@ export default function useQuestionsOfMosaic({
 
       return optionsConditionnelles?.map(
         (mosaicName) => {
-          const tmpMosaicName = mosaicName.replace(" . choix . nombre", "");
+          const tmpMosaicName = mosaicName.replace(" . choix", "");
           // TODO: we should manage the case where options don't correspond to exisiting rules
           const mosaicParent = everyRules.find((child) => child.match(new RegExp(`\\.\\s${tmpMosaicName}$`))) ?? ''
           if (!mosaicParent) {

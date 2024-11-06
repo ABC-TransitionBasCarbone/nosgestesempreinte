@@ -36,6 +36,7 @@ export default function Navigation({
   gotoPrevQuestion,
   gotoNextQuestion,
 }: Props) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { engine } = useEngine()
 
   const { t } = useClientTranslation()
@@ -112,9 +113,7 @@ export default function Navigation({
   const { type, questionsOfMosaic } = useRule(question)
 
   const handleGoToNextQuestion = useCallback(
-    async (e: KeyboardEvent | MouseEvent) => {
-      e.preventDefault()
-
+    async () => {
       if (isMissing) {
         if (type === 'mosaic') {
           questionsOfMosaic.forEach((key) => {
@@ -164,6 +163,23 @@ export default function Navigation({
       questionsOfMosaic
     ]
   )
+
+  const handleClick = useCallback(
+    async (e: KeyboardEvent | MouseEvent) => {
+      try {
+        e.preventDefault()
+        setIsLoading(true);
+        await handleGoToNextQuestion();
+        setIsLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e) {
+        console.log('error');
+      } finally {
+        setIsLoading(false);
+      }
+    }, [handleGoToNextQuestion]);
+
+
   async function getLastSimulationFromLocalStorage() {
     const localStorageValue = localStorage.getItem('nosgestesempreinte::v1');
     if (!localStorageValue) return null;
@@ -241,9 +257,9 @@ export default function Navigation({
       ) : null}
       <Button
         color={isMissing ? 'secondary' : 'primary'}
-        disabled={isNextDisabled}
+        disabled={isNextDisabled || isLoading}
         size="md"
-        onClick={handleGoToNextQuestion}>
+        onClick={handleClick}>
         {buttonText ?
           buttonText
           : noNextQuestion

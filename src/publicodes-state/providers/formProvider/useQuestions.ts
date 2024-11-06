@@ -48,7 +48,7 @@ export default function useQuestions({
     [safeEvaluate, root, everyQuestions, situation]
   )
 
-  let remainingQuestions = useMemo<string[]>(
+  const remainingUnsortedByOrderQuestions = useMemo<string[]>(
     () =>
       // We take every questions
       everyQuestions
@@ -145,43 +145,45 @@ export default function useQuestions({
     ]
   )
 
-  // Regrouper les questions par catégorie (le premier mot avant le premier point)
-  const questionsByCategory: { [category: string]: { key: string, ordre: number }[] } = {};
+  const remainingQuestions = useMemo(() => {
+    // Regrouper les questions par catégorie (le premier mot avant le premier point)
+    const questionsByCategory: { [category: string]: { key: string, ordre: number }[] } = {};
 
-  // Parcourir toutes les questions
-  remainingQuestions.forEach((key) => {
-    const rule = safeGetRule(key);
-    const ordre = rule?.rawNode?.ordre !== undefined ? rule.rawNode.ordre : Infinity;
+    // Parcourir toutes les questions
+    remainingUnsortedByOrderQuestions.forEach((key) => {
+      const rule = safeGetRule(key);
+      const ordre = rule?.rawNode?.ordre !== undefined ? rule.rawNode.ordre : Infinity;
 
-    // Extraire la catégorie (le premier mot avant le premier point)
-    const category = key.split(' . ')[0];
+      // Extraire la catégorie (le premier mot avant le premier point)
+      const category = key.split(' . ')[0];
 
-    // Si la catégorie n'existe pas encore, la créer
-    if (!questionsByCategory[category]) {
-      questionsByCategory[category] = [];
-    }
+      // Si la catégorie n'existe pas encore, la créer
+      if (!questionsByCategory[category]) {
+        questionsByCategory[category] = [];
+      }
 
-    // Ajouter la question dans la catégorie correspondante
-    questionsByCategory[category].push({ key, ordre });
-  });
-
-  // Créer un tableau pour stocker le résultat final trié
-  const sortedKeys: string[] = [];
-
-  // Parcourir les catégories et trier les questions dans chaque catégorie par ordre
-  Object.keys(questionsByCategory).forEach((category) => {
-    const questions = questionsByCategory[category];
-
-    // Trier les questions dans chaque catégorie par ordre
-    questions.sort((a, b) => a.ordre - b.ordre);
-
-    // Ajouter les clés triées dans le tableau final
-    questions.forEach((item) => {
-      sortedKeys.push(item.key);
+      // Ajouter la question dans la catégorie correspondante
+      questionsByCategory[category].push({ key, ordre });
     });
-  });
 
-  remainingQuestions = sortedKeys
+    // Créer un tableau pour stocker le résultat final trié
+    const sortedKeys: string[] = [];
+
+    // Parcourir les catégories et trier les questions dans chaque catégorie par ordre
+    Object.keys(questionsByCategory).forEach((category) => {
+      const questions = questionsByCategory[category];
+
+      // Trier les questions dans chaque catégorie par ordre
+      questions.sort((a, b) => a.ordre - b.ordre);
+
+      // Ajouter les clés triées dans le tableau final
+      questions.forEach((item) => {
+        sortedKeys.push(item.key);
+      });
+    });
+
+    return sortedKeys
+  }, [remainingUnsortedByOrderQuestions, safeGetRule])
 
   const relevantAnsweredQuestions = useMemo<string[]>(
     () =>
