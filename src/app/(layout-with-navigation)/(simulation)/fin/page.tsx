@@ -6,7 +6,7 @@ export default function FinPage() {
   const goToOpinionWay = () => {
     const storedData = JSON.parse(localStorage.getItem('nosgestesempreinte::v1') ?? "");
 
-    window.location.href = `https://ow3.cawi.fr/cgi-bin/xcawi2/Q/bj27428/bj27428.pl?login=${storedData.simulations[0].opinionWayId}`;
+    window.location.href = `https://ow3.cawi.fr/cgi-bin/xcawi2/Q/bj27428/bj27428.pl?ret=1&login=${storedData.simulations[0].opinionWayId}`;
     return;
   }
 
