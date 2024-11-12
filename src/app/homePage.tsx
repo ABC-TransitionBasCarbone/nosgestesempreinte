@@ -42,7 +42,7 @@ export default function Homepage() {
                           Toutefois, pour certaines pratiques et modes de vie, il est complexe de se replonger en arrière. C’est pourquoi, nous raisonnons parfois sur un comportement moyen actuel via des questions formulées selon une temporalité journalière ou hebdomadaire.
                         </li>
                         <li>
-                          <span style={{ fontWeight: "bold" }}>S’intéresse à vos actes de consommation personnelle.</span> . C’est-à-dire que tout ce qui est en lien avec votre activité professionnelle (comme des déplacements professionnels, de l’achat de matériel, etc.) n’est pas à prendre en compte ici. Une seule exception toutefois : vos déplacements domicile-travail que l’on questionnera.
+                          <span style={{ fontWeight: "bold" }}>S’intéresse à vos actes de consommation personnelle.</span> C’est-à-dire que tout ce qui est en lien avec votre activité professionnelle (comme des déplacements professionnels, de l’achat de matériel, etc.) n’est pas à prendre en compte ici. Une seule exception toutefois : vos déplacements domicile-travail que l’on questionnera.
                         </li>
                       </ul>
                   </>
