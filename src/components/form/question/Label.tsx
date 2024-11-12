@@ -5,6 +5,7 @@
 'use client'
 
 import Trans from '@/components/translation/Trans'
+import MarkdownToJsx from 'markdown-to-jsx'
 import { QUESTION_DESCRIPTION_BUTTON_ID } from '@/constants/accessibility'
 import Button from '@/design-system/inputs/Button'
 import Markdown from '@/design-system/utils/Markdown'
@@ -60,7 +61,7 @@ export default function Label({
           )}
           tabIndex={0}
           id={QUESTION_DESCRIPTION_BUTTON_ID}>
-          {label}
+          <MarkdownToJsx>{label}</MarkdownToJsx>
         </h1>{' '}
         {description ? (
           <Button
