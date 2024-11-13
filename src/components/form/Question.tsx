@@ -74,19 +74,19 @@ export default function Question({ question, tempValue, setTempValue, showInput 
       <div className="mb-4">
         <Label question={question} label={label} description={description} />
 
+        <Suggestions
+          question={question}
+          setValue={(value) => {
+            if (type === 'number') {
+              if (setTempValue) setTempValue(value)
+            }
+            setValue(value, { foldedStep: question })
+            updateOrAddSuggestion(question, value)
+          }}
+        />
+
         {showInput && (
           <>
-            <Suggestions
-              question={question}
-              setValue={(value) => {
-                if (type === 'number') {
-                  if (setTempValue) setTempValue(value)
-                }
-                setValue(value, { foldedStep: question })
-                updateOrAddSuggestion(question, value)
-              }}
-            />
-
             {type === 'number' && (
               <NumberInput
                 unit={unit}
