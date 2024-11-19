@@ -239,7 +239,7 @@ export default function Navigation({
   }
 
   return (
-    <div className="flex justify-end  gap-4">
+    <div className="flex justify-end gap-4 flex-col sm:flex-row">
       {!noPrevQuestion ? (
         <Button
           size="md"

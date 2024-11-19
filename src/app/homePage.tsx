@@ -26,7 +26,7 @@ export default function Homepage() {
   return (
     <>
       <Main>
-        <div className="relative flex items-center justify-center overflow-hidden p-4 h-[100vh]">
+        <div className="relative flex items-center justify-center h-full sm:h-[100vh]">
           <div className="relative mb-2 md:mb-0">
             <div style={{ margin: "40px" }}>
               {

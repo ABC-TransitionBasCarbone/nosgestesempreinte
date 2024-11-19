@@ -42,7 +42,7 @@ export default function Question({ question, toggleQuestionList }: Props) {
   return (
     <button
       disabled={!isDebug && !isFolded}
-      className={`relative mb-2 flex w-full flex-col items-start justify-between gap-2 overflow-hidden rounded-xl p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
+      className={`relative mb-2 flex w-full flex-col items-start justify-between gap-2 rounded-xl p-4 pl-6 text-left font-bold md:flex-row md:items-center md:gap-4 ${statusClassNames[status]} `}
       onClick={() => {
         if (isDebug) {
           foldEveryQuestionsUntil({
