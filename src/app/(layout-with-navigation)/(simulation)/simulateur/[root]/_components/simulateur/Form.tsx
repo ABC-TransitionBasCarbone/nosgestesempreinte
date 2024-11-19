@@ -105,7 +105,7 @@ export default function Form() {
   const QuestionComponent = questions[currentQuestion] || Question
 
   return (
-    <div className="relative mb-4 overflow-hidden rounded-xl bg-gray-100 p-4 pl-6">
+    <div className="relative mb-4 rounded-xl bg-gray-100 p-4 pl-6">
       <ColorIndicator question={currentQuestion} />
       {
         transitionPage
