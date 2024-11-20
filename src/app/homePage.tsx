@@ -35,6 +35,7 @@ export default function Homepage() {
                       <div style={{ margin: "8px", fontSize: "20px", fontWeight: "bold" }}>Bonjour !</div>
                       <div style={{ marginLeft: "8px" }}>Vous allez à présent répondre à diverses questions afférentes à vos déplacements, modes d’alimentation etc.</div>
                       <div style={{ marginLeft: "8px" }}>Vous pouvez répondre à l’enquête en une seule fois ou bien en plusieurs. Une barre d’avancement au-dessus des questions vous affichera le taux de complétion du questionnaire.</div>
+                      <div style={{ marginLeft: "8px", marginTop: "8px", fontWeight: "bold" }}>Merci de remplir les champs de saisie avec des valeurs numériques (ex: 100 <span style={{ fontStyle: "italic"}}>km</span>, 5 <span style={{ fontStyle: "italic"}}>heures</span>).</div>
                       <div style={{ marginLeft: "8px", marginTop: "8px" }}><span style={{ textDecoration: "underline" }}>Deux choses à savoir !</span>  L'enquête : </div>
                       <ul style={{ marginLeft: "8px", listStyle: "disc", listStylePosition: "inside" }}>
                         <li>
