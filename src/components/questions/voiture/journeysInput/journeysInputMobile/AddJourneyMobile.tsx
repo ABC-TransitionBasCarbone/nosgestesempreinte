@@ -7,6 +7,7 @@ import Button from '@/design-system/inputs/Button'
 import Select from '@/design-system/inputs/Select'
 import TextInputGroup from '@/design-system/inputs/TextInputGroup'
 import { useClientTranslation } from '@/hooks/useClientTranslation'
+import { useCurrentSimulation } from '@/publicodes-state'
 import { Journey } from '@/types/journey'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -24,6 +25,7 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
   const [reccurrence, setReccurrence] = useState(1)
   const [period, setPeriod] = useState('week')
   const [passengers, setPassengers] = useState(1)
+  const currentSimulation = useCurrentSimulation()
 
   return (
     <tr
@@ -103,21 +105,32 @@ export default function AddJourneyMobile({ setJourneys, className }: Props) {
         </Select>
       </td>
       <td className="block border-primary-700 pl-2 text-right text-sm">
-        <Button
+      <Button
           size="sm"
-          onClick={() =>
-            setJourneys((prevJourneys) => [
-              ...prevJourneys,
-              {
-                id: uuid(),
-                label,
-                distance: Number(distance),
-                reccurrence,
-                period,
-                passengers,
-              },
-            ])
-          }>
+          onClick={() => {
+            setJourneys((prevJourneys) => {
+              const updatedJourneys = [
+                ...prevJourneys,
+                {
+                  id: uuid(),
+                  label,
+                  opinionWayId: currentSimulation.opinionWayId,
+                  distance: Number(distance),
+                  reccurrence,
+                  period,
+                  passengers,
+                },
+              ];
+
+              // Mise à jour du localStorage avec les données mises à jour.
+              currentSimulation.updateCurrentSimulation({
+                voitures: updatedJourneys,
+              })
+
+              return updatedJourneys;
+            });
+          }}
+          >
           <Trans>Ajouter</Trans>
         </Button>
       </td>
