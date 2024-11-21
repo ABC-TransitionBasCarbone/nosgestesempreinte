@@ -24,11 +24,14 @@ export default async function addRow(
     req: NextApiRequest,
     res: NextApiResponse<ResponseData>
 ) {
-  if (req.method !== 'POST') {
-    return res.status(404).json({ message: ERROR_MESSAGES.ROUTE_NOT_FOUND });
-  }
-
   try {
+
+    if (req.method !== 'POST') {
+      return res.status(404).json({ message: ERROR_MESSAGES.ROUTE_NOT_FOUND });
+    }
+  
+    const promises = [];
+  
     const simulationResults = req.body.simulationResults;
     const voitures = req.body.voitures;
 
@@ -45,40 +48,32 @@ export default async function addRow(
     const values = [simulationResults];
     const resource = { values };
 
-    try {
-      await service.spreadsheets.values.append({
-        spreadsheetId,
-        valueInputOption: 'USER_ENTERED',
-        range: 'A1',
-        resource,
-      });
-    } catch (error) {
-      console.error('Append Error:', error);
-      return res.status(500).json({ message: ERROR_MESSAGES.HEADERS_ERROR });
-    }
+    promises.push(service.spreadsheets.values.append({
+      spreadsheetId,
+      valueInputOption: 'USER_ENTERED',
+      range: 'A1',
+      resource,
+    }));
 
     if (voitures) {
-      try {
-        await service.spreadsheets.values.append({
-          spreadsheetId,
-          valueInputOption: 'USER_ENTERED',
-          range: "'details-trajet'!A1",
-          resource: {
-            values: voitures.map(({ label, opinionWayId, distance, reccurrence, period, passengers }) => [
-              opinionWayId,
-              label,
-              distance,
-              reccurrence,
-              period,
-              passengers,
-            ])
-          },
-        });
-      } catch (error) {
-        console.error('Append Error:', error);
-        return res.status(500).json({ message: ERROR_MESSAGES.APPEND_ERROR_CAR });
-      }
+      promises.push(service.spreadsheets.values.append({
+        spreadsheetId,
+        valueInputOption: 'USER_ENTERED',
+        range: "'details-trajet'!A1",
+        resource: {
+          values: voitures.map(({ label, opinionWayId, distance, reccurrence, period, passengers }) => [
+            opinionWayId,
+            label,
+            distance,
+            reccurrence,
+            period,
+            passengers,
+          ])
+        },
+      }));
     }
+
+    await Promise.all(promises);
 
     return res.status(200).json({ message: SUCCESS_MESSAGES.SUCCESS });
   } catch (err) {
