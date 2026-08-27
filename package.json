@@ -9,7 +9,7 @@
     "url": "https://github.com/incubateur-ademe/nosgestesclimat-site-nextjs.git"
   },
   "engines": {
-    "node": "20"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -22,7 +22,7 @@
     "ui:check": "yarn run ui:parse && node scripts/i18n/check-ui.js"
   },
   "dependencies": {
-    "@abc-transitionbascarbone/nosgestesempreinte-modele": "^1.0.23",
+    "@abc-transitionbascarbone/nosgestesempreinte-modele": "^1.0.25",
     "@babel/eslint-parser": "^7.24.8",
     "@babel/runtime": "^7.23.1",
     "@mdx-js/loader": "^3.0.1",
@@ -31,7 +31,7 @@
     "@next/mdx": "^14.2.5",
     "@publicodes/react-ui": "^1.2.0",
     "@tanstack/react-query": "^5.28.4",
-    "axios": "^1.6.8",
+    "axios": "^1.19.0",
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.14",
     "fuse.js": "6.6.2",
@@ -43,7 +43,7 @@
     "i18next-parser": "^8.13.0",
     "i18next-resources-to-backend": "^1.2.0",
     "markdown-to-jsx": "^7.3.2",
-    "next": "^14.2.5",
+    "next": "^14.2.35",
     "next-i18n-router": "^4.1.1",
     "postcss": "8.4.36",
     "process": "^0.11.10",
@@ -71,7 +71,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.8",
     "@babel/runtime": "^7.23.1",
-    "@incubateur-ademe/nosgestesclimat-scripts": "^0.6.0",
+    "@incubateur-ademe/nosgestesclimat-scripts": "^0.8.0",
     "@simonsmith/cypress-image-snapshot": "^9.0.1",
     "@types/mdx": "^2.0.10",
     "@types/mocha": "^10.0.6",
@@ -86,7 +86,7 @@
     "autoprefixer": "^10.4.16",
     "cli-progress": "^3.12.0",
     "core-js": "^3.33.2",
-    "deepl-node": "^1.10.2",
+    "deepl-node": "^1.28.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
     "eslint-config-next": "^14.2.5",
@@ -107,7 +107,31 @@
     "yaml-loader": "^0.8.1"
   },
   "resolutions": {
-    "jackspeak": "2.1.1"
+    "follow-redirects": "1.16.0",
+    "braces": "3.0.3",
+    "brace-expansion": "5.0.9",
+    "diff": "4.0.4",
+    "qs": "6.15.2",
+    "socket.io-parser": "4.2.7",
+    "picomatch": "4.0.4",
+    "yaml": "2.8.3",
+    "lodash": "4.18.0",
+    "ws": "8.21.0",
+    "minimatch": "10.2.5",
+    "micromatch": "4.0.8",
+    "webpack": "5.104.1",
+    "serialize-javascript": "7.0.5",
+    "cross-spawn": "7.0.6",
+    "nanoid": "3.3.18",
+    "js-yaml": "3.15.1",
+    "mdast-util-to-hast": "13.2.1",
+    "ajv": "8.18.0",
+    "flatted": "3.4.2",
+    "postcss": "8.5.23",
+    "vite": "6.4.3",
+    "d3-color": "3.1.0",
+    "@babel/core": "^7.29.7",
+    "@babel/runtime": "^7.23.1"
   },
   "packageManager": "yarn@1.22.19"
 }
